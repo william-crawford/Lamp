@@ -1,2 +1,1 @@
-include ':app'
-include ':M2'
+include 'M2', ':app'
