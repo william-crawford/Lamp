@@ -1,5 +1,6 @@
 package edu.gatech.oad.antlab.person;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Arrays;
@@ -35,15 +36,13 @@ public class Person2 {
 	 * @return the modified string
 	 */
 	private String calc(String input) {
-        List<Character> clist = input.chars().mapToObj(e->(char)e).collect(Collectors.toList());
-        Collections.shuffle(clist);
-        StringBuilder sb = new StringBuilder(input.length());
-        for (Character e : clist) {
-            sb.append(e);
+	    List<String> clist = new ArrayList<>();
+        for (int i = 0; i < input.length(); i++) {
+            clist.add(input.substring(i, i+1));
         }
-        return sb.toString();
-	  return randName;
-	}
+        Collections.shuffle(clist);
+        return String.join("", clist);
+    }
 	/**
 	 * Return a string rep of this object
 	 * that varies with an input string
