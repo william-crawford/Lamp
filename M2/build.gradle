@@ -12,7 +12,7 @@ jar {
     manifest {
         attributes(
                 "Class-Path": "resources.jar",
-                "Main-Class": "edu.gatech.oad.antlab.pkg1.AntLabMain.java"
+                "Main-Class": "edu.gatech.oad.antlab.pkg1.AntLabMain"
                 )
     }
 }
