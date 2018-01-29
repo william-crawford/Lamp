@@ -1,8 +1,23 @@
-apply plugin: 'java-library'
+plugins {
+    id 'java'
+}
+
+defaultTasks 'jar'
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'lib', include: ['*.jar'])
 }
+
+jar {
+    manifest {
+        attributes(
+                "Class-Path": "resources.jar",
+                "Main-Class": "edu.gatech.oad.antlab.pkg1.AntLabMain.java"
+                )
+    }
+}
+
+compileJava {}
 
 sourceCompatibility = "1.7"
 targetCompatibility = "1.7"
