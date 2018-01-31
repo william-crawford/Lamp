@@ -1,3 +1,3 @@
 hahahahahahhaha.. no. Whoops
 -- Lauren Chen
-draegonblader7@gmail.com
+lchen401@gatech.edu
