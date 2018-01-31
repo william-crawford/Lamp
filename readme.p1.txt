@@ -1,2 +1,2 @@
 git cheJermiah Russell
-jrussell45@gatech.edu
+jrussell45@gatech.e
