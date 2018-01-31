@@ -29,9 +29,14 @@ public class Person4 {
      * @param input the string to be modified
      * @return the modified string
      */
+
     private String calc(String input) {
       //Person 4 put your implementation here
-      return null;
+        String aString = "";
+        for (int i = 0; i < name.length(); i++) {
+            aString += name.charAt(i) + 1;
+        }
+        return aString;
     }
     
     /**
