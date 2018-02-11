@@ -1,5 +1,7 @@
 package cs2340.edu.gatech.lamp.controller;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -54,8 +56,20 @@ public class MainActivity extends AppCompatActivity {
                 //homeless
                 break;
             case DENIED:
-                //display error
+                password.setText("");
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Login failed")
+                        .setMessage("The login information provided was incorrect")
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+                break;
         }
+
     }
 
 }
