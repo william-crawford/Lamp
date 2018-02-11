@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import cs2340.edu.gatech.lamp.R;
 import cs2340.edu.gatech.lamp.model.LoginValidator;
@@ -48,10 +49,10 @@ public class MainActivity extends AppCompatActivity {
 
         switch (result) {
             case ADMIN:
-                //doAdminThings
+                goToAdmin();
                 break;
             case SHELTER:
-                //shelterThings
+                goToShelter();
                 break;
             case HOMELESS:
                 goToHomeless();
@@ -74,8 +75,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void goToHomeless() {
-        Intent intent = new Intent(this, MapsActivity.class);
-        startActivity(intent);
+        //Intent intent = new Intent(this, MapsActivity.class);
+        //startActivity(intent);
+        Toast.makeText(this, "Homeless login successful", Toast.LENGTH_SHORT).show();
     }
 
+    private void goToShelter() {
+        Toast.makeText(this, "Shelter login successful", Toast.LENGTH_SHORT).show();
+    }
+
+
+    private void goToAdmin() {
+        Toast.makeText(this, "Admin login successful", Toast.LENGTH_SHORT).show();
+    }
 }
