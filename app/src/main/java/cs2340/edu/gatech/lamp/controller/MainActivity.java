@@ -1,13 +1,12 @@
-package cs2340.edu.gatech.lamp;
+package cs2340.edu.gatech.lamp.controller;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
-public class MainActivity extends AppCompatActivity {
+import cs2340.edu.gatech.lamp.R;
 
-    // Comment :P
-    // buh.
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,4 +14,5 @@ public class MainActivity extends AppCompatActivity {
         Log.d("MyApp", "Started");
         setContentView(R.layout.activity_main);
     }
+
 }
