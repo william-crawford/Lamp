@@ -1,6 +1,7 @@
 package cs2340.edu.gatech.lamp.controller;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 //shelterThings
                 break;
             case HOMELESS:
-                //homeless
+                goToHomeless();
                 break;
             case DENIED:
                 password.setText("");
@@ -70,6 +71,11 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
 
+    }
+
+    private void goToHomeless() {
+        Intent intent = new Intent(this, MapsActivity.class);
+        startActivity(intent);
     }
 
 }
