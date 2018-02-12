@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Lamp.iml" filepath="$PROJECT_DIR$/Lamp.iml" />
-      <module fileurl="file://C:\Users\Potato\AndroidStudioProjects\lamp\M2\M2.iml" filepath="C:\Users\Potato\AndroidStudioProjects\lamp\M2\M2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/M2/M2.iml" filepath="$PROJECT_DIR$/M2/M2.iml" />
+      <module fileurl="file://C:\Users\JermiahRussell\Georgia Institute of Technology\OneDrive - Georgia Institute of Technology\CS Classes\CS2340\lamp\M2\M2.iml" filepath="C:\Users\JermiahRussell\Georgia Institute of Technology\OneDrive - Georgia Institute of Technology\CS Classes\CS2340\lamp\M2\M2.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lamp.iml" filepath="$PROJECT_DIR$/lamp.iml" />
     </modules>
   </component>
 </project>
