@@ -1,5 +1,8 @@
 package cs2340.edu.gatech.lamp.controller;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import cs2340.edu.gatech.lamp.R;
 import cs2340.edu.gatech.lamp.model.LoginValidator;
@@ -45,17 +49,43 @@ public class MainActivity extends AppCompatActivity {
 
         switch (result) {
             case ADMIN:
-                //doAdminThings
+                goToAdmin();
                 break;
             case SHELTER:
-                //shelterThings
+                goToShelter();
                 break;
             case HOMELESS:
-                //homeless
+                goToHomeless();
                 break;
             case DENIED:
-                //display error
+                password.setText("");
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Login failed")
+                        .setMessage("The login information provided was incorrect")
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+                break;
         }
+
     }
 
+    private void goToHomeless() {
+        //Intent intent = new Intent(this, MapsActivity.class);
+        //startActivity(intent);
+        Toast.makeText(this, "Homeless login successful", Toast.LENGTH_SHORT).show();
+    }
+
+    private void goToShelter() {
+        Toast.makeText(this, "Shelter login successful", Toast.LENGTH_SHORT).show();
+    }
+
+
+    private void goToAdmin() {
+        Toast.makeText(this, "Admin login successful", Toast.LENGTH_SHORT).show();
+    }
 }
