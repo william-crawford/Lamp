@@ -1,2 +1,2 @@
-Jermiah Russell
-jrussell45@gatech.edu
+git cheJermiah Russell
+jrussell45@gatech.e
