@@ -94,6 +94,5 @@ public class LoginActivity extends AppCompatActivity {
         password.setText("");
         username.setText("");
         startActivity(defaultIntent);
-        finish();
     }
 }
