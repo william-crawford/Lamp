@@ -1,7 +1,6 @@
 package cs2340.edu.gatech.lamp.controller;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,13 +8,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import cs2340.edu.gatech.lamp.R;
 import cs2340.edu.gatech.lamp.model.LoginValidator;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     EditText username;
     EditText password;
@@ -24,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d("MyApp", "Started");
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         username = findViewById(R.id.txt_username);
         password = findViewById(R.id.txt_password);
@@ -76,8 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void goToHomeless() {
         //Intent intent = new Intent(this, MapsActivity.class);
-        Intent intent = new Intent(this, TuckerExampleActivity.class);
-        startActivity(intent);
+        //startActivity(intent);
         Toast.makeText(this, "Homeless login successful", Toast.LENGTH_SHORT).show();
     }
 
