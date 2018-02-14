@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cs2340.edu.gatech.lamp.controller.MainActivity">
+    tools:context="cs2340.edu.gatech.lamp.controller.LoginActivity">
 
     <TextView
         android:id="@+id/login_header"
