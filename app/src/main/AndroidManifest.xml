@@ -37,7 +37,11 @@
 
         <activity
             android:name=".controller.MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps" />
+        <activity
+            android:name=".controller.TuckerExampleActivity"
+            android:label="@string/title_activity_tucker_example"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

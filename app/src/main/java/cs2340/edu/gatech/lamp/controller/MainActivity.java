@@ -76,7 +76,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void goToHomeless() {
         //Intent intent = new Intent(this, MapsActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, TuckerExampleActivity.class);
+        startActivity(intent);
         Toast.makeText(this, "Homeless login successful", Toast.LENGTH_SHORT).show();
     }
 
