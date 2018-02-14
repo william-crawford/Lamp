@@ -1,6 +1,7 @@
 package cs2340.edu.gatech.lamp.controller;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -73,17 +74,26 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void goToHomeless() {
-        //Intent intent = new Intent(this, MapsActivity.class);
-        //startActivity(intent);
         Toast.makeText(this, "Homeless login successful", Toast.LENGTH_SHORT).show();
+        goToDefault();
     }
 
     private void goToShelter() {
         Toast.makeText(this, "Shelter login successful", Toast.LENGTH_SHORT).show();
+        goToDefault();
     }
 
 
     private void goToAdmin() {
         Toast.makeText(this, "Admin login successful", Toast.LENGTH_SHORT).show();
+        goToDefault();
+    }
+
+    private void goToDefault() {
+        Intent defaultIntent = new Intent(this, DefaultActivity.class);
+        password.setText("");
+        username.setText("");
+        startActivity(defaultIntent);
+        finish();
     }
 }
