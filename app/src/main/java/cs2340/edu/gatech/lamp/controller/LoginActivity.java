@@ -36,8 +36,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        Button register = findViewById(R.id.btn_register);
-
     }
 
     private void login() {
