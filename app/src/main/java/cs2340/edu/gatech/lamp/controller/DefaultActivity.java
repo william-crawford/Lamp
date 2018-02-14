@@ -21,10 +21,19 @@ public class DefaultActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent welcomeIntent = new Intent(context, WelcomeActivity.class);
-                    welcomeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(welcomeIntent);
+                    goToWelcome();
                 }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        goToWelcome();
+    }
+
+    private void goToWelcome() {
+        Intent welcomeIntent = new Intent(context, WelcomeActivity.class);
+        welcomeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(welcomeIntent);
     }
 }
