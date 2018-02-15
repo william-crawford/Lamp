@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "848065616748",
+    "firebase_url": "https://lamp-4b225.firebaseio.com",
+    "project_id": "lamp-4b225",
+    "storage_bucket": "lamp-4b225.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:848065616748:android:2c60e2feb034538c",
+        "android_client_info": {
+          "package_name": "cs2340.edu.gatech.lamp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "848065616748-thn2ja0caasdoqoqpp0gkuoao7m8l3sv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cs2340.edu.gatech.lamp",
+            "certificate_hash": "a750ef28612fdc1faa8f183708260c0dd7641814"
+          }
+        },
+        {
+          "client_id": "848065616748-j53d3nt6rouh9mvsatul743g219sj3ip.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCliaea98eClJiY9En5zr_4H5M6ley9DCI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "848065616748-j53d3nt6rouh9mvsatul743g219sj3ip.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
