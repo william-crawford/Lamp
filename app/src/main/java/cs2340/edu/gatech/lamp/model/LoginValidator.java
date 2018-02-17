@@ -29,7 +29,7 @@ public class LoginValidator {
         if (password.equals(shelterMap.get(username))) {
             return loginResult.SHELTER;
         }
-        if (password.equals(homelessMap.get(username))) {
+        if (password.equals(adminMap.get(username))) {
             return loginResult.ADMIN;
         }
 
