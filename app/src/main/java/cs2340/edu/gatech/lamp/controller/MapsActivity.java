@@ -7,14 +7,22 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
 import cs2340.edu.gatech.lamp.R;
+import cs2340.edu.gatech.lamp.model.Address;
+import cs2340.edu.gatech.lamp.model.Shelter;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private List<Shelter> shelters;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +32,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        shelters = fetchShelterData();
     }
 
 
@@ -42,7 +51,37 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add a marker in Sydney and move the camera
         LatLng culc = new LatLng(33.7749, -84.3964);
-        mMap.addMarker(new MarkerOptions().position(culc).title("Come sleep in the CULC!"));
+        //mMap.addMarker(new MarkerOptions().position(culc).title("Come sleep in the CULC!"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(culc));
+
+        for (Shelter shelter : shelters) {
+            mMap.addMarker(new MarkerOptions()
+                    .position(shelter.getAddress().getLatLng())
+                    .title(shelter.getName())
+                    .icon(BitmapDescriptorFactory.defaultMarker(
+                            shelter.isHasSpace() ?
+                                    BitmapDescriptorFactory.HUE_GREEN :
+                                    BitmapDescriptorFactory.HUE_ORANGE
+                    ))
+            );
+        }
+    }
+
+    private List<Shelter> fetchShelterData() {
+        List<Shelter> data = new ArrayList<>();
+
+        data.add(new Shelter(
+                "The CULC",
+                new Address(33.7749, -84.3964, "266 4th St. NW"),
+                false
+        ));
+
+        data.add(new Shelter(
+                "Architecture Roof",
+                new Address(33.7763, -84.3957, "245 4th St. NW"),
+                true
+        ));
+
+        return data;
     }
 }
