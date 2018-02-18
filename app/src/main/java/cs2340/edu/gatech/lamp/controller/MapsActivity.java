@@ -1,13 +1,20 @@
 package cs2340.edu.gatech.lamp.controller;
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -49,10 +56,37 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng culc = new LatLng(33.7749, -84.3964);
-        //mMap.addMarker(new MarkerOptions().position(culc).title("Come sleep in the CULC!"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(culc));
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Criteria criteria = new Criteria();
+
+        Location location = null;
+        try {
+            location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
+        } catch (SecurityException e) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Attention")
+                    .setMessage("For best functionality, allow Lamp to access your location."
+                            + "This can be done from your system settings")
+                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
+
+        if (location != null) {
+            mMap.moveCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition.Builder()
+                    .target(new LatLng(location.getLatitude(), location.getLongitude()))
+                    .zoom(16)
+                    .build()
+            ));
+        } else {
+            LatLng culc = new LatLng(33.7749, -84.3964);
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(culc));
+        }
+
 
         for (Shelter shelter : shelters) {
             mMap.addMarker(new MarkerOptions()
@@ -78,7 +112,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         data.add(new Shelter(
                 "Architecture Roof",
-                new Address(33.7763, -84.3957, "245 4th St. NW"),
+                new Address(33.7761, -84.3960, "245 4th St. NW"),
                 true
         ));
 
