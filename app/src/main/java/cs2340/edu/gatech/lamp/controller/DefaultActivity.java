@@ -1,5 +1,6 @@
 package cs2340.edu.gatech.lamp.controller;
 
+import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -34,6 +35,13 @@ public class DefaultActivity extends AppCompatActivity {
                 goToMap();
             }
         });
+        Button toList = findViewById(R.id.btn_to_list);
+        toList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToList();
+            }
+        });
     }
 
     @Override
@@ -51,4 +59,7 @@ public class DefaultActivity extends AppCompatActivity {
         startActivity(new Intent(this, MapsActivity.class));
     }
 
+    private void goToList() {
+        startActivity(new Intent(this, ListActivity.class));
+    }
 }
