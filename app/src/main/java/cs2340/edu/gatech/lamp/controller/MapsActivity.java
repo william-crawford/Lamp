@@ -20,13 +20,12 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import cs2340.edu.gatech.lamp.R;
 import cs2340.edu.gatech.lamp.model.Address;
 import cs2340.edu.gatech.lamp.model.Shelter;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements MapsDetailFragment.MapsDetailInteractionListener, OnMapReadyCallback {
 
     private GoogleMap mMap;
     private List<Shelter> shelters;
@@ -117,5 +116,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         ));
 
         return data;
+    }
+
+    @Override
+    public void onMapItemSelected() {
+
     }
 }

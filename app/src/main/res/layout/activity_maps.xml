@@ -17,7 +17,7 @@
         map:layout_constraintBottom_toTopOf="@+id/guideline4"
         map:layout_constraintTop_toTopOf="parent"
         tools:context="cs2340.edu.gatech.lamp.controller.MapsActivity" />
-    <!--
+
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:map="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -27,8 +27,8 @@
         android:layout_height="0dp"
         map:layout_constraintBottom_toBottomOf="parent"
         map:layout_constraintTop_toTopOf="@+id/guideline4"
-        tools:context="cs2340.edu.gatech.lamp.controller.MapsDetailFragment" />
-    -->
+        tools:context="cs2340.edu.gatech.lamp.controller.MapsActivity" />
+
     <android.support.constraint.Guideline
         android:id="@+id/guideline4"
         android:layout_width="wrap_content"
