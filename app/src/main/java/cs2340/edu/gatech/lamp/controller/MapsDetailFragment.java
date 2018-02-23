@@ -20,7 +20,7 @@ import cs2340.edu.gatech.lamp.R;
  */
 public class MapsDetailFragment extends Fragment {
 
-    private OnFragmentInteractionListener mListener;
+    private MapsDetailInteractionListener mListener;
 
     public MapsDetailFragment() {
         // Required empty public constructor
@@ -55,12 +55,6 @@ public class MapsDetailFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_maps_detail, container, false);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
     public interface MapsDetailInteractionListener {
         void onMapItemSelected();
@@ -70,7 +64,7 @@ public class MapsDetailFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof MapsDetailInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+            mListener = (MapsDetailInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
