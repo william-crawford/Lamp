@@ -3,7 +3,6 @@ package cs2340.edu.gatech.lamp.controller;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.location.Criteria;
-import android.location.Location;
 import android.location.LocationManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -22,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cs2340.edu.gatech.lamp.R;
-import cs2340.edu.gatech.lamp.model.Address;
+import cs2340.edu.gatech.lamp.model.Location;
 import cs2340.edu.gatech.lamp.model.Shelter;
 
 public class MapsActivity extends FragmentActivity implements MapsDetailFragment.MapsDetailInteractionListener, OnMapReadyCallback {
@@ -58,7 +57,7 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         Criteria criteria = new Criteria();
 
-        Location location = null;
+        android.location.Location location = null;
         try {
             location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
         } catch (SecurityException e) {
@@ -89,7 +88,7 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
 
         for (Shelter shelter : shelters) {
             mMap.addMarker(new MarkerOptions()
-                    .position(shelter.getAddress().getLatLng())
+                    .position(shelter.getLocation().getLatLng())
                     .title(shelter.getName())
                     .icon(BitmapDescriptorFactory.defaultMarker(
                             shelter.isHasSpace() ?
@@ -105,13 +104,13 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
 
         data.add(new Shelter(
                 "The CULC",
-                new Address(33.7749, -84.3964, "266 4th St. NW"),
+                new Location(33.7749, -84.3964, "266 4th St. NW"),
                 false
         ));
 
         data.add(new Shelter(
                 "Architecture Roof",
-                new Address(33.7761, -84.3960, "245 4th St. NW"),
+                new Location(33.7761, -84.3960, "245 4th St. NW"),
                 true
         ));
 
