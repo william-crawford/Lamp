@@ -86,4 +86,16 @@ public class Location {
         this.zip = zip;
     }
 
+    public double distanceTo(LatLng other) {
+        float[] result = new float[1];
+        android.location.Location.distanceBetween(
+                latitude,
+                longitude,
+                other.latitude,
+                other.longitude,
+                result
+        );
+        return result[0] / 1609;
+    }
+
 }

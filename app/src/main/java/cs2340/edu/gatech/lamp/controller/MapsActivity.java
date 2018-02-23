@@ -7,6 +7,7 @@ import android.location.LocationManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -24,10 +25,11 @@ import cs2340.edu.gatech.lamp.R;
 import cs2340.edu.gatech.lamp.model.Location;
 import cs2340.edu.gatech.lamp.model.Shelter;
 
-public class MapsActivity extends FragmentActivity implements MapsDetailFragment.MapsDetailInteractionListener, OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements MapsDetailFragment.OnFragmentInteractionListener, OnMapReadyCallback {
 
     private GoogleMap mMap;
     private List<Shelter> shelters;
+    private MapsDetailFragment detailFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,8 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         shelters = fetchShelterData();
+
+        detailFragment = (MapsDetailFragment) getSupportFragmentManager().findFragmentById(R.id.map_detail);
     }
 
 
@@ -60,6 +64,7 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
         android.location.Location location = null;
         try {
             location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
+            mMap.setMyLocationEnabled(true);
         } catch (SecurityException e) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Attention")
@@ -72,14 +77,22 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
                     })
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
+        } catch (NullPointerException e) {
+            Toast toast = new Toast(this);
+            toast.setDuration(Toast.LENGTH_SHORT);
+            toast.setText("Error retrieving location");
+            toast.show();
         }
 
         if (location != null) {
+            LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
             mMap.moveCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition.Builder()
-                    .target(new LatLng(location.getLatitude(), location.getLongitude()))
+                    .target(currentLocation)
                     .zoom(16)
                     .build()
             ));
+
+            detailFragment.setSelected(shelters.get(0), currentLocation);
         } else {
             LatLng culc = new LatLng(33.7749, -84.3964);
             mMap.moveCamera(CameraUpdateFactory.newLatLng(culc));
@@ -121,4 +134,6 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
     public void onMapItemSelected() {
 
     }
+
+
 }
