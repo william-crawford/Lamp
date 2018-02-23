@@ -2,8 +2,10 @@ package cs2340.edu.gatech.lamp.controller;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.location.Criteria;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -135,7 +137,8 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
         data.add(new Shelter(
                 "The CULC",
                 new Location(33.7749, -84.3964, "266 4th St. NW"),
-                false
+                false,
+                "https://image.ibb.co/d3qhSc/CULC300x300.png"
         ));
 
         data.add(new Shelter(

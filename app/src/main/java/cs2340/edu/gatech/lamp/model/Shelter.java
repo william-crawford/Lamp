@@ -9,11 +9,17 @@ public class Shelter {
     private String name;
     private Location location;
     private boolean hasSpace;
+    private String imageURL;
 
     public Shelter(String name, Location location, boolean hasSpace) {
+        this(name, location, hasSpace, null);
+    }
+
+    public Shelter(String name, Location location, boolean hasSpace, String imageURL) {
         this.name = name;
         this.location = location;
         this.hasSpace = hasSpace;
+        this.imageURL = imageURL;
     }
 
     public String getName() {
@@ -38,5 +44,13 @@ public class Shelter {
 
     public void setHasSpace(boolean hasSpace) {
         this.hasSpace = hasSpace;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 }

@@ -1,16 +1,23 @@
 package cs2340.edu.gatech.lamp.controller;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 
+import java.io.Console;
+import java.net.URL;
 import java.util.Locale;
 import java.util.Map;
 
@@ -35,6 +42,7 @@ public class MapsDetailFragment extends Fragment {
     private Button sheltersBtn;
     private Button detailsBtn;
     private Button directionsBtn;
+    private ImageView image;
 
     public MapsDetailFragment() {
         // Required empty public constructor
@@ -86,6 +94,7 @@ public class MapsDetailFragment extends Fragment {
                 mListener.onDirectionsButtonPressed(selected);
             }
         });
+        image = v.findViewById(R.id.img_shelter);
         return v;
     }
 
@@ -118,5 +127,34 @@ public class MapsDetailFragment extends Fragment {
         this.selected = shelter;
         nameText.setText(shelter.getName());
         distanceText.setText(String.format(Locale.US, "%.1f mi.", shelter.getLocation().distanceTo(current)));
+        new UpdateImageFromUrlTask().execute(shelter.getImageURL());
     }
+
+    private class UpdateImageFromUrlTask extends AsyncTask<String, Void, Bitmap> {
+
+        public Bitmap doInBackground(String... input) {
+            try {
+                URL url = new URL(input[0]);
+                return BitmapFactory.decodeStream(url.openConnection().getInputStream());
+            } catch (Exception e) {
+                System.out.println("");
+                System.out.println("");
+                System.out.println("");
+                System.out.println("");
+                System.out.println("");
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        public void onPostExecute(Bitmap bmp) {
+            if (bmp != null) {
+                image.setImageBitmap(bmp);
+            } else {
+                image.setImageDrawable(getResources().getDrawable(R.drawable.common_google_signin_btn_icon_dark_normal));
+            }
+        }
+
+    }
+
 }
