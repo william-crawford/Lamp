@@ -16,10 +16,14 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import cs2340.edu.gatech.lamp.R;
 import cs2340.edu.gatech.lamp.model.Location;
@@ -30,6 +34,9 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
     private GoogleMap mMap;
     private List<Shelter> shelters;
     private MapsDetailFragment detailFragment;
+    private LatLng currentLocation;
+    private Map<LatLng, Shelter> shelterMap = new HashMap<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +65,15 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                Shelter shelter = shelterMap.get(marker.getPosition());
+                detailFragment.setSelected(shelter, currentLocation);
+                return false;
+            }
+        });
+
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         Criteria criteria = new Criteria();
 
@@ -85,10 +101,10 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
         }
 
         if (location != null) {
-            LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
+            currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
             mMap.moveCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition.Builder()
                     .target(currentLocation)
-                    .zoom(16)
+                    .zoom(15)
                     .build()
             ));
 
@@ -100,15 +116,16 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
 
 
         for (Shelter shelter : shelters) {
-            mMap.addMarker(new MarkerOptions()
+            MarkerOptions marker = new MarkerOptions()
                     .position(shelter.getLocation().getLatLng())
                     .title(shelter.getName())
                     .icon(BitmapDescriptorFactory.defaultMarker(
                             shelter.isHasSpace() ?
                                     BitmapDescriptorFactory.HUE_GREEN :
                                     BitmapDescriptorFactory.HUE_ORANGE
-                    ))
-            );
+                    ));
+            mMap.addMarker(marker);
+            shelterMap.put(shelter.getLocation().getLatLng(), shelter);
         }
     }
 
@@ -131,9 +148,17 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
     }
 
     @Override
-    public void onMapItemSelected() {
+    public void onDirectionsButtonPressed(Shelter shelter) {
 
     }
 
+    @Override
+    public void onDetailsButtonPressed(Shelter shelter) {
 
+    }
+
+    @Override
+    public void onOtherSheltersButtonPressed() {
+
+    }
 }

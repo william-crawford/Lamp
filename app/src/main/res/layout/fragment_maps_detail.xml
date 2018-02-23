@@ -26,13 +26,13 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="4dp"
             android:text="View Details"
-            app:layout_constraintBottom_toTopOf="@+id/btn_find_other_shelters2"
+            app:layout_constraintBottom_toTopOf="@+id/btn_find_other_shelters"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.666"
             app:layout_constraintStart_toStartOf="@+id/guideline5" />
 
         <Button
-            android:id="@+id/btn_find_other_shelters2"
+            android:id="@+id/btn_find_other_shelters"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
