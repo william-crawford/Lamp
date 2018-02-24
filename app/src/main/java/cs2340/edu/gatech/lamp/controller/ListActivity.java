@@ -1,19 +1,18 @@
 package cs2340.edu.gatech.lamp.controller;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -49,7 +48,20 @@ public class ListActivity extends AppCompatActivity {
                 return view;
             }
         };
-        listView.setAdapter(listAdapter);
+        //listView.setAdapter(listAdapter);
+        listView.setAdapter(new ArrayAdapter<String>(this, R.layout.test,listItems));
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+//                ListView lv = (ListView) parent;
+//                TextView tv = (TextView) lv.getChildAt(position);
+//                String s = tv.getText().toString();
+                //Do some action
+                Intent intent = new Intent(ListActivity.this, TestActivity.class);
+                intent.putExtra("testing", listView.getItemAtPosition(position).toString());
+                startActivity(intent);
+            } });
     }
 
     @Override
@@ -62,4 +74,5 @@ public class ListActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(menuItem);
     }
+
 }
