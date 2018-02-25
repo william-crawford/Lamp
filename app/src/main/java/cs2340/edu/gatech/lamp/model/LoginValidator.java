@@ -23,6 +23,9 @@ public class LoginValidator {
         homelessMap.put("homeless", "qwerty");
         shelterMap.put("shelter", "qwerty");
         adminMap.put("admin", "qwerty");
+        homelessMap.put("h", "h");
+        shelterMap.put("s", "s");
+        adminMap.put("a", "a");
         if (password.equals(homelessMap.get(username))) {
             return loginResult.HOMELESS;
         }

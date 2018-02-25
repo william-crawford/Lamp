@@ -6,7 +6,7 @@ import com.google.android.gms.maps.model.LatLng;
  * Created by will on 2/17/18.
  */
 
-public class Address {
+public class Location {
 
     private double latitude;
     private double longitude;
@@ -18,7 +18,7 @@ public class Address {
 
     private LatLng latLng;
 
-    public Address(double latitude, double longitude, String street, String city, String state, String zip) {
+    public Location(double latitude, double longitude, String street, String city, String state, String zip) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.street = street;
@@ -28,7 +28,7 @@ public class Address {
         this.latLng = new LatLng(latitude, longitude);
     }
 
-    public Address(double latitude, double longitude, String street) {
+    public Location(double latitude, double longitude, String street) {
         this(latitude, longitude, street, "Atlanta", "GA", "30332");
     }
 
@@ -84,6 +84,18 @@ public class Address {
 
     public void setZip(String zip) {
         this.zip = zip;
+    }
+
+    public double distanceTo(LatLng other) {
+        float[] result = new float[1];
+        android.location.Location.distanceBetween(
+                latitude,
+                longitude,
+                other.latitude,
+                other.longitude,
+                result
+        );
+        return result[0] / 1609;
     }
 
 }
