@@ -22,7 +22,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("MyApp", "Started");
         setContentView(R.layout.activity_login);
 
         username = findViewById(R.id.txt_username);
@@ -33,6 +32,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 login();
+            }
+        });
+
+        Button cancel = findViewById(R.id.btn_cancel_login);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToWelcome();
             }
         });
 
@@ -72,18 +79,17 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void goToHomeless() {
-        Toast.makeText(this, "Homeless login successful", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Homeless login successful", Toast.LENGTH_LONG).show();
         goToDefault();
     }
 
     private void goToShelter() {
-        Toast.makeText(this, "Shelter login successful", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Shelter login successful", Toast.LENGTH_LONG).show();
         goToDefault();
     }
 
-
     private void goToAdmin() {
-        Toast.makeText(this, "Admin login successful", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Admin login successful", Toast.LENGTH_LONG).show();
         goToDefault();
     }
 
@@ -92,5 +98,11 @@ public class LoginActivity extends AppCompatActivity {
         password.setText("");
         username.setText("");
         startActivity(defaultIntent);
+    }
+
+    private void goToWelcome() {
+        Intent welcomeIntent = new Intent(this, WelcomeActivity.class);
+        welcomeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(welcomeIntent);
     }
 }

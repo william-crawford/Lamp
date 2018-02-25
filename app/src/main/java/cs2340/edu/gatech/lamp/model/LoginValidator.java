@@ -23,13 +23,16 @@ public class LoginValidator {
         homelessMap.put("homeless", "qwerty");
         shelterMap.put("shelter", "qwerty");
         adminMap.put("admin", "qwerty");
+        homelessMap.put("h", "h");
+        shelterMap.put("s", "s");
+        adminMap.put("a", "a");
         if (password.equals(homelessMap.get(username))) {
             return loginResult.HOMELESS;
         }
         if (password.equals(shelterMap.get(username))) {
             return loginResult.SHELTER;
         }
-        if (password.equals(homelessMap.get(username))) {
+        if (password.equals(adminMap.get(username))) {
             return loginResult.ADMIN;
         }
 
