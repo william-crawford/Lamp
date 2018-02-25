@@ -1,0 +1,20 @@
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ProjectModuleManager\">\n    <modules>\n      <module fileurl=\"file://$PROJECT_DIR$/Lamp.iml\" filepath=\"$PROJECT_DIR$/Lamp.iml\" />\n      <module fileurl=\"file://$PROJECT_DIR$/app/app.iml\" filepath=\"$PROJECT_DIR$/app/app.iml\" />\n    </modules>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/modules.xml	(revision 33cfb58912be4c4d38ecf87e5658d6e5d253d666)
++++ .idea/modules.xml	(revision )
+@@ -2,8 +2,8 @@
+ <project version="4">
+   <component name="ProjectModuleManager">
+     <modules>
+-      <module fileurl="file://$PROJECT_DIR$/Lamp.iml" filepath="$PROJECT_DIR$/Lamp.iml" />
+       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
++      <module fileurl="file://$PROJECT_DIR$/lamp.iml" filepath="$PROJECT_DIR$/lamp.iml" />
+     </modules>
+   </component>
+ </project>
+\ No newline at end of file
