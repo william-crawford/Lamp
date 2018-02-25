@@ -2,10 +2,8 @@ package cs2340.edu.gatech.lamp.controller;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Bitmap;
 import android.location.Criteria;
 import android.location.LocationManager;
-import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -24,11 +22,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import cs2340.edu.gatech.lamp.R;
 import cs2340.edu.gatech.lamp.model.Location;
+import cs2340.edu.gatech.lamp.model.Model;
 import cs2340.edu.gatech.lamp.model.Shelter;
 
 public class MapsActivity extends FragmentActivity implements MapsDetailFragment.OnFragmentInteractionListener, OnMapReadyCallback {
@@ -38,6 +36,7 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
     private MapsDetailFragment detailFragment;
     private LatLng currentLocation;
     private Map<LatLng, Shelter> shelterMap = new HashMap<>();
+    private Marker selected;
 
 
     @Override
@@ -72,6 +71,15 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
             public boolean onMarkerClick(Marker marker) {
                 Shelter shelter = shelterMap.get(marker.getPosition());
                 detailFragment.setSelected(shelter, currentLocation);
+                marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                if (selected != null) {
+                    selected.setIcon(BitmapDescriptorFactory.defaultMarker(
+                            shelterMap.get(selected.getPosition()).isHasSpace() ?
+                                    BitmapDescriptorFactory.HUE_GREEN :
+                                    BitmapDescriptorFactory.HUE_ORANGE
+                    ));
+                }
+                selected = marker;
                 return false;
             }
         });
@@ -132,22 +140,7 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
     }
 
     private List<Shelter> fetchShelterData() {
-        List<Shelter> data = new ArrayList<>();
-
-        data.add(new Shelter(
-                "The CULC",
-                new Location(33.7749, -84.3964, "266 4th St. NW"),
-                false,
-                "https://image.ibb.co/d3qhSc/CULC300x300.png"
-        ));
-
-        data.add(new Shelter(
-                "Architecture Roof",
-                new Location(33.7761, -84.3960, "245 4th St. NW"),
-                true
-        ));
-
-        return data;
+        return Model.getInstance().getAllShelters();
     }
 
     @Override
