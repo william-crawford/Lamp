@@ -95,7 +95,7 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
                     })
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
-        } catch (NullPointerException e) {
+        } catch (Exception e) {
             Toast toast = new Toast(this);
             toast.setDuration(Toast.LENGTH_SHORT);
             toast.setText("Error retrieving location");
