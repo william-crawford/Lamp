@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import cs2340.edu.gatech.lamp.R;
+import cs2340.edu.gatech.lamp.utils.HelperUI;
 
 public class WelcomeActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 1;
@@ -26,16 +27,6 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         currAuth = FirebaseAuth.getInstance();
 
-        /*setContentView(R.layout.activity_welcome);
-
-        Button login = findViewById(R.id.btn_goto_login);
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goToLogin();
-            }
-        });*/
-
     }
 
     @Override
@@ -43,7 +34,7 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onStart();
         FirebaseUser currUser = currAuth.getCurrentUser();
         if (currUser != null) {
-            startActivity(new Intent(this, DefaultActivity.class));
+            HelperUI.goToDefault(this);
         } else {
             startActivityForResult(
                     // Get an instance of AuthUI based on the default app
@@ -56,7 +47,4 @@ public class WelcomeActivity extends AppCompatActivity {
                     RC_SIGN_IN);
         }
     }
-
-    /*private void goToLogin() {
-        startActivity(new Intent(this, LoginActivity.class));*/
-    }
+}
