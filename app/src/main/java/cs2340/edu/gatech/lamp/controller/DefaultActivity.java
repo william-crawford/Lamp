@@ -38,7 +38,7 @@ public class DefaultActivity extends AppCompatActivity {
         toList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToList();
+                HelperUI.goToList(context);
             }
         });
     }
@@ -49,8 +49,4 @@ public class DefaultActivity extends AppCompatActivity {
         HelperUI.goToWelcome(context);
     }
 
-
-    private void goToList() {
-        startActivity(new Intent(this, ListActivity.class));
-    }
 }

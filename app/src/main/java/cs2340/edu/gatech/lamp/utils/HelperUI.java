@@ -32,6 +32,10 @@ public class HelperUI {
         context.startActivity(new Intent(context, DefaultActivity.class));
     }
 
+    public static void goToList(Context context) {
+        context.startActivity(new Intent(context, ListActivity.class));
+    }
+
     public static void goToWelcome(Context context) {
         Intent welcomeIntent = new Intent(context, WelcomeActivity.class);
         welcomeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
