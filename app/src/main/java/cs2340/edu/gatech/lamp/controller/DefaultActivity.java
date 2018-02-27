@@ -45,6 +45,7 @@ public class DefaultActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        HelperUI.signOut(context);
         HelperUI.goToWelcome(context);
     }
 
