@@ -22,7 +22,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("MyApp", "Started");
         setContentView(R.layout.activity_login);
 
         username = findViewById(R.id.txt_username);
@@ -88,7 +87,6 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(this, "Shelter login successful", Toast.LENGTH_LONG).show();
         goToDefault();
     }
-
 
     private void goToAdmin() {
         Toast.makeText(this, "Admin login successful", Toast.LENGTH_LONG).show();

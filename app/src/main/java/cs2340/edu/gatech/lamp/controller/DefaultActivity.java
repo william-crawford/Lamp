@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import cs2340.edu.gatech.lamp.R;
 
@@ -21,8 +22,17 @@ public class DefaultActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    Toast.makeText(context, "Logout successful", Toast.LENGTH_LONG).show();
                     goToWelcome();
                 }
+        });
+
+        Button toMap = findViewById(R.id.btn_to_map);
+        toMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToMap();
+            }
         });
     }
 
@@ -36,4 +46,9 @@ public class DefaultActivity extends AppCompatActivity {
         welcomeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(welcomeIntent);
     }
+
+    private void goToMap() {
+        startActivity(new Intent(this, MapsActivity.class));
+    }
+
 }
