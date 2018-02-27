@@ -137,11 +137,6 @@ public class MapsDetailFragment extends Fragment {
                 URL url = new URL(input[0]);
                 return BitmapFactory.decodeStream(url.openConnection().getInputStream());
             } catch (Exception e) {
-                System.out.println("");
-                System.out.println("");
-                System.out.println("");
-                System.out.println("");
-                System.out.println("");
                 e.printStackTrace();
             }
             return null;
