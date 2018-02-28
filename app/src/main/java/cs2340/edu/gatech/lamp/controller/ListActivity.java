@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,9 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import cs2340.edu.gatech.lamp.R;
 
@@ -34,6 +37,13 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listview);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        //read in csv
+        try {
+            Scanner csvScan = new Scanner(new File());
+        } catch (Exception e) {
+            Log.d("CSV", "Didn't Read");
+        }
         listView = findViewById(android.R.id.list);
         listItems.add("Dank");
         listItems.add("memes");
