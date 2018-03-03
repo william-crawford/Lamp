@@ -36,7 +36,6 @@ public class ListActivity extends AppCompatActivity {
     ListView listView;
     ListAdapter listAdapter;
     ArrayList<String> listItems = new ArrayList<>();
-    private ArrayList<Shelter> shelterList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
