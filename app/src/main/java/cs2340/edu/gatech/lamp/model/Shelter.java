@@ -15,6 +15,9 @@ public class Shelter {
     private List<ShelterAttribute> attributes;
     private String imageURL;
 
+    //M6 Code
+    private String[] info;
+
     private static int nextId = 0;
     private int id;
 
@@ -88,4 +91,15 @@ public class Shelter {
     public int hashCode() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+    //M6-------------------------------------------------
+    public Shelter(String[] info) {
+        name = info[1];
+        this.info = info;
+    }
+    //M6-------------------------------------------------
 }

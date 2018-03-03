@@ -15,11 +15,16 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import cs2340.edu.gatech.lamp.R;
+import cs2340.edu.gatech.lamp.model.Shelter;
 
 /**
  * Created by Potato on 2/20/2018.
@@ -31,26 +36,35 @@ public class ListActivity extends AppCompatActivity {
     ListView listView;
     ListAdapter listAdapter;
     ArrayList<String> listItems = new ArrayList<>();
+    private ArrayList<Shelter> shelterList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listview);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        shelterList = new ArrayList<>();
+        String[] details = new String[0];
+        createShelterList(details, shelterList);
 
         //read in csv
-        try {
-            Scanner csvScan = new Scanner(new File("../../../../HomelessShelterDatabase.csv"));
-            Log.d("CSV", "Scanned");
-            csvScan.useDelimiter(",");
-        } catch (Exception e) {
-            Log.d("CSV", "Didn't Read");
-        }
+//        try {
+//            Log.d("CSV", "In Scanner");
+//            Scanner csvScan = new Scanner(new File("C:\\Users\\JermiahRussell\\Georgia Institute of Technology\\OneDrive - Georgia Institute of Technology\\CS Classes\\CS2340\\lamp\\app\\src\\main\\java\\cs2340\\edu\\gatech\\lamp\\controller\\HomelessShelterDatabase.csv"));
+//            csvScan.useDelimiter(",");
+//            Log.d("CSV", "Scanned Again");
+//            Log.d("CSV", csvScan.next() + "|" + csvScan.next());
+//        } catch (Exception e) {
+//            Log.d("CSV", e.getMessage());
+//        }
         listView = findViewById(android.R.id.list);
-        listItems.add("Dank");
-        listItems.add("memes");
-        listItems.add("DABLAB");
-        listItems.add("\uD83D\uDE02");
+        for (Object s: shelterList.toArray()) {
+            listItems.add(s.toString());
+        }
+//        listItems.add("Dank");
+//        listItems.add("memes");
+//        listItems.add("DABLAB");
+//        listItems.add("\uD83D\uDE02");
         listAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, listItems) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
@@ -85,6 +99,19 @@ public class ListActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(menuItem);
+    }
+
+    private void createShelterList(String[] details, ArrayList<Shelter> list) {
+        Log.d("CSV", "Reading1");
+        Scanner scan = new Scanner(getResources().openRawResource(R.raw.homeless_shelter_database));
+        Log.d("CSV", "Reading2");
+        int i = 0;
+        details = scan.nextLine().split(",");
+        while (scan.hasNext()) {
+            i++;
+            String[] info = scan.nextLine().split(",");
+            list.add(new Shelter(info));
+        }
     }
 
 }
