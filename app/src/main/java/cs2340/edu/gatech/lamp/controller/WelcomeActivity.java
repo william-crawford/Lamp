@@ -15,6 +15,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import cs2340.edu.gatech.lamp.R;
+import cs2340.edu.gatech.lamp.model.Admin;
+import cs2340.edu.gatech.lamp.model.User;
 import cs2340.edu.gatech.lamp.utils.HelperUI;
 
 public class WelcomeActivity extends AppCompatActivity {
@@ -34,6 +36,8 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onStart();
         FirebaseUser currUser = currAuth.getCurrentUser();
         if (currUser != null) {
+            User appUser = new Admin(currUser);
+            appUser.writeNewUser();
             HelperUI.goToDefault(this);
         } else {
             startActivityForResult(
