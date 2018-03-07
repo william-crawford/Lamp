@@ -2,21 +2,19 @@ package cs2340.edu.gatech.lamp.controller;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import cs2340.edu.gatech.lamp.R;
+import cs2340.edu.gatech.lamp.model.Model;
+import cs2340.edu.gatech.lamp.model.Shelter;
 
 /**
  * Created by Potato on 2/20/2018.
@@ -27,7 +25,6 @@ public class ListActivity extends AppCompatActivity {
     Context context = this;
     ListView listView;
     ListAdapter listAdapter;
-    ArrayList<String> listItems = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,31 +32,58 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.listview);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         listView = findViewById(android.R.id.list);
-        listItems.add("Dank");
-        listItems.add("memes");
-        listItems.add("DABLAB");
-        listItems.add("\uD83D\uDE02");
-        listAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, listItems) {
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                View view = super.getView(position, convertView, parent);
-                TextView textView = view.findViewById(android.R.id.text1);
-                textView.setTextColor(Color.WHITE);
-                return view;
-            }
-        };
+
+        listAdapter = new CustomAdapter((ArrayList<Shelter>)Model.getInstance().getAllShelters(), context);
+
+//        listAdapter = new ArrayAdapter<Shelter>(context, R.layout.listelement,
+//                Model.getInstance().getAllShelters()) {
+//            @Override
+//            public View getView(int position, View convertView, ViewGroup parent) {
+//                Shelter shelter = getItem(position);
+//                View view = super.getView(position, convertView, parent);
+//                TextView name = view.findViewById(R.id.name);
+//                TextView location = view.findViewById(R.id.location);
+//                TextView space = view.findViewById(R.id.hasSpace);
+//                name.setTextColor(Color.WHITE);
+//                location.setTextColor(Color.WHITE);
+//                space.setTextColor(Color.WHITE);
+//                name.setText(shelter.getName());
+//                String address = shelter.getLocation().getStreet() + ", " +
+//                        shelter.getLocation().getCity() + ", " + shelter.getLocation().getState()
+//                        + " " + shelter.getLocation().getZip();
+//                location.setText(address);
+//                if(shelter.isHasSpace()){
+//                    space.setText("Available");
+//                } else {
+//                    space.setText("Full");
+//                }
+//                ImageView call = view.findViewById(R.id.call_butt);
+//                call.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        //call shelter number
+//                    }
+//                });
+//                return view;
+//            }
+//        };
         //listView.setAdapter(listAdapter);
-        listView.setAdapter(new ArrayAdapter<String>(this, R.layout.test,listItems));
+        listView.setAdapter(listAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
-//                ListView lv = (ListView) parent;
-//                TextView tv = (TextView) lv.getChildAt(position);
-//                String s = tv.getText().toString();
                 //Do some action
+                Shelter deets = (Shelter) listView.getItemAtPosition(position);
                 Intent intent = new Intent(ListActivity.this, TestActivity.class);
-                intent.putExtra("testing", listView.getItemAtPosition(position).toString());
+                intent.putExtra("sName", deets.getName());
+                String adr = deets.getLocation().getStreet() + ", " + deets.getLocation().getCity()
+                        + ", " + deets.getLocation().getState() + " " + deets.getLocation().getZip();
+                intent.putExtra("sAddress", adr);
+                intent.putExtra("number", deets.getPhoneNumber());
+                intent.putExtra("url", deets.getImageURL());
+                intent.putExtra("id", deets.getId());
+                intent.putExtra("hasSpace", deets.isHasSpace());
                 startActivity(intent);
             } });
     }
