@@ -2,14 +2,17 @@ package cs2340.edu.gatech.lamp.controller;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import cs2340.edu.gatech.lamp.R;
+import cs2340.edu.gatech.lamp.model.Shelter;
 
 public class TestActivity extends AppCompatActivity {
 
-    TextView tv;
+    TextView name;
+    TextView info;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,10 +20,10 @@ public class TestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Bundle bundle = getIntent().getExtras();
-        tv = (TextView) findViewById(R.id.textView3);
-        if(bundle != null) {
-            tv.setText("You pressed: " + bundle.getString("testing"));
-        }
+        name = findViewById(R.id.textView2);
+        info = findViewById(R.id.textView3);
+        name.setText(Shelter.getShelter(bundle.getInt("position")).getName());
+        info.setText(Shelter.getShelter(bundle.getInt("position")).getDetails());
     }
 
     @Override
