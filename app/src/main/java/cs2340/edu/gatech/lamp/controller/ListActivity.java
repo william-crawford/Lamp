@@ -23,7 +23,7 @@ import cs2340.edu.gatech.lamp.R;
  */
 
 public class ListActivity extends AppCompatActivity {
-
+//this
     Context context = this;
     ListView listView;
     ListAdapter listAdapter;
