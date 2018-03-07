@@ -19,13 +19,11 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import cs2340.edu.gatech.lamp.R;
-import cs2340.edu.gatech.lamp.model.Location;
 import cs2340.edu.gatech.lamp.model.Model;
 import cs2340.edu.gatech.lamp.model.Shelter;
 
@@ -74,7 +72,7 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
                 marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
                 if (selected != null) {
                     selected.setIcon(BitmapDescriptorFactory.defaultMarker(
-                            shelterMap.get(selected.getPosition()).isHasSpace() ?
+                            shelterMap.get(selected.getPosition()).isFull() ?
                                     BitmapDescriptorFactory.HUE_GREEN :
                                     BitmapDescriptorFactory.HUE_ORANGE
                     ));
@@ -130,7 +128,7 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
                     .position(shelter.getLocation().getLatLng())
                     .title(shelter.getName())
                     .icon(BitmapDescriptorFactory.defaultMarker(
-                            shelter.isHasSpace() ?
+                            shelter.isFull() ?
                                     BitmapDescriptorFactory.HUE_GREEN :
                                     BitmapDescriptorFactory.HUE_ORANGE
                     ));

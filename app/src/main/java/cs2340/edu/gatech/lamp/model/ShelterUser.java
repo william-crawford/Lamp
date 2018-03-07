@@ -12,11 +12,11 @@ public abstract class ShelterUser extends User{
         super(user);
     }
 
-    protected void createShelter() {
+    public void createShelter() {
         //create method later
     }
 
-    protected void deleteShelter(){
+    public void deleteShelter(){
         //create method later
     }
 

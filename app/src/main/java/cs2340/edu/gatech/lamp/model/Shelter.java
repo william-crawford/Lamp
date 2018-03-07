@@ -10,7 +10,7 @@ public class Shelter {
 
     private String name;
     private Location location;
-    private boolean hasSpace;
+    private boolean full;
     private String phoneNumber;
     private List<ShelterAttribute> attributes;
     private String imageURL;
@@ -18,10 +18,10 @@ public class Shelter {
     private static int nextId = 0;
     private int id;
 
-    public Shelter(String name, Location location, boolean hasSpace, String phoneNumber, String imageURL) {
+    public Shelter(String name, Location location, boolean full, String phoneNumber, String imageURL) {
         this.name = name;
         this.location = location;
-        this.hasSpace = hasSpace;
+        this.full = full;
         this.imageURL = imageURL;
         this.phoneNumber = phoneNumber;
         this.id = nextId++;
@@ -43,12 +43,12 @@ public class Shelter {
         this.location = location;
     }
 
-    public boolean isHasSpace() {
-        return hasSpace;
+    public boolean isFull() {
+        return full;
     }
 
-    public void setHasSpace(boolean hasSpace) {
-        this.hasSpace = hasSpace;
+    public void setFull(boolean full) {
+        this.full = full;
     }
 
     public String getImageURL() {
