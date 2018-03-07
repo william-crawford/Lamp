@@ -19,6 +19,7 @@ import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import cs2340.edu.gatech.lamp.R;
 import cs2340.edu.gatech.lamp.model.Shelter;
@@ -38,6 +39,7 @@ public class WelcomeActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
+        createShelterList(Shelter.shelterList);
         FirebaseUser currUser = currAuth.getCurrentUser();
         if (currUser != null) {
             HelperUI.goToDefault(this);
@@ -51,6 +53,15 @@ public class WelcomeActivity extends AppCompatActivity {
                             .setIsSmartLockEnabled(false, true)
                             .build(),
                     RC_SIGN_IN);
+        }
+    }
+
+    private void createShelterList(ArrayList<Shelter> list) {
+        Scanner scan = new Scanner(getResources().openRawResource(R.raw.homeless_shelter_database));
+        scan.nextLine().split(","); //gets rid of the first line with names of columns
+        while (scan.hasNext()) {
+            String[] info = scan.nextLine().split(",");
+            list.add(new Shelter(info));
         }
     }
 }
