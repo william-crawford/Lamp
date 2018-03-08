@@ -39,7 +39,7 @@ public class WelcomeActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        createShelterList(Shelter.shelterList);
+        if (Shelter.shelterList.isEmpty()) createShelterList(Shelter.shelterList);
         FirebaseUser currUser = currAuth.getCurrentUser();
         if (currUser != null) {
             HelperUI.goToDefault(this);
@@ -55,7 +55,6 @@ public class WelcomeActivity extends AppCompatActivity {
                     RC_SIGN_IN);
         }
     }
-
     private void createShelterList(ArrayList<Shelter> list) {
         Scanner scan = new Scanner(getResources().openRawResource(R.raw.homeless_shelter_database));
         scan.nextLine().split(","); //gets rid of the first line with names of columns

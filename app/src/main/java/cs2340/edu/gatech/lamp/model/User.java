@@ -11,14 +11,12 @@ public class User implements Parcelable {
     private static int num_users;
     private String user_name;
     private int user_id;
-    private Password pass_hash;
 
     public User() {
         this("homeless", "qwerty", num_users);
     }
-    public User(String name, String password,int id) {
+    public User(String name, String password, int id) {
         user_name = name;
-        pass_hash = new Password(password);
         user_id = id;
         num_users++;
     }
@@ -35,9 +33,6 @@ public class User implements Parcelable {
         return user_id;
     }
 
-    public Password getPass_hash() {
-        return pass_hash;
-    }
 
 
     public static final Creator<User> CREATOR = new Creator<User>() {

@@ -51,5 +51,4 @@ public class DefaultActivity extends AppCompatActivity {
         HelperUI.signOut(context);
         HelperUI.goToWelcome(context);
     }
-
 }

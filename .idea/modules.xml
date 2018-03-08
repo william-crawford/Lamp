@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Lamp.iml" filepath="$PROJECT_DIR$/Lamp.iml" />
-      <module fileurl="file://C:\Users\JermiahRussell\Georgia Institute of Technology\OneDrive - Georgia Institute of Technology\CS Classes\CS2340\Lamp\Lamp.iml" filepath="C:\Users\JermiahRussell\Georgia Institute of Technology\OneDrive - Georgia Institute of Technology\CS Classes\CS2340\Lamp\Lamp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\JermiahRussell\Georgia Institute of Technology\OneDrive - Georgia Institute of Technology\CS Classes\CS2340\Lamp\app\app.iml" filepath="C:\Users\JermiahRussell\Georgia Institute of Technology\OneDrive - Georgia Institute of Technology\CS Classes\CS2340\Lamp\app\app.iml" />
     </modules>
   </component>
 </project>

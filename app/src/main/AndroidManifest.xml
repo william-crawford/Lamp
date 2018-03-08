@@ -17,7 +17,6 @@
         android:roundIcon="@mipmap/lamp800"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".controller.LoginActivity"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
