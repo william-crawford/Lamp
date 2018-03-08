@@ -13,7 +13,6 @@ public class Shelter {
     private Location location;
     private boolean hasSpace;
     private String phoneNumber;
-    private List<ShelterAttribute> attributes;
     private String imageURL;
     public static ArrayList<Shelter> shelterList = new ArrayList<>();
 
@@ -59,14 +58,6 @@ public class Shelter {
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
-    }
-
-    public List<ShelterAttribute> getAttributes() {
-        return attributes;
-    }
-
-    public void setAttributes(List<ShelterAttribute> attributes) {
-        this.attributes = attributes;
     }
 
     public String getPhoneNumber() {
