@@ -1,7 +1,12 @@
 package cs2340.edu.gatech.lamp.model;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
+import cs2340.edu.gatech.lamp.R;
 
 /**
  * Created by JermiahRussell on 2/13/2018.
@@ -14,8 +19,7 @@ public class Model {
         return _instance;
     }
 
-    private List<Shelter> allShelters = initShelters();
-
+    private List<Shelter> allShelters;
 
     private Model() {
     }
@@ -24,14 +28,15 @@ public class Model {
         return allShelters;
     }
 
-    private List<Shelter> initShelters() {
-        for (Shelter s: Shelter.shelterList) {
-            double lat = Double.parseDouble(s.getInfo()[5]);
-            double lon = Double.parseDouble(s.getInfo()[4]);
-            String address = s.getInfo()[6];
-            s.setImageURL("https://assets.rbl.ms/13910706/980x.jpg");
-            s.setLocation(new Location(lat, lon, address));
+    public void initShelters(Context context) {
+        allShelters = new ArrayList<>();
+        Scanner scan = new Scanner(context.getResources().openRawResource(R.raw.homeless_shelter_database));
+        scan.nextLine().split(","); //gets rid of the first line with names of columns
+        while (scan.hasNext()) {
+            String[] info = scan.nextLine().split(",");
+            allShelters.add(new Shelter(info));
         }
+
 //        data.add(new Shelter(
 //                "The CULC",
 //                new Location(33.7749, -84.3964, "266 4th St. NW"),
@@ -48,6 +53,6 @@ public class Model {
 //                null
 //        ));
 
-        return Shelter.shelterList;
+
     }
 }

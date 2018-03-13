@@ -7,10 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cs2340.edu.gatech.lamp.R;
 import cs2340.edu.gatech.lamp.model.Model;
@@ -25,15 +29,55 @@ public class ListActivity extends AppCompatActivity {
     Context context = this;
     ListView listView;
     ListAdapter listAdapter;
+    EditText search;
+    Spinner age;
+    Spinner gender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listview);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        search = findViewById(R.id.search);
+        age = findViewById(R.id.spinner1);
+        gender = findViewById(R.id.spinner2);
         listView = findViewById(android.R.id.list);
 
-        listAdapter = new CustomAdapter((ArrayList<Shelter>)Model.getInstance().getAllShelters(), context);
+        ArrayAdapter<String> ageAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Shelter.AgePolicy.values());
+        ageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        age.setAdapter(ageAdapter);
+
+        age.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // your code here
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // do nothing!!!! be free!!!!
+            }
+
+        });
+
+        gender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // your code here
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // do nothing!!!! be free!!!!
+            }
+
+        });
+
+        ArrayAdapter<String> genderAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Shelter.GenderPolicy.values());
+        genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        gender.setAdapter(genderAdapter);
+
+        listAdapter = new CustomAdapter(Model.getInstance().getAllShelters(), context);
 
 //        listAdapter = new ArrayAdapter<Shelter>(context, R.layout.listelement,
 //                Model.getInstance().getAllShelters()) {
@@ -76,21 +120,24 @@ public class ListActivity extends AppCompatActivity {
                 //Do some action
                 Shelter shelter = (Shelter) listView.getItemAtPosition(position);
                 Intent intent = new Intent(ListActivity.this, TestActivity.class);
+                intent.putExtra("info", shelter.getInfo());
                 //get Intent.putExtra("info", shelter.getInfo());
-                intent.putExtra("sName", shelter.getName());
-//                String adr = shelter.getLocation().getStreet() + ", " + shelter.getLocation().getCity()
-//                        + ", " + shelter.getLocation().getState() + " " + shelter.getLocation().getZip();
-                intent.putExtra("sAddress", shelter.getLocation().getAddress());
-                intent.putExtra("number", shelter.getPhoneNumber());
-                intent.putExtra("url", shelter.getImageURL());
-                intent.putExtra("ide", shelter.getKey());
-                intent.putExtra("hasSpace", shelter.isHasSpace());
-                intent.putExtra("capacity", shelter.getCapacity());
-                intent.putExtra("notes", shelter.getNotes());
-                intent.putExtra("restrictions", shelter.getRestrictions());
+//                intent.putExtra("sName", shelter.getName());
+//                  String adr = shelter.getLocation().getStreet() + ", " + shelter.getLocation().getCity()
+//                          + ", " + shelter.getLocation().getState() + " " + shelter.getLocation().getZip();
+//                intent.putExtra("sAddress", shelter.getLocation().getAddress());
+//                intent.putExtra("number", shelter.getPhoneNumber());
+//                intent.putExtra("url", shelter.getImageURL());
+//                intent.putExtra("ide", shelter.getKey());
+//                intent.putExtra("hasSpace", shelter.isHasSpace());
+//                intent.putExtra("capacity", shelter.getCapacity());
+//                intent.putExtra("notes", shelter.getNotes());
+//                intent.putExtra("restrictions", shelter.getRestrictions());
                 startActivity(intent);
             } });
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
@@ -101,6 +148,20 @@ public class ListActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(menuItem);
+    }
+
+
+    private void updateFiltering(Shelter.GenderPolicy gp, Shelter.AgePolicy ap, String search) {
+        List<Shelter> filteredShelters = new ArrayList<>();
+        for (Shelter s : Model.getInstance().getAllShelters()) {
+            if (s.checkGPFilter(gp)
+                    && s.checkAPFilter(ap)
+                    && s.checkNameFilter(search)) {
+                filteredShelters.add(s);
+            }
+        }
+        CustomAdapter newAdapter = new CustomAdapter(filteredShelters, this);
+        listView.setAdapter(newAdapter);
     }
 
 }

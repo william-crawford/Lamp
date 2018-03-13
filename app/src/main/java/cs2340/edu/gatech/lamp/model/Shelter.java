@@ -1,8 +1,5 @@
 package cs2340.edu.gatech.lamp.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by will on 2/17/18.
  */
@@ -11,15 +8,51 @@ public class Shelter {
 
     private String name;
     private Location location;
-    private boolean hasSpace;
+    private boolean hasSpace = true;
     private String phoneNumber;
     private String imageURL;
-    public static ArrayList<Shelter> shelterList = new ArrayList<>();
-
 
     private String capacity;
     private String notes;
     private String restrictions;
+
+    public enum GenderPolicy {
+        NO_FILTER(""),
+        MALE_ONLY("Male Only"),
+        FEMALE_ONLY("Female Only"),
+        ANYONE("Anyone");
+
+        private String label;
+
+        private GenderPolicy(String value){
+            this.label = value;
+        }
+
+        public String toString(){
+            return label;
+        }
+    }
+
+    public enum AgePolicy {
+        NO_FILTER(""),
+        FAMILIES_WITH_NEWBORNS("Families with Newborns"),
+        CHILDREN("Children"),
+        YOUNG_ADULTS("Young Adults"),
+        ANYONE("Anyone");
+
+        private String label;
+
+        private AgePolicy(String value){
+            this.label = value;
+        }
+
+        public String toString(){
+            return label;
+        }
+    }
+
+    private GenderPolicy genderPolicy;
+    private AgePolicy agePolicy;
 
     private String key;
 
@@ -72,10 +105,6 @@ public class Shelter {
         this.phoneNumber = phoneNumber;
     }
 
-    public static Shelter getShelter(int shelterID) {
-        return shelterList.get(shelterID);
-    }
-
     public String getRestrictions() {
         return restrictions;
     }
@@ -119,8 +148,6 @@ public class Shelter {
         return name;
     }
 
-    //M6------------------------------------------------
-
     public Shelter(String[] info) {
         name = info[1];
         capacity = info[2];
@@ -132,16 +159,16 @@ public class Shelter {
         notes = info[7];
         phoneNumber = info[8];
     }
-
+    /*
     public String getDetails() {
         String[] detail = getInfo();
         String details = "Unique Key: " + detail[0] + "\nShelter Name: " + detail[1] + "\nCapacity: " + detail[2] + "\nRestrictions: " + detail[3] + "\nLongitude: " + detail[4]
                 + "\nLatitude: " + detail[5] + "\nAddress: " + detail[6] + "\nSpecial Notes: " + detail[7] + "\nPhone Number: " + detail[8];
         return details;
     }
-
+    */
     public String[] getInfo() {
-        String[] info = new String[9];
+        String[] info = new String[10];
         info[0] = key;
         info[1] = name;
         info[2] = capacity;
@@ -151,8 +178,20 @@ public class Shelter {
         info[6] = location.getAddress();
         info[7] = notes;
         info[8] = phoneNumber;
+        info[9] = imageURL;
 
         return info;
     }
-    //M6-------------------------------------------------
+
+    public boolean checkGPFilter(GenderPolicy gp) {
+        return gp == genderPolicy;
+    }
+
+    public boolean checkAPFilter(AgePolicy ap) {
+        return ap == agePolicy;
+    }
+
+    public boolean checkNameFilter(String filter) {
+        return name.contains(filter);
+    }
 }
