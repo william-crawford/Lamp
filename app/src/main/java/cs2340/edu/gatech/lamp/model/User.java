@@ -11,21 +11,29 @@ public class User implements Parcelable {
     private static int num_users;
     private String user_name;
     private int user_id;
-    private int user_hash;  //password hash
 
     public User() {
-        this("First Last", num_users,num_users);
+        this("homeless", "qwerty", num_users);
     }
-    public User(String name, int hash,int id) {
+    public User(String name, String password, int id) {
         user_name = name;
-        user_hash = hash;
-        user_hash = id;
+        user_id = id;
         num_users++;
     }
 
     protected User(Parcel in) {
-        this(in.readString(),in.readString().hashCode(), num_users);
+        this(in.readString(), in.readString(), num_users);
     }
+
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+
 
     public static final Creator<User> CREATOR = new Creator<User>() {
         @Override

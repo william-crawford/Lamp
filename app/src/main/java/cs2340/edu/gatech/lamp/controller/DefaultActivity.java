@@ -8,7 +8,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 import cs2340.edu.gatech.lamp.R;
+import cs2340.edu.gatech.lamp.model.Shelter;
 import cs2340.edu.gatech.lamp.utils.HelperUI;
 
 public class DefaultActivity extends AppCompatActivity {
@@ -18,7 +22,6 @@ public class DefaultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_default);
-
         Button logout = findViewById(R.id.btn_logout);
         logout.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -48,5 +51,4 @@ public class DefaultActivity extends AppCompatActivity {
         HelperUI.signOut(context);
         HelperUI.goToWelcome(context);
     }
-
 }

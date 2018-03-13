@@ -2,6 +2,7 @@ package cs2340.edu.gatech.lamp.controller;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.location.Criteria;
 import android.location.LocationManager;
 import android.support.v4.app.FragmentActivity;
@@ -28,6 +29,7 @@ import cs2340.edu.gatech.lamp.R;
 import cs2340.edu.gatech.lamp.model.Location;
 import cs2340.edu.gatech.lamp.model.Model;
 import cs2340.edu.gatech.lamp.model.Shelter;
+import cs2340.edu.gatech.lamp.utils.HelperUI;
 
 public class MapsActivity extends FragmentActivity implements MapsDetailFragment.OnFragmentInteractionListener, OnMapReadyCallback {
 
@@ -150,11 +152,13 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
 
     @Override
     public void onDetailsButtonPressed(Shelter shelter) {
-
+        Intent intent = new Intent(MapsActivity.this, TestActivity.class);
+        intent.putExtra("position", Integer.parseInt(shelter.getInfo()[0]));
+        startActivity(intent);
     }
 
     @Override
     public void onOtherSheltersButtonPressed() {
-
+        HelperUI.goToList(this);
     }
 }
