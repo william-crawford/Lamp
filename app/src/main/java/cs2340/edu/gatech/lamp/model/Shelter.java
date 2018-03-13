@@ -180,6 +180,15 @@ public class Shelter {
         info[8] = phoneNumber;
         info[9] = imageURL;
 
+        // DON'T READ THIS IF YOU LIKE SLEEPING COMFORTABLY AT NIGHT
+        if (restrictions.contains("Women")) {
+            genderPolicy = GenderPolicy.FEMALE_ONLY;
+        } else if (restrictions.contains("Men")) {
+            genderPolicy = GenderPolicy.MALE_ONLY;
+        } else {
+            genderPolicy = GenderPolicy.ANYONE;
+        }
+
         return info;
     }
 
