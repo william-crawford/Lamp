@@ -14,17 +14,22 @@ public class Shelter {
     private String phoneNumber;
     private List<ShelterAttribute> attributes;
     private String imageURL;
+    private int capacity;
+    private int currOccup;
 
     private static int nextId = 0;
     private int id;
 
-    public Shelter(String name, Location location, boolean full, String phoneNumber, String imageURL) {
+    public Shelter(String name, Location location, String phoneNumber,
+                   String imageURL, int capacity, int currOccup) {
         this.name = name;
         this.location = location;
-        this.full = full;
         this.imageURL = imageURL;
         this.phoneNumber = phoneNumber;
+        this.capacity = capacity;
+        this.currOccup = currOccup;
         this.id = nextId++;
+        this.full = currOccup <= capacity;
     }
 
     public String getName() {
@@ -87,5 +92,23 @@ public class Shelter {
     @Override
     public int hashCode() {
         return id;
+    }
+
+    public int getCurrOccup() {
+        return currOccup;
+    }
+
+    public void setCurrOccup(int currOccup) {
+        this.currOccup = currOccup;
+        this.full = this.currOccup <= this.capacity;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+        this.full = this.currOccup <= this.capacity;
     }
 }

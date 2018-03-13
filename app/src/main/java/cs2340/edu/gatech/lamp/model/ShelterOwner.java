@@ -18,6 +18,5 @@ public class ShelterOwner extends ShelterUser {
         dbRef.child("users").child(userID).setValue(email);
         dbRef.child("users").child(userID).child("type").setValue("ShelterOwner");
         dbRef.child("ShelterOwner").child(userID).setValue(true);
-
     }
 }
