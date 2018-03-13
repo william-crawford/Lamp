@@ -76,6 +76,7 @@ public class ListActivity extends AppCompatActivity {
                 //Do some action
                 Shelter shelter = (Shelter) listView.getItemAtPosition(position);
                 Intent intent = new Intent(ListActivity.this, TestActivity.class);
+                //get Intent.putExtra("info", shelter.getInfo());
                 intent.putExtra("sName", shelter.getName());
 //                String adr = shelter.getLocation().getStreet() + ", " + shelter.getLocation().getCity()
 //                        + ", " + shelter.getLocation().getState() + " " + shelter.getLocation().getZip();
@@ -84,6 +85,9 @@ public class ListActivity extends AppCompatActivity {
                 intent.putExtra("url", shelter.getImageURL());
                 intent.putExtra("ide", shelter.getKey());
                 intent.putExtra("hasSpace", shelter.isHasSpace());
+                intent.putExtra("capacity", shelter.getCapacity());
+                intent.putExtra("notes", shelter.getNotes());
+                intent.putExtra("restrictions", shelter.getRestrictions());
                 startActivity(intent);
             } });
     }

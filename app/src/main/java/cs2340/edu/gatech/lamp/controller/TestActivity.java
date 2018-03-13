@@ -19,6 +19,9 @@ public class TestActivity extends AppCompatActivity {
     TextView name;
     TextView addr;
     TextView phone;
+    TextView capacity;
+    TextView notes;
+    TextView restrictions;
     String sID;
     ImageView image;
 
@@ -32,6 +35,9 @@ public class TestActivity extends AppCompatActivity {
         addr = findViewById(R.id.textView3);
         phone = findViewById(R.id.textView4);
         image = findViewById(R.id.picture);
+        capacity = findViewById(R.id.textView5);
+        notes = findViewById(R.id.textView6);
+        restrictions = findViewById(R.id.textView7);
         if(bundle != null) {
             String title = bundle.getString("sName");
             title += bundle.getBoolean("hasSpace") ? Html.fromHtml("<font color=\"#00CC00\">\t \u2714</font>"):
@@ -39,12 +45,19 @@ public class TestActivity extends AppCompatActivity {
             name.setText(title);
             addr.setText(Html.fromHtml("<b>Address:</b> " + bundle.getString("sAddress")));
             phone.setText(Html.fromHtml("<b>Phone:</b> " + bundle.getString("number")));
+            capacity.setText(Html.fromHtml("<b>Capacity:</b> " + bundle.getString("capacity")));
+            notes.setText(Html.fromHtml("<b>Notes:</b> " + bundle.getString("notes")));
+            restrictions.setText(Html.fromHtml("<b>Restrictions:</b> " + bundle.getString("restrictions")));
             sID = bundle.getString("id");
             new UpdateImageFromUrlTask().execute(bundle.getString("url"));
         } else {
             name.setText(Html.fromHtml("<b>Oops! This is awkward.</b>"));
             addr.setText("");
             phone.setText("");
+            new UpdateImageFromUrlTask().execute("https://assets.rbl.ms/13910706/980x.jpg");
+            capacity.setText("");
+            notes.setText("");
+            restrictions.setText("");
         }
     }
 
