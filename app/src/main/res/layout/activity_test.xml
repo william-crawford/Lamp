@@ -1,32 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="16dp"
     tools:context="cs2340.edu.gatech.lamp.controller.TestActivity">
 
+    <ImageView
+        android:id="@+id/picture"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="I exist."
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
+        android:text="Shelter Name"
+        android:layout_gravity="left"
         android:textStyle="bold"
-        android:textSize="32sp"/>
+        android:layout_below="@+id/picture"
+        android:textColor="#000000"
+        android:textSize="24sp"/>
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="text"
-        android:layout_weight="1"
-        android:layout_gravity="center"
-        android:layout_marginTop="12dp"
-        android:textStyle="bold"
-        android:textSize="24sp"/>
+        android:text="Address"
+        android:layout_below="@+id/textView2"
+        android:layout_gravity="left"
+        android:textColor="#000000"
+        android:textSize="14sp"/>
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phone"
+        android:layout_below="@+id/textView3"
+        android:layout_gravity="left"
+        android:textColor="#000000"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Capacity"
+        android:layout_below="@+id/textView4"
+        android:layout_gravity="left"
+        android:textColor="#000000"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Notes"
+        android:layout_below="@+id/textView7"
+        android:layout_gravity="left"
+        android:textColor="#000000"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Restrictions"
+        android:layout_below="@+id/textView5"
+        android:layout_gravity="left"
+        android:textColor="#000000"
+        android:textSize="14sp"/>
+
+</RelativeLayout>
