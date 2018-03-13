@@ -162,14 +162,14 @@ public class Shelter {
     }
 
     public boolean checkGPFilter(GenderPolicy gp) {
-        return gp == genderPolicy;
+        return gp == null || gp == genderPolicy;
     }
 
     public boolean checkAPFilter(AgePolicy ap) {
-        return ap == agePolicy;
+        return ap == null || ap == agePolicy;
     }
 
     public boolean checkNameFilter(String filter) {
-        return name.contains(filter);
+        return filter.length() == 0 || name.contains(filter);
     }
 }

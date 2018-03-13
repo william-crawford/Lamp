@@ -11,6 +11,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cs2340.edu.gatech.lamp.R;
 import cs2340.edu.gatech.lamp.model.Model;
@@ -33,7 +34,7 @@ public class ListActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         listView = findViewById(android.R.id.list);
 
-        listAdapter = new CustomAdapter((ArrayList<Shelter>)Model.getInstance().getAllShelters(), context);
+        listAdapter = new CustomAdapter(Model.getInstance().getAllShelters(), context);
 
 //        listAdapter = new ArrayAdapter<Shelter>(context, R.layout.listelement,
 //                Model.getInstance().getAllShelters()) {
@@ -102,6 +103,20 @@ public class ListActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(menuItem);
+    }
+
+
+    private void updateFiltering(Shelter.GenderPolicy gp, Shelter.AgePolicy ap, String search) {
+        List<Shelter> filteredShelters = new ArrayList<>();
+        for (Shelter s : Model.getInstance().getAllShelters()) {
+            if (s.checkGPFilter(gp)
+                    && s.checkAPFilter(ap)
+                    && s.checkNameFilter(search)) {
+                filteredShelters.add(s);
+            }
+        }
+        CustomAdapter newAdapter = new CustomAdapter(filteredShelters, this);
+        listView.setAdapter(newAdapter);
     }
 
 }

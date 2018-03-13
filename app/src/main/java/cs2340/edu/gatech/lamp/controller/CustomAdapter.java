@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cs2340.edu.gatech.lamp.R;
 import cs2340.edu.gatech.lamp.model.Shelter;
@@ -20,7 +21,7 @@ import cs2340.edu.gatech.lamp.model.Shelter;
 
 public class CustomAdapter extends ArrayAdapter<Shelter> {
 
-    private ArrayList<Shelter> shelters;
+    private List<Shelter> shelters;
     Context mContext;
 
     // View lookup cache
@@ -31,7 +32,7 @@ public class CustomAdapter extends ArrayAdapter<Shelter> {
         ImageView call;
     }
 
-    public CustomAdapter(ArrayList<Shelter> data, Context context) {
+    public CustomAdapter(List<Shelter> data, Context context) {
         super(context, R.layout.listelement, data);
         this.shelters = data;
         this.mContext=context;
