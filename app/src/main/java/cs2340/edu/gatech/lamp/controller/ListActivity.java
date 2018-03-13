@@ -131,7 +131,6 @@ public class ListActivity extends AppCompatActivity {
 //                return view;
 //            }
 //        };
-        //listView.setAdapter(listAdapter);
         listView.setAdapter(listAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -139,20 +138,22 @@ public class ListActivity extends AppCompatActivity {
                                     long id) {
                 //Do some action
                 Shelter shelter = (Shelter) listView.getItemAtPosition(position);
-                Intent intent = new Intent(ListActivity.this, TestActivity.class);
+                Intent intent = new Intent(context, MapsActivity.class);
+                intent.putExtra("shelterInfo", shelter.getInfo());
+                /*
                 intent.putExtra("info", shelter.getInfo());
-                //get Intent.putExtra("info", shelter.getInfo());
-//                intent.putExtra("sName", shelter.getName());
-//                  String adr = shelter.getLocation().getStreet() + ", " + shelter.getLocation().getCity()
-//                          + ", " + shelter.getLocation().getState() + " " + shelter.getLocation().getZip();
-//                intent.putExtra("sAddress", shelter.getLocation().getAddress());
-//                intent.putExtra("number", shelter.getPhoneNumber());
-//                intent.putExtra("url", shelter.getImageURL());
-//                intent.putExtra("ide", shelter.getKey());
-//                intent.putExtra("hasSpace", shelter.isHasSpace());
-//                intent.putExtra("capacity", shelter.getCapacity());
-//                intent.putExtra("notes", shelter.getNotes());
-//                intent.putExtra("restrictions", shelter.getRestrictions());
+                intent.putExtra("sName", shelter.getName());
+                String adr = shelter.getLocation().getStreet() + ", " + shelter.getLocation().getCity()
+                          + ", " + shelter.getLocation().getState() + " " + shelter.getLocation().getZip();
+                intent.putExtra("sAddress", shelter.getLocation().getAddress());
+                intent.putExtra("number", shelter.getPhoneNumber());
+                intent.putExtra("url", shelter.getImageURL());
+                intent.putExtra("ide", shelter.getKey());
+                intent.putExtra("hasSpace", shelter.isHasSpace());
+                intent.putExtra("capacity", shelter.getCapacity());
+                intent.putExtra("notes", shelter.getNotes());
+                intent.putExtra("restrictions", shelter.getRestrictions());
+                */
                 startActivity(intent);
             } });
     }

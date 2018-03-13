@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.net.URL;
 
 import cs2340.edu.gatech.lamp.R;
+import cs2340.edu.gatech.lamp.model.Shelter;
 
 public class TestActivity extends AppCompatActivity {
 
@@ -39,6 +40,7 @@ public class TestActivity extends AppCompatActivity {
         notes = findViewById(R.id.textView6);
         restrictions = findViewById(R.id.textView7);
         if(bundle != null) {
+            /*
             String title = bundle.getString("sName");
             title += bundle.getBoolean("hasSpace") ? Html.fromHtml("<font color=\"#00CC00\">\t \u2714</font>"):
                     Html.fromHtml("<color = \"#CC0000\"><b>\t\t\u2718</b></font>");
@@ -50,6 +52,22 @@ public class TestActivity extends AppCompatActivity {
             restrictions.setText(Html.fromHtml("<b>Restrictions:</b> " + bundle.getString("restrictions")));
             sID = bundle.getString("id");
             new UpdateImageFromUrlTask().execute(bundle.getString("url"));
+            */
+            String[] info = bundle.getStringArray("shelterInfo");
+            if (info != null) {
+                Shelter shelter = new Shelter(info);
+                String title = shelter.getName();
+                title += bundle.getBoolean("hasSpace") ? Html.fromHtml("<font color=\"#00CC00\">\t \u2714</font>") :
+                        Html.fromHtml("<color = \"#CC0000\"><b>\t\t\u2718</b></font>");
+                name.setText(title);
+                addr.setText(Html.fromHtml("<b>Address:</b> " + shelter.getLocation().getAddress()));
+                phone.setText(Html.fromHtml("<b>Phone:</b> " + shelter.getPhoneNumber()));
+                capacity.setText(Html.fromHtml("<b>Capacity:</b> " + shelter.getCapacity()));
+                notes.setText(Html.fromHtml("<b>Notes:</b> " + shelter.getNotes()));
+                restrictions.setText(Html.fromHtml("<b>Restrictions:</b> " + shelter.getRestrictions()));
+                sID = shelter.getKey();
+                new UpdateImageFromUrlTask().execute(shelter.getImageURL());
+            }
         } else {
             name.setText(Html.fromHtml("<b>Oops! This is awkward.</b>"));
             addr.setText("");

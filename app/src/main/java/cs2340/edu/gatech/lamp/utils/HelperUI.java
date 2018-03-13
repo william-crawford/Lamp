@@ -29,10 +29,15 @@ public class HelperUI {
     }
 
     public static void goToDefault(Context context) {
-        context.startActivity(new Intent(context, DefaultActivity.class));
+        //context.startActivity(new Intent(context, DefaultActivity.class));
+        Intent intent = new Intent(context, ListActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        context.startActivity(new Intent(context, ListActivity.class));
     }
 
     public static void goToList(Context context) {
+        Intent intent = new Intent(context, ListActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         context.startActivity(new Intent(context, ListActivity.class));
     }
 

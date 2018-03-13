@@ -149,6 +149,7 @@ public class Shelter {
     }
 
     public Shelter(String[] info) {
+        key = info[0];
         name = info[1];
         capacity = info[2];
         restrictions = info[3];
@@ -166,6 +167,16 @@ public class Shelter {
             genderPolicy = GenderPolicy.MALE_ONLY;
         } else {
             genderPolicy = GenderPolicy.ANYONE;
+        }
+
+        if (restrictions.contains("Children")) {
+            agePolicy = AgePolicy.CHILDREN;
+        } else if (restrictions.contains("newborns")) {
+            agePolicy = AgePolicy.FAMILIES_WITH_NEWBORNS;
+        } else if (restrictions.contains("Young")) {
+            agePolicy = AgePolicy.YOUNG_ADULTS;
+        }else {
+            agePolicy = AgePolicy.ANYONE;
         }
     }
     /*
@@ -201,6 +212,6 @@ public class Shelter {
     }
 
     public boolean checkNameFilter(String filter) {
-        return filter.length() == 0 || name.contains(filter);
+        return filter.length() == 0 || name.toLowerCase().contains(filter.toLowerCase());
     }
 }

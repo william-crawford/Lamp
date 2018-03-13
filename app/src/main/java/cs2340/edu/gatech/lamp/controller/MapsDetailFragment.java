@@ -37,6 +37,10 @@ public class MapsDetailFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     private Shelter selected;
 
+    public Shelter getSelected() {
+        return selected;
+    }
+
     private TextView nameText;
     private TextView distanceText;
     private Button sheltersBtn;

@@ -21,8 +21,7 @@ public class Model {
 
     private List<Shelter> allShelters;
 
-    private Model() {
-    }
+    private Model() {}
 
     public List<Shelter> getAllShelters() {
         return allShelters;
