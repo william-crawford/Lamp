@@ -135,7 +135,7 @@ public class Shelter {
     }
 
     public String[] getInfo() {
-        String[] info = new String[9];
+        String[] info = new String[10];
         info[0] = key;
         info[1] = name;
         info[2] = capacity;
@@ -145,6 +145,7 @@ public class Shelter {
         info[6] = location.getAddress();
         info[7] = notes;
         info[8] = phoneNumber;
+        info[9] = imageURL;
 
         return info;
     }
