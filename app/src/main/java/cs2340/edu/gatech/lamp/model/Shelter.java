@@ -64,18 +64,6 @@ public class Shelter {
         this.imageURL = imageURL;
     }
 
-    public List<ShelterAttribute> getAttributes() {
-        return attributes;
-    }
-
-    public void setAttributes(List<ShelterAttribute> attributes) {
-        this.attributes = attributes;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
