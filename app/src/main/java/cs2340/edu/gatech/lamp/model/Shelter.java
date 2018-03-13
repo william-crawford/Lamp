@@ -16,6 +16,11 @@ public class Shelter {
     private String imageURL;
     public static ArrayList<Shelter> shelterList = new ArrayList<>();
 
+
+    private String capacity;
+    private String notes;
+    private String restrictions;
+
     private String key;
 
     public Shelter(String name, Location location, boolean hasSpace, String phoneNumber, String imageURL, String uniqueKey) {
@@ -71,6 +76,30 @@ public class Shelter {
         return shelterList.get(shelterID);
     }
 
+    public String getRestrictions() {
+        return restrictions;
+    }
+
+    public void setRestrictions(String restrictions) {
+        this.restrictions = restrictions;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public String getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(String capacity) {
+        this.capacity = capacity;
+    }
+
     public String getKey() {
         return key;
     }
@@ -90,10 +119,7 @@ public class Shelter {
         return name;
     }
 
-    //M6-------------------------------------------------
-    private String capacity;
-    private String notes;
-    private String restrictions;
+    //M6------------------------------------------------
 
     public Shelter(String[] info) {
         name = info[1];
