@@ -11,11 +11,9 @@ public class Shelter {
 
     private String name;
     private Location location;
-    private boolean hasSpace;
+    private boolean hasSpace = true;
     private String phoneNumber;
     private String imageURL;
-    public static ArrayList<Shelter> shelterList = new ArrayList<>();
-
 
     private String capacity;
     private String notes;
@@ -70,10 +68,6 @@ public class Shelter {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public static Shelter getShelter(int shelterID) {
-        return shelterList.get(shelterID);
     }
 
     public String getRestrictions() {
