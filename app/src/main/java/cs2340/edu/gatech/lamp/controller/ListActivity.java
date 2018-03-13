@@ -33,7 +33,6 @@ public class ListActivity extends AppCompatActivity {
     Spinner age;
     Spinner gender;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listview);
@@ -51,6 +50,7 @@ public class ListActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 // your code here
+                updateFiltering((Shelter.GenderPolicy) gender.getSelectedItem(), (Shelter.AgePolicy) age.getSelectedItem(), search.getText().toString());
             }
 
             @Override
@@ -64,6 +64,7 @@ public class ListActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 // your code here
+                updateFiltering((Shelter.GenderPolicy) gender.getSelectedItem(), (Shelter.AgePolicy) age.getSelectedItem(), search.getText().toString());
             }
 
             @Override
