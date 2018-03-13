@@ -29,7 +29,7 @@ public class Model {
             double lat = Double.parseDouble(s.getInfo()[5]);
             double lon = Double.parseDouble(s.getInfo()[4]);
             String address = s.getInfo()[6];
-            s.setImageURL("https://image.ibb.co/d3qhSc/CULC300x300.png");
+            s.setImageURL("https://assets.rbl.ms/13910706/980x.jpg");
             s.setLocation(new Location(lat, lon, address));
         }
 //        data.add(new Shelter(

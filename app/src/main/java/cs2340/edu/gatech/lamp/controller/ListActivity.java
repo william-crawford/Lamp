@@ -74,16 +74,16 @@ public class ListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
                 //Do some action
-                Shelter deets = (Shelter) listView.getItemAtPosition(position);
+                Shelter shelter = (Shelter) listView.getItemAtPosition(position);
                 Intent intent = new Intent(ListActivity.this, TestActivity.class);
-                intent.putExtra("sName", deets.getName());
-                String adr = deets.getLocation().getStreet() + ", " + deets.getLocation().getCity()
-                        + ", " + deets.getLocation().getState() + " " + deets.getLocation().getZip();
-                intent.putExtra("sAddress", adr);
-                intent.putExtra("number", deets.getPhoneNumber());
-                intent.putExtra("url", deets.getImageURL());
-                intent.putExtra("id", deets.getId());
-                intent.putExtra("hasSpace", deets.isHasSpace());
+                intent.putExtra("sName", shelter.getName());
+//                String adr = shelter.getLocation().getStreet() + ", " + shelter.getLocation().getCity()
+//                        + ", " + shelter.getLocation().getState() + " " + shelter.getLocation().getZip();
+                intent.putExtra("sAddress", shelter.getLocation().getAddress());
+                intent.putExtra("number", shelter.getPhoneNumber());
+                intent.putExtra("url", shelter.getImageURL());
+                intent.putExtra("ide", shelter.getKey());
+                intent.putExtra("hasSpace", shelter.isHasSpace());
                 startActivity(intent);
             } });
     }
