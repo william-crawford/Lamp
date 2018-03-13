@@ -73,10 +73,10 @@ public class CustomAdapter extends ArrayAdapter<Shelter> {
         viewHolder.location.setTextColor(Color.WHITE);
         viewHolder.space.setTextColor(Color.WHITE);
         viewHolder.name.setText(shelter.getName());
-        String address = shelter.getLocation().getStreet() + ", " +
-                shelter.getLocation().getCity() + ", " + shelter.getLocation().getState()
-                + " " + shelter.getLocation().getZip();
-        viewHolder.location.setText(address);
+//        String address = shelter.getLocation().getStreet() + ", " +
+//                shelter.getLocation().getCity() + ", " + shelter.getLocation().getState()
+//                + " " + shelter.getLocation().getZip();
+        viewHolder.location.setText(shelter.getLocation().getAddress());
         viewHolder.space.setText(shelter.isHasSpace() ? "Available" : "Full");
         viewHolder.call.setOnClickListener(new View.OnClickListener() {
             @Override
