@@ -16,16 +16,15 @@ public class Shelter {
     private String imageURL;
     public static ArrayList<Shelter> shelterList = new ArrayList<>();
 
-    private static int nextId = 0;
-    private int id;
+    private String key;
 
-    public Shelter(String name, Location location, boolean hasSpace, String phoneNumber, String imageURL) {
+    public Shelter(String name, Location location, boolean hasSpace, String phoneNumber, String imageURL, String uniqueKey) {
         this.name = name;
         this.location = location;
         this.hasSpace = hasSpace;
         this.imageURL = imageURL;
         this.phoneNumber = phoneNumber;
-        this.id = nextId++;
+        this.key = uniqueKey;
     }
 
     public String getName() {
@@ -68,22 +67,22 @@ public class Shelter {
         this.phoneNumber = phoneNumber;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public static Shelter getShelter(int shelterID) {
         return shelterList.get(shelterID);
     }
 
+    public String getKey() {
+        return key;
+    }
+
     @Override
     public boolean equals(Object other) {
-        return !(other == null || !(other instanceof Shelter)) && this.id == ((Shelter) other).getId();
+        return !(other == null || !(other instanceof Shelter)) && this.key.equals(((Shelter) other).key);
     }
 
     @Override
     public int hashCode() {
-        return id;
+        return key.hashCode();
     }
 
     @Override
@@ -92,23 +91,19 @@ public class Shelter {
     }
 
     //M6-------------------------------------------------
-    private String[] info;
-    private String shelterName;
     private String capacity;
-    private String gender;
-    private String longitude;
-    private String latitude;
-    private String address;
+    private String notes;
+    private String restrictions;
 
     public Shelter(String[] info) {
         name = info[1];
-        this.info = info;
-        shelterName = info[1];
         capacity = info[2];
-        gender = info[3];
-        longitude = info[4];
-        latitude = info[5];
-        address = info[6];
+        restrictions = info[3];
+        double longitude = Double.parseDouble(info[4]);
+        double latitude = Double.parseDouble(info[5]);
+        String address = info[6];
+        location = new Location(latitude, longitude, address);
+        notes = info[7];
         phoneNumber = info[8];
     }
 
@@ -120,6 +115,17 @@ public class Shelter {
     }
 
     public String[] getInfo() {
+        String[] info = new String[9];
+        info[0] = key;
+        info[1] = name;
+        info[2] = capacity;
+        info[3] = restrictions;
+        info[4] = Double.toString(location.getLongitude());
+        info[5] = Double.toString(location.getLatitude());
+        info[6] = location.getAddress();
+        info[7] = notes;
+        info[8] = phoneNumber;
+
         return info;
     }
     //M6-------------------------------------------------
