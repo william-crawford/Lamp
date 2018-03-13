@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -41,6 +43,23 @@ public class ListActivity extends AppCompatActivity {
         age = findViewById(R.id.spinner1);
         gender = findViewById(R.id.spinner2);
         listView = findViewById(android.R.id.list);
+
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //nothing
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //nothing
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                updateFiltering((Shelter.GenderPolicy) gender.getSelectedItem(), (Shelter.AgePolicy) age.getSelectedItem(), search.getText().toString());
+            }
+        });
 
         ArrayAdapter<String> ageAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Shelter.AgePolicy.values());
         ageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
