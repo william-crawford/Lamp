@@ -35,7 +35,6 @@ public class CustomAdapter extends ArrayAdapter<Shelter> {
         super(context, R.layout.listelement, data);
         this.shelters = data;
         this.mContext=context;
-
     }
 
     private int lastPosition = -1;

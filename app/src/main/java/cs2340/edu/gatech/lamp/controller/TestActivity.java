@@ -39,17 +39,17 @@ public class TestActivity extends AppCompatActivity {
         notes = findViewById(R.id.textView6);
         restrictions = findViewById(R.id.textView7);
         if(bundle != null) {
-            String title = bundle.getStringArray("info")[1];
+            String title = bundle.getString("sName");
             title += bundle.getBoolean("hasSpace") ? Html.fromHtml("<font color=\"#00CC00\">\t \u2714</font>"):
                     Html.fromHtml("<color = \"#CC0000\"><b>\t\t\u2718</b></font>");
             name.setText(title);
-            addr.setText(Html.fromHtml("<b>Address:</b> " + bundle.getStringArray("info")[6]));
-            phone.setText(Html.fromHtml("<b>Phone:</b> " + bundle.getStringArray("info")[8]));
-            capacity.setText(Html.fromHtml("<b>Capacity:</b> " + bundle.getStringArray("info")[2]));
-            notes.setText(Html.fromHtml("<b>Notes:</b> " + bundle.getStringArray("info")[7]));
-            restrictions.setText(Html.fromHtml("<b>Restrictions:</b> " + bundle.getStringArray("info")[3]));
-            sID = bundle.getStringArray("info")[0];
-            new UpdateImageFromUrlTask().execute(bundle.getStringArray("info")[9]);
+            addr.setText(Html.fromHtml("<b>Address:</b> " + bundle.getString("sAddress")));
+            phone.setText(Html.fromHtml("<b>Phone:</b> " + bundle.getString("number")));
+            capacity.setText(Html.fromHtml("<b>Capacity:</b> " + bundle.getString("capacity")));
+            notes.setText(Html.fromHtml("<b>Notes:</b> " + bundle.getString("notes")));
+            restrictions.setText(Html.fromHtml("<b>Restrictions:</b> " + bundle.getString("restrictions")));
+            sID = bundle.getString("id");
+            new UpdateImageFromUrlTask().execute(bundle.getString("url"));
         } else {
             name.setText(Html.fromHtml("<b>Oops! This is awkward.</b>"));
             addr.setText("");

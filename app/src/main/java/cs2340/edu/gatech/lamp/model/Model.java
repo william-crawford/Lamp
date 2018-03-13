@@ -21,7 +21,6 @@ public class Model {
 
     private List<Shelter> allShelters;
 
-
     private Model() {
     }
 

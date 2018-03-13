@@ -1,8 +1,5 @@
 package cs2340.edu.gatech.lamp.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by will on 2/17/18.
  */
@@ -18,6 +15,22 @@ public class Shelter {
     private String capacity;
     private String notes;
     private String restrictions;
+
+    public enum GenderPolicy {
+        MALE_ONLY,
+        FEMALE_ONLY,
+        ANYONE
+    }
+
+    public enum AgePolicy {
+        FAMILIES_WITH_NEWBORNS,
+        CHILDREN,
+        YOUNG_ADULTS,
+        ANYONE
+    }
+
+    private GenderPolicy genderPolicy;
+    private AgePolicy agePolicy;
 
     private String key;
 
@@ -113,8 +126,6 @@ public class Shelter {
         return name;
     }
 
-    //M6------------------------------------------------
-
     public Shelter(String[] info) {
         name = info[1];
         capacity = info[2];
@@ -126,14 +137,14 @@ public class Shelter {
         notes = info[7];
         phoneNumber = info[8];
     }
-
+    /*
     public String getDetails() {
         String[] detail = getInfo();
         String details = "Unique Key: " + detail[0] + "\nShelter Name: " + detail[1] + "\nCapacity: " + detail[2] + "\nRestrictions: " + detail[3] + "\nLongitude: " + detail[4]
                 + "\nLatitude: " + detail[5] + "\nAddress: " + detail[6] + "\nSpecial Notes: " + detail[7] + "\nPhone Number: " + detail[8];
         return details;
     }
-
+    */
     public String[] getInfo() {
         String[] info = new String[10];
         info[0] = key;
@@ -149,5 +160,16 @@ public class Shelter {
 
         return info;
     }
-    //M6-------------------------------------------------
+
+    public boolean checkGPFilter(GenderPolicy gp) {
+        return gp == genderPolicy;
+    }
+
+    public boolean checkAPFilter(AgePolicy ap) {
+        return ap == agePolicy;
+    }
+
+    public boolean checkNameFilter(String filter) {
+        return name.contains(filter);
+    }
 }
