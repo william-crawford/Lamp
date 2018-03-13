@@ -1,7 +1,5 @@
 package cs2340.edu.gatech.lamp.model;
 
-import java.util.List;
-
 /**
  * Created by will on 2/17/18.
  */
@@ -10,26 +8,61 @@ public class Shelter {
 
     private String name;
     private Location location;
-    private boolean full;
+    private boolean hasSpace = true;
     private String phoneNumber;
-    private List<ShelterAttribute> attributes;
     private String imageURL;
-    private int capacity;
-    private int currOccup;
 
-    private static int nextId = 0;
-    private int id;
+    private String capacity;
+    private String notes;
+    private String restrictions;
 
-    public Shelter(String name, Location location, String phoneNumber,
-                   String imageURL, int capacity, int currOccup) {
+    public enum GenderPolicy {
+        NO_FILTER(""),
+        MALE_ONLY("Male Only"),
+        FEMALE_ONLY("Female Only"),
+        ANYONE("Anyone");
+
+        private String label;
+
+        private GenderPolicy(String value){
+            this.label = value;
+        }
+
+        public String toString(){
+            return label;
+        }
+    }
+
+    public enum AgePolicy {
+        NO_FILTER(""),
+        FAMILIES_WITH_NEWBORNS("Families with Newborns"),
+        CHILDREN("Children"),
+        YOUNG_ADULTS("Young Adults"),
+        ANYONE("Anyone");
+
+        private String label;
+
+        private AgePolicy(String value){
+            this.label = value;
+        }
+
+        public String toString(){
+            return label;
+        }
+    }
+
+    private GenderPolicy genderPolicy;
+    private AgePolicy agePolicy;
+
+    private String key;
+
+    public Shelter(String name, Location location, boolean hasSpace, String phoneNumber, String imageURL, String uniqueKey) {
         this.name = name;
         this.location = location;
+        this.hasSpace = hasSpace;
         this.imageURL = imageURL;
         this.phoneNumber = phoneNumber;
-        this.capacity = capacity;
-        this.currOccup = currOccup;
-        this.id = nextId++;
-        this.full = currOccup <= capacity;
+        this.key = uniqueKey;
     }
 
     public String getName() {
@@ -48,12 +81,12 @@ public class Shelter {
         this.location = location;
     }
 
-    public boolean isFull() {
-        return full;
+    public boolean isHasSpace() {
+        return hasSpace;
     }
 
-    public void setFull(boolean full) {
-        this.full = full;
+    public void setHasSpace(boolean hasSpace) {
+        this.hasSpace = hasSpace;
     }
 
     public String getImageURL() {
@@ -64,39 +97,121 @@ public class Shelter {
         this.imageURL = imageURL;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public int getId() {
-        return id;
+    public String getRestrictions() {
+        return restrictions;
+    }
+
+    public void setRestrictions(String restrictions) {
+        this.restrictions = restrictions;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public String getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(String capacity) {
+        this.capacity = capacity;
+    }
+
+    public String getKey() {
+        return key;
     }
 
     @Override
     public boolean equals(Object other) {
-        return !(other == null || !(other instanceof Shelter)) && this.id == ((Shelter) other).getId();
+        return !(other == null || !(other instanceof Shelter)) && this.key.equals(((Shelter) other).key);
     }
 
     @Override
     public int hashCode() {
-        return id;
+        return key.hashCode();
     }
 
-    public int getCurrOccup() {
-        return currOccup;
+    @Override
+    public String toString() {
+        return name;
     }
 
-    public void setCurrOccup(int currOccup) {
-        this.currOccup = currOccup;
-        this.full = this.currOccup <= this.capacity;
+    public Shelter(String[] info) {
+        key = info[0];
+        name = info[1];
+        capacity = info[2];
+        restrictions = info[3];
+        double longitude = Double.parseDouble(info[4]);
+        double latitude = Double.parseDouble(info[5]);
+        String address = info[6];
+        location = new Location(latitude, longitude, address);
+        notes = info[7];
+        phoneNumber = info[8];
+
+        // DON'T READ THIS IF YOU LIKE SLEEPING COMFORTABLY AT NIGHT
+        if (restrictions.contains("Women")) {
+            genderPolicy = GenderPolicy.FEMALE_ONLY;
+        } else if (restrictions.contains("Men")) {
+            genderPolicy = GenderPolicy.MALE_ONLY;
+        } else {
+            genderPolicy = GenderPolicy.ANYONE;
+        }
+
+        if (restrictions.contains("Children")) {
+            agePolicy = AgePolicy.CHILDREN;
+        } else if (restrictions.contains("newborns")) {
+            agePolicy = AgePolicy.FAMILIES_WITH_NEWBORNS;
+        } else if (restrictions.contains("Young")) {
+            agePolicy = AgePolicy.YOUNG_ADULTS;
+        }else {
+            agePolicy = AgePolicy.ANYONE;
+        }
+    }
+    /*
+    public String getDetails() {
+        String[] detail = getInfo();
+        String details = "Unique Key: " + detail[0] + "\nShelter Name: " + detail[1] + "\nCapacity: " + detail[2] + "\nRestrictions: " + detail[3] + "\nLongitude: " + detail[4]
+                + "\nLatitude: " + detail[5] + "\nAddress: " + detail[6] + "\nSpecial Notes: " + detail[7] + "\nPhone Number: " + detail[8];
+        return details;
+    }
+    */
+    public String[] getInfo() {
+        String[] info = new String[10];
+        info[0] = key;
+        info[1] = name;
+        info[2] = capacity;
+        info[3] = restrictions;
+        info[4] = Double.toString(location.getLongitude());
+        info[5] = Double.toString(location.getLatitude());
+        info[6] = location.getAddress();
+        info[7] = notes;
+        info[8] = phoneNumber;
+        info[9] = imageURL;
+
+        return info;
     }
 
-    public int getCapacity() {
-        return capacity;
+    public boolean checkGPFilter(GenderPolicy gp) {
+        return gp == null || gp == GenderPolicy.NO_FILTER || gp == genderPolicy;
     }
 
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-        this.full = this.currOccup <= this.capacity;
+    public boolean checkAPFilter(AgePolicy ap) {
+        return ap == null || ap == AgePolicy.NO_FILTER || ap == agePolicy;
+    }
+
+    public boolean checkNameFilter(String filter) {
+        return filter.length() == 0 || name.toLowerCase().contains(filter.toLowerCase());
     }
 }
