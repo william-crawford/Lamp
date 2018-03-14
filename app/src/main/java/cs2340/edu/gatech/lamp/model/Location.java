@@ -11,13 +11,15 @@ public class Location {
     private double latitude;
     private double longitude;
 
-    private String street;
-    private String city;
-    private String state;
-    private String zip;
+    //private String street;
+    //private String city;
+    //private String state;
+    //private String zip;
 
     private LatLng latLng;
+    private String address;
 
+    /*
     public Location(double latitude, double longitude, String street, String city, String state, String zip) {
         this.latitude = latitude;
         this.longitude = longitude;
@@ -27,10 +29,20 @@ public class Location {
         this.zip = zip;
         this.latLng = new LatLng(latitude, longitude);
     }
+    */
 
+    public Location(double latitude, double longitude, String address) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.address = address;
+        this.latLng = new LatLng(latitude, longitude);
+    }
+
+    /*
     public Location(double latitude, double longitude, String street) {
         this(latitude, longitude, street, "Atlanta", "GA", "30332");
     }
+    */
 
     public LatLng getLatLng() {
         return latLng;
@@ -54,6 +66,15 @@ public class Location {
         latLng = new LatLng(latitude, longitude);
     }
 
+    public String getAddress() {
+        return this.address;
+    }
+
+    public void setAddress() {
+        this.address = address;
+    }
+
+    /*
     public String getStreet() {
         return street;
     }
@@ -85,6 +106,7 @@ public class Location {
     public void setZip(String zip) {
         this.zip = zip;
     }
+    */
 
     public double distanceTo(LatLng other) {
         float[] result = new float[1];
@@ -97,5 +119,6 @@ public class Location {
         );
         return result[0] / 1609;
     }
+
 
 }

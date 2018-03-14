@@ -40,7 +40,6 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
     private Map<LatLng, Shelter> shelterMap = new HashMap<>();
     private Marker selected;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,17 +70,9 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                Shelter shelter = shelterMap.get(marker.getPosition());
-                detailFragment.setSelected(shelter, currentLocation);
-                marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
-                if (selected != null) {
-                    selected.setIcon(BitmapDescriptorFactory.defaultMarker(
-                            shelterMap.get(selected.getPosition()).isHasSpace() ?
-                                    BitmapDescriptorFactory.HUE_GREEN :
-                                    BitmapDescriptorFactory.HUE_ORANGE
-                    ));
+                if (!marker.equals(selected)) {
+                    updateSelected(marker);
                 }
-                selected = marker;
                 return false;
             }
         });
@@ -105,11 +96,10 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
                     })
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
+            onBackPressed();
         } catch (Exception e) {
-            Toast toast = new Toast(this);
-            toast.setDuration(Toast.LENGTH_SHORT);
-            toast.setText("Error retrieving location");
-            toast.show();
+            Toast.makeText(this, "error fetching location, check permissions", Toast.LENGTH_LONG).show();
+            onBackPressed();
         }
 
         if (location != null) {
@@ -127,6 +117,12 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
         }
 
 
+        String[] info = getIntent().getStringArrayExtra("shelterInfo");
+        Shelter passedIn = null;
+        if (info != null) {
+            passedIn = new Shelter(info);
+        }
+
         for (Shelter shelter : shelters) {
             MarkerOptions marker = new MarkerOptions()
                     .position(shelter.getLocation().getLatLng())
@@ -136,8 +132,11 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
                                     BitmapDescriptorFactory.HUE_GREEN :
                                     BitmapDescriptorFactory.HUE_ORANGE
                     ));
-            mMap.addMarker(marker);
+            Marker m = mMap.addMarker(marker);
             shelterMap.put(shelter.getLocation().getLatLng(), shelter);
+            if (passedIn != null && passedIn.equals(shelter)) {
+                updateSelected(m);
+            }
         }
     }
 
@@ -147,18 +146,32 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
 
     @Override
     public void onDirectionsButtonPressed(Shelter shelter) {
-
+        Toast.makeText(this, "Feature coming soon!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onDetailsButtonPressed(Shelter shelter) {
-        Intent intent = new Intent(MapsActivity.this, TestActivity.class);
-        intent.putExtra("position", Integer.parseInt(shelter.getInfo()[0]));
+        Intent intent = new Intent(this, TestActivity.class);
+        intent.putExtra("shelterInfo", shelter.getInfo());
         startActivity(intent);
     }
 
     @Override
     public void onOtherSheltersButtonPressed() {
         HelperUI.goToList(this);
+    }
+
+    private void updateSelected(Marker marker) {
+        Shelter shelter = shelterMap.get(marker.getPosition());
+        detailFragment.setSelected(shelter, currentLocation);
+        marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+        if (selected != null) {
+            selected.setIcon(BitmapDescriptorFactory.defaultMarker(
+                    shelterMap.get(selected.getPosition()).isHasSpace() ?
+                            BitmapDescriptorFactory.HUE_GREEN :
+                            BitmapDescriptorFactory.HUE_ORANGE
+            ));
+        }
+        selected = marker;
     }
 }
