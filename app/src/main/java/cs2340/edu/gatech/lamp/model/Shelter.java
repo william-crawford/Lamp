@@ -159,6 +159,7 @@ public class Shelter {
         location = new Location(latitude, longitude, address);
         notes = info[7];
         phoneNumber = info[8];
+        imageURL = info[9];
 
         // DON'T READ THIS IF YOU LIKE SLEEPING COMFORTABLY AT NIGHT
         if (restrictions.contains("Women")) {
