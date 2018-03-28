@@ -12,6 +12,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
+import static cs2340.edu.gatech.lamp.utils.ShelterManager.updateShelter;
 
 /**
  * Created by will on 2/17/18.
@@ -73,9 +74,6 @@ public class Shelter {
 
     private String key;
 
-
-
-
     public String getName() {
         return name;
     }
@@ -90,9 +88,11 @@ public class Shelter {
 
     public void setLocation(Location location) {
         this.location = location;
+        updateShelter(this);
     }
 
     public boolean isFull() {
+
         return numericCapacity - spacesFilled > 0;
     }
 
@@ -102,6 +102,7 @@ public class Shelter {
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
+        updateShelter(this);
     }
 
     public String getPhoneNumber() {
@@ -110,6 +111,7 @@ public class Shelter {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+        updateShelter(this);
     }
 
     public String getRestrictions() {
@@ -118,6 +120,7 @@ public class Shelter {
 
     public void setRestrictions(String restrictions) {
         this.restrictions = restrictions;
+        updateShelter(this);
     }
 
     public String getNotes() {
@@ -126,6 +129,7 @@ public class Shelter {
 
     public void setNotes(String notes) {
         this.notes = notes;
+        updateShelter(this);
     }
 
     public String getCapacity() {
@@ -134,6 +138,7 @@ public class Shelter {
 
     public void setCapacity(String capacity) {
         this.capacity = capacity;
+        updateShelter(this);
     }
 
 

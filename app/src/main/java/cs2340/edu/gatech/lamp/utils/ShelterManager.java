@@ -8,6 +8,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import cs2340.edu.gatech.lamp.model.Shelter;
 import cs2340.edu.gatech.lamp.model.ShelterOwner;
 
@@ -23,7 +26,15 @@ public class ShelterManager {
         user.addShelterID(inputArgs[0]);
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
         Shelter shelter = new Shelter(inputArgs);
-        dbRef.child("shelters").child(inputArgs[0]).setValue(shelter);
+        dbRef.child("shelters").child(shelter.getKey()).setValue(shelter);
+        dbRef.child("hasSpace").child(shelter.getKey()).setValue((shelter.isFull()) ? (true) : (null));
+    }
+
+    public static void updateShelter(Shelter shelter) {
+        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
+        dbRef.child("shelters").child(shelter.getKey()).setValue(shelter);
+        dbRef.child("hasSpace").child(shelter.getKey()).setValue((shelter.isFull()) ? (true) : (null));
+
     }
 
     private static Shelter shel;
