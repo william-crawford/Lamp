@@ -10,6 +10,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import static android.content.ContentValues.TAG;
+import static cs2340.edu.gatech.lamp.utils.ShelterManager.updateShelter;
 
 /**
  * Created by will on 2/17/18.
@@ -19,7 +20,6 @@ public class Shelter {
 
     private String name;
     private Location location;
-    private boolean hasSpace = true;
     private String phoneNumber;
     private String imageURL;
 
@@ -28,6 +28,7 @@ public class Shelter {
     private String restrictions;
 
     private int spacesFilled;
+
     private int numericCapacity;
 
     public enum GenderPolicy {
@@ -84,14 +85,12 @@ public class Shelter {
 
     public void setLocation(Location location) {
         this.location = location;
+        updateShelter(this);
     }
 
-    public boolean isHasSpace() {
-        return hasSpace;
-    }
+    public boolean isFull() {
 
-    public void setHasSpace(boolean hasSpace) {
-        this.hasSpace = hasSpace;
+        return numericCapacity - spacesFilled > 0;
     }
 
     public String getImageURL() {
@@ -100,6 +99,7 @@ public class Shelter {
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
+        updateShelter(this);
     }
 
     public String getPhoneNumber() {
@@ -108,6 +108,7 @@ public class Shelter {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+        updateShelter(this);
     }
 
     public String getRestrictions() {
@@ -116,6 +117,7 @@ public class Shelter {
 
     public void setRestrictions(String restrictions) {
         this.restrictions = restrictions;
+        updateShelter(this);
     }
 
     public String getNotes() {
@@ -124,6 +126,7 @@ public class Shelter {
 
     public void setNotes(String notes) {
         this.notes = notes;
+        updateShelter(this);
     }
 
     public String getCapacity() {
@@ -132,6 +135,20 @@ public class Shelter {
 
     public void setCapacity(String capacity) {
         this.capacity = capacity;
+        updateShelter(this);
+    }
+
+
+    public int getNumericCapacity() {
+        return numericCapacity;
+    }
+
+    public int getSpacesFilled() {
+        return spacesFilled;
+    }
+
+    public void setSpacesFilled(int spacesFilled) {
+        this.spacesFilled = spacesFilled;
     }
 
     public String getKey() {

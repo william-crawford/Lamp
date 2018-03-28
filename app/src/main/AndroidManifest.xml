@@ -43,7 +43,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".controller.TestActivity" />
-        <activity android:name=".controller.RegisterActivity"></activity>
+        <activity android:name=".controller.ReservationActivity"></activity>
     </application>
 
 </manifest>
