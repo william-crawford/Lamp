@@ -7,7 +7,7 @@
     tools:context="cs2340.edu.gatech.lamp.controller.RegisterActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/txt_res_available"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="206dp"
@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/txt_res_cap"
         android:layout_width="wrap_content"
         android:layout_height="17dp"
         android:layout_marginEnd="197dp"
@@ -31,7 +31,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/txt_res_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="206dp"
@@ -50,10 +50,10 @@
         android:layout_marginStart="55dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/textView8"
+        app:layout_constraintBottom_toTopOf="@+id/txt_res_cap"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_res_available" />
 
     <EditText
         android:id="@+id/editText6"
@@ -64,7 +64,7 @@
         android:layout_marginStart="55dp"
         android:ems="10"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/textView9"
+        app:layout_constraintBottom_toTopOf="@+id/txt_res_user"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

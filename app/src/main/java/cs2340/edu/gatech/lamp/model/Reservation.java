@@ -9,14 +9,28 @@ public class Reservation {
     private String userID;
     private int spacesReserved;
 
-    @Override
-    public int hashCode() {
-        return userID.hashCode();
+    public Reservation(String userID) {
+        this.userID = userID;
+        this.spacesReserved = 1;
     }
 
-    @Override
-    public boolean equals(Object other) {
-        return (other != null && other instanceof Reservation && userID.equals(((Reservation) other).userID));
+    public String getUserID() {
+        return userID;
     }
 
+    public int getSpacesReserved() {
+        return spacesReserved;
+    }
+
+    public boolean decrement() {
+        if (spacesReserved == 1) {
+            return false;
+        }
+        spacesReserved--;
+        return true;
+    }
+
+    public void increment() {
+        spacesReserved++;
+    }
 }

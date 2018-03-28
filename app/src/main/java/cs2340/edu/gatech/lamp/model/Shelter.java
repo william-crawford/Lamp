@@ -9,6 +9,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Iterator;
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
@@ -150,6 +151,10 @@ public class Shelter {
         return spacesFilled;
     }
 
+    public int getSpacesVacant() {
+        return numericCapacity - spacesFilled;
+    }
+
     public void setSpacesFilled(int spacesFilled) {
         this.spacesFilled = spacesFilled;
     }
@@ -223,12 +228,44 @@ public class Shelter {
         }
     }
 
+    public Reservation getReservation(String userID) {
+        for (Reservation r : reservations) {
+            if (r.getUserID().equals(Model.getInstance().getCurrentUser().getUserID())) {
+                return r;
+            }
+        }
+        return null;
+    }
+
     public boolean decreaseReservation(ShelterUser user) {
+        Iterator<Reservation> i = reservations.iterator();
+        while (i.hasNext()) {
+            Reservation r = i.next();
+            if (r.getUserID().equals(Model.getInstance().getCurrentUser().getUserID())) {
+                if (!r.decrement()) {
+                    i.remove();
+                }
+                spacesFilled--;
+                return true;
+            }
+        }
         return false;
     }
 
     public boolean increaseReservation(ShelterUser user) {
-        return false;
+        if (isFull()) {
+            return false;
+        } else {
+            spacesFilled++;
+            for (Reservation r : reservations) {
+                if (r.getUserID().equals(Model.getInstance().getCurrentUser().getUserID())) {
+                    r.increment();
+                    return true;
+                }
+            }
+            reservations.add(new Reservation(Model.getInstance().getCurrentUser().getUserID()));
+            return true;
+        }
     }
 
     public String[] getInfo() {

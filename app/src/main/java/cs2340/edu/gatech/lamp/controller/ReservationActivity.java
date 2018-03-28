@@ -5,11 +5,16 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Locale;
 
 import cs2340.edu.gatech.lamp.R;
 import cs2340.edu.gatech.lamp.model.Model;
 import cs2340.edu.gatech.lamp.model.Shelter;
 import cs2340.edu.gatech.lamp.model.ShelterUser;
+import cs2340.edu.gatech.lamp.utils.ShelterManager;
 
 public class ReservationActivity extends AppCompatActivity {
 
@@ -17,14 +22,22 @@ public class ReservationActivity extends AppCompatActivity {
     private float rotation;
     private Shelter shelter;
 
+    private TextView cap = findViewById(R.id.txt_res_cap);
+    private TextView available = findViewById(R.id.txt_res_available);
+    private TextView user = findViewById(R.id.txt_res_user);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservation);
 
-        lever = (ImageView) findViewById(R.id.lever);
+        String shelterID = getIntent().getStringExtra("shelterID");
+        shelter = ShelterManager.getShelterByKey(shelterID);
+
+        lever = findViewById(R.id.lever);
         rotateLever(180);
+        updateText();
     }
 
     private void rotateLever(float angle) {
@@ -36,9 +49,9 @@ public class ReservationActivity extends AppCompatActivity {
         rotateAnim.setFillAfter(true);
         lever.startAnimation(rotateAnim);
         if (rotation > 0 && angle <= 0 && rotation < 90) {
-            shelter.increaseReservation((ShelterUser) Model.getInstance().getCurrentUser());
+            increase();
         } else if (angle > 0 && rotation <= 0 && angle < 90) {
-            shelter.decreaseReservation((ShelterUser) Model.getInstance().getCurrentUser());
+            decrease();
         }
 
         rotation = angle;
@@ -64,6 +77,29 @@ public class ReservationActivity extends AppCompatActivity {
 
         }
         return super.onTouchEvent(event);
+    }
+
+    private void increase() {
+        if (!shelter.increaseReservation((ShelterUser) Model.getInstance().getCurrentUser())) {
+            Toast.makeText(this, "Shelter is full", Toast.LENGTH_SHORT).show();
+        }
+        updateText();
+    }
+
+    private void decrease() {
+        if(!shelter.decreaseReservation((ShelterUser) Model.getInstance().getCurrentUser())) {
+            Toast.makeText(this, "Turn other way to make reservation", Toast.LENGTH_SHORT).show();
+        }
+        updateText();
+    }
+
+    private void updateText() {
+        cap.setText("Shelter Capacity:" + shelter.getCapacity());
+        available.setText(String.format(Locale.US, "Spaces Vacant: %d", shelter.getSpacesVacant()));
+        user.setText(String.format(Locale.US, "You have reserved %d spaces",
+                shelter.getReservation(Model.getInstance().getCurrentUser().getUserID()) != null ?
+                shelter.getReservation(Model.getInstance().getCurrentUser().getUserID()).getSpacesReserved() : 0
+        ));
     }
 
 }
