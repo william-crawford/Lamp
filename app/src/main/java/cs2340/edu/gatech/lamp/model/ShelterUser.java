@@ -12,24 +12,10 @@ import java.util.List;
  */
 
 public abstract class ShelterUser extends User{
-    protected List<String> shelterIDs;
+
 
     protected ShelterUser(FirebaseUser user) {
         super(user);
-        shelterIDs = new ArrayList<>();
-    }
-
-
-
-    public static void createShelter(String name,
-                                     Location location,
-                                     boolean hasSpace,
-                                     String phoneNumber,
-                                     String imageURL,
-                                     String key) {
-        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
-        Shelter shelter = new Shelter(name, location, hasSpace, phoneNumber, imageURL, key);
-        dbRef.child("shelters").child(key).setValue(shelter);
     }
 
     public void deleteShelter(){
