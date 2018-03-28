@@ -1,5 +1,15 @@
 package cs2340.edu.gatech.lamp.model;
 
+import android.util.Log;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import static android.content.ContentValues.TAG;
+
 /**
  * Created by will on 2/17/18.
  */
@@ -63,6 +73,23 @@ public class Shelter {
         this.imageURL = imageURL;
         this.phoneNumber = phoneNumber;
         this.key = uniqueKey;
+    }
+
+    public static Shelter getShelter(String key) {
+        Shelter shel;
+        DatabaseReference dbUniqShelterRef = FirebaseDatabase.getInstance().getReference("/Shelters/" + key + "/");
+        dbUniqShelterRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dS) {
+                shel = dS.getValue(Shelter.class);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+            }
+        });
+        return shel;
     }
 
     public String getName() {
