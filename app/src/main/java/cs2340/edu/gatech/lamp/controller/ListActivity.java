@@ -22,6 +22,7 @@ import java.util.List;
 import cs2340.edu.gatech.lamp.R;
 import cs2340.edu.gatech.lamp.model.Model;
 import cs2340.edu.gatech.lamp.model.Shelter;
+import cs2340.edu.gatech.lamp.utils.HelperUI;
 
 /**
  * Created by Potato on 2/20/2018.
@@ -183,6 +184,12 @@ public class ListActivity extends AppCompatActivity {
         }
         CustomAdapter newAdapter = new CustomAdapter(filteredShelters, this);
         listView.setAdapter(newAdapter);
+    }
+
+    @Override
+    public void onBackPressed() {
+        HelperUI.signOut(context);
+        HelperUI.goToWelcome(context);
     }
 
 }
