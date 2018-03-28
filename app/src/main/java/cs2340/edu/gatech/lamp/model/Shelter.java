@@ -19,7 +19,6 @@ public class Shelter {
 
     private String name;
     private Location location;
-    private boolean hasSpace = true;
     private String phoneNumber;
     private String imageURL;
 
@@ -28,6 +27,7 @@ public class Shelter {
     private String restrictions;
 
     private int spacesFilled;
+
     private int numericCapacity;
 
     public enum GenderPolicy {
@@ -70,14 +70,8 @@ public class Shelter {
 
     private String key;
 
-    public Shelter(String name, Location location, boolean hasSpace, String phoneNumber, String imageURL, String uniqueKey) {
-        this.name = name;
-        this.location = location;
-        this.hasSpace = hasSpace;
-        this.imageURL = imageURL;
-        this.phoneNumber = phoneNumber;
-        this.key = uniqueKey;
-    }
+
+
 
     public String getName() {
         return name;
@@ -95,12 +89,8 @@ public class Shelter {
         this.location = location;
     }
 
-    public boolean isHasSpace() {
-        return hasSpace;
-    }
-
-    public void setHasSpace(boolean hasSpace) {
-        this.hasSpace = hasSpace;
+    public boolean isFull() {
+        return numericCapacity - spacesFilled > 0;
     }
 
     public String getImageURL() {
@@ -141,6 +131,19 @@ public class Shelter {
 
     public void setCapacity(String capacity) {
         this.capacity = capacity;
+    }
+
+
+    public int getNumericCapacity() {
+        return numericCapacity;
+    }
+
+    public int getSpacesFilled() {
+        return spacesFilled;
+    }
+
+    public void setSpacesFilled(int spacesFilled) {
+        this.spacesFilled = spacesFilled;
     }
 
     public String getKey() {
