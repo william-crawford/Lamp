@@ -70,15 +70,6 @@ public class Shelter {
 
     private String key;
 
-    public Shelter(String name, Location location, boolean hasSpace, String phoneNumber, String imageURL, String uniqueKey) {
-        this.name = name;
-        this.location = location;
-        this.hasSpace = hasSpace;
-        this.imageURL = imageURL;
-        this.phoneNumber = phoneNumber;
-        this.key = uniqueKey;
-    }
-
     public String getName() {
         return name;
     }
