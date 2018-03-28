@@ -1,5 +1,6 @@
 package cs2340.edu.gatech.lamp.model;
 
+import android.content.Intent;
 import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
@@ -26,6 +27,9 @@ public class Shelter {
     private String notes;
     private String restrictions;
 
+    private int spacesFilled;
+    private int numericCapacity;
+
     public enum GenderPolicy {
         NO_FILTER(""),
         MALE_ONLY("Male Only"),
@@ -34,7 +38,7 @@ public class Shelter {
 
         private String label;
 
-        private GenderPolicy(String value){
+        GenderPolicy(String value){
             this.label = value;
         }
 
@@ -52,7 +56,7 @@ public class Shelter {
 
         private String label;
 
-        private AgePolicy(String value){
+        AgePolicy(String value){
             this.label = value;
         }
 
@@ -65,32 +69,6 @@ public class Shelter {
     private AgePolicy agePolicy;
 
     private String key;
-
-    public Shelter(String name, Location location, boolean hasSpace, String phoneNumber, String imageURL, String uniqueKey) {
-        this.name = name;
-        this.location = location;
-        this.hasSpace = hasSpace;
-        this.imageURL = imageURL;
-        this.phoneNumber = phoneNumber;
-        this.key = uniqueKey;
-    }
-
-    public static Shelter getShelter(String key) {
-        Shelter shel;
-        DatabaseReference dbUniqShelterRef = FirebaseDatabase.getInstance().getReference("/Shelters/" + key + "/");
-        dbUniqShelterRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dS) {
-                shel = dS.getValue(Shelter.class);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-            }
-        });
-        return shel;
-    }
 
     public String getName() {
         return name;
@@ -175,6 +153,10 @@ public class Shelter {
         return name;
     }
 
+    public Shelter() {
+        //This exists
+    }
+
     public Shelter(String[] info) {
         key = info[0];
         name = info[1];
@@ -186,6 +168,8 @@ public class Shelter {
         location = new Location(latitude, longitude, address);
         notes = info[7];
         phoneNumber = info[8];
+        imageURL = info[9];
+        spacesFilled = Integer.parseInt(info[10]);
 
         // DON'T READ THIS IF YOU LIKE SLEEPING COMFORTABLY AT NIGHT
         if (restrictions.contains("Women")) {
@@ -202,8 +186,20 @@ public class Shelter {
             agePolicy = AgePolicy.FAMILIES_WITH_NEWBORNS;
         } else if (restrictions.contains("Young")) {
             agePolicy = AgePolicy.YOUNG_ADULTS;
-        }else {
+        } else {
             agePolicy = AgePolicy.ANYONE;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (char c : capacity.toCharArray()) {
+            if (c >= 48 && c < 58) {
+                sb.append(c);
+            }
+        }
+        try {
+            numericCapacity = Integer.parseInt(new String(sb));
+        } catch (Exception e) {
+            numericCapacity = 0;
         }
     }
     /*
@@ -226,6 +222,7 @@ public class Shelter {
         info[7] = notes;
         info[8] = phoneNumber;
         info[9] = imageURL;
+        info[10] = String.valueOf(spacesFilled);
 
         return info;
     }

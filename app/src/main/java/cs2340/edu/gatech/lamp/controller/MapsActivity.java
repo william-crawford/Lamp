@@ -145,7 +145,7 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
     }
 
     @Override
-    public void onDirectionsButtonPressed(Shelter shelter) {
+    public void onReserveButtonPressed(Shelter shelter) {
         Toast.makeText(this, "Feature coming soon!", Toast.LENGTH_SHORT).show();
     }
 
