@@ -29,35 +29,35 @@ import cs2340.edu.gatech.lamp.model.Shelter;
 import cs2340.edu.gatech.lamp.utils.HelperUI;
 
 public class WelcomeActivity extends AppCompatActivity {
-    private static final int RC_SIGN_IN = 1;
-    private FirebaseAuth currAuth;
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        currAuth = FirebaseAuth.getInstance();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        Model.getInstance().initShelters(this);
-        FirebaseUser currUser = currAuth.getCurrentUser();
-        if (currUser != null) {
-            User appUser = new Admin(currUser);
-            appUser.writeNewUser();
-            HelperUI.goToDefault(this);
-        } else {
-            startActivityForResult(
-                    // Get an instance of AuthUI based on the default app
-                    AuthUI.getInstance()
-                            .createSignInIntentBuilder()
-                            .setAvailableProviders(Arrays.asList(
-                                    new AuthUI.IdpConfig.EmailBuilder().build()))
-                            .setIsSmartLockEnabled(false, true)
-                            .build(),
-                    RC_SIGN_IN);
-        }
-    }
+//    private static final int RC_SIGN_IN = 1;
+//    private FirebaseAuth currAuth;
+//
+//
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        currAuth = FirebaseAuth.getInstance();
+//    }
+//
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        Model.getInstance().initShelters(this);
+//        FirebaseUser currUser = currAuth.getCurrentUser();
+//        if (currUser != null) {
+//            User appUser = new Admin(currUser);
+//            appUser.writeNewUser();
+//            HelperUI.goToDefault(this);
+//        } else {
+//            startActivityForResult(
+//                    // Get an instance of AuthUI based on the default app
+//                    AuthUI.getInstance()
+//                            .createSignInIntentBuilder()
+//                            .setAvailableProviders(Arrays.asList(
+//                                    new AuthUI.IdpConfig.EmailBuilder().build()))
+//                            .setIsSmartLockEnabled(false, true)
+//                            .build(),
+//                    RC_SIGN_IN);
+//        }
+//    }
 }
