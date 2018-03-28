@@ -8,7 +8,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import cs2340.edu.gatech.lamp.model.Location;
 import cs2340.edu.gatech.lamp.model.Shelter;
 import cs2340.edu.gatech.lamp.model.ShelterOwner;
 
@@ -20,16 +19,11 @@ import static android.content.ContentValues.TAG;
 
 public class ShelterManager {
     public static void createShelter(ShelterOwner user,
-                                     String name,
-                                     Location location,
-                                     boolean hasSpace,
-                                     String phoneNumber,
-                                     String imageURL,
-                                     String key) {
-        user.addShelterID(key);
+                                     String[] inputArgs) {
+        user.addShelterID(inputArgs[0]);
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
-        Shelter shelter = new Shelter(name, location, hasSpace, phoneNumber, imageURL, key);
-        dbRef.child("shelters").child(key).setValue(shelter);
+        Shelter shelter = new Shelter(inputArgs);
+        dbRef.child("shelters").child(inputArgs[0]).setValue(shelter);
     }
 
     private static Shelter shel;
