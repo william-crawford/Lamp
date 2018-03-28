@@ -48,7 +48,9 @@ public class HelperUI {
     }
 
     public static void goToRegister(Context context) {
-        context.startActivity(new Intent(context, MapsActivity.class));
+        Intent welcomeIntent = new Intent(context, WelcomeActivity.class);
+        welcomeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        context.startActivity(welcomeIntent);
     }
 
     public static void goToMap(Context context) {
