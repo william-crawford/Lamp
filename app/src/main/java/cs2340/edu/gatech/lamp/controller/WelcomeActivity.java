@@ -30,6 +30,8 @@ import java.util.Scanner;
 
 import cs2340.edu.gatech.lamp.R;
 import cs2340.edu.gatech.lamp.model.Admin;
+import cs2340.edu.gatech.lamp.model.HomelessUser;
+import cs2340.edu.gatech.lamp.model.ShelterOwner;
 import cs2340.edu.gatech.lamp.model.User;
 import cs2340.edu.gatech.lamp.model.Model;
 import cs2340.edu.gatech.lamp.model.Shelter;
@@ -50,9 +52,14 @@ public class WelcomeActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        Model.getInstance().initShelters(this);
         FirebaseUser currUser = currAuth.getCurrentUser();
         if (currUser != null) {
+            //this is the jank
+            ShelterOwner suser = new ShelterOwner(currUser);
+            Model.getInstance().setShelterOwnerDefault(suser);
+
+            Model.getInstance().initShelters(this);
+            Model.getInstance().setCurrentUser(new HomelessUser(currUser));
             HelperUI.goToDefault(this);
         } else {
             setContentView(R.layout.activity_welcome);
@@ -71,6 +78,14 @@ public class WelcomeActivity extends AppCompatActivity {
                                         // Sign in success, update UI with the signed-in user's information
                                         Log.d("WelcomeActivity", "signInWithEmail:success");
                                         FirebaseUser user = currAuth.getCurrentUser();
+
+                                        //this is the jank
+                                        ShelterOwner suser = new ShelterOwner(user);
+                                        Model.getInstance().setShelterOwnerDefault(suser);
+
+                                        Model.getInstance().initShelters(context);
+                                        Model.getInstance().setCurrentUser(new HomelessUser(user));
+
                                         HelperUI.goToDefault(context);
                                     } else {
                                         // If sign in fails, display a message to the user.

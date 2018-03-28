@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import cs2340.edu.gatech.lamp.R;
+import cs2340.edu.gatech.lamp.utils.ShelterManager;
 
 /**
  * Created by JermiahRussell on 2/13/2018.
@@ -22,6 +23,7 @@ public class Model {
     private Model() {}
 
     private User currentUser;
+    private ShelterOwner shelterOwnerDefault;
     private List<Shelter> allShelters;
 
     public User getCurrentUser() {
@@ -30,6 +32,10 @@ public class Model {
 
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
+    }
+
+    public void setShelterOwnerDefault(ShelterOwner owner) {
+        shelterOwnerDefault = owner;
     }
 
     public List<Shelter> getAllShelters() {
@@ -43,6 +49,7 @@ public class Model {
         while (scan.hasNext()) {
             String[] info = scan.nextLine().split(",");
             allShelters.add(new Shelter(info));
+            ShelterManager.createShelter(shelterOwnerDefault, info);
         }
 
 //        data.add(new Shelter(

@@ -11,6 +11,7 @@ import android.widget.Toast;
 import java.util.Locale;
 
 import cs2340.edu.gatech.lamp.R;
+import cs2340.edu.gatech.lamp.model.HomelessUser;
 import cs2340.edu.gatech.lamp.model.Model;
 import cs2340.edu.gatech.lamp.model.Shelter;
 import cs2340.edu.gatech.lamp.model.ShelterUser;
@@ -32,8 +33,8 @@ public class ReservationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservation);
 
-        String shelterID = getIntent().getStringExtra("shelterID");
-        shelter = ShelterManager.getShelterByKey(shelterID);
+        String[] shelterInfo = getIntent().getStringArrayExtra("shelterInfo");
+        shelter = new Shelter(shelterInfo);
 
         cap = findViewById(R.id.txt_res_cap);
         available = findViewById(R.id.txt_res_available);
@@ -53,9 +54,9 @@ public class ReservationActivity extends AppCompatActivity {
         rotateAnim.setFillAfter(true);
         lever.startAnimation(rotateAnim);
         if (rotation > 0 && angle <= 0 && rotation < 90) {
-            increase();
-        } else if (angle > 0 && rotation <= 0 && angle < 90) {
             decrease();
+        } else if (angle > 0 && rotation <= 0 && angle < 90) {
+            increase();
         }
 
         rotation = angle;
@@ -84,21 +85,21 @@ public class ReservationActivity extends AppCompatActivity {
     }
 
     private void increase() {
-        if (!shelter.increaseReservation((ShelterUser) Model.getInstance().getCurrentUser())) {
+        if (!shelter.increaseReservation((HomelessUser) Model.getInstance().getCurrentUser())) {
             Toast.makeText(this, "Shelter is full", Toast.LENGTH_SHORT).show();
         }
         updateText();
     }
 
     private void decrease() {
-        if(!shelter.decreaseReservation((ShelterUser) Model.getInstance().getCurrentUser())) {
+        if(!shelter.decreaseReservation((HomelessUser) Model.getInstance().getCurrentUser())) {
             Toast.makeText(this, "Turn other way to make reservation", Toast.LENGTH_SHORT).show();
         }
         updateText();
     }
 
     private void updateText() {
-        cap.setText("Shelter Capacity:" + shelter.getCapacity());
+        cap.setText("Shelter Capacity: " + shelter.getCapacity());
         available.setText(String.format(Locale.US, "Spaces Vacant: %d", shelter.getSpacesVacant()));
         user.setText(String.format(Locale.US, "You have reserved %d spaces",
                 shelter.getReservation(Model.getInstance().getCurrentUser().getUserID()) != null ?

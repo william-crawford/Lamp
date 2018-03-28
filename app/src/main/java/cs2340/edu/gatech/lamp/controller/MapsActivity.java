@@ -147,7 +147,7 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
     @Override
     public void onReserveButtonPressed(Shelter shelter) {
         Intent intent = new Intent(this, ReservationActivity.class);
-        intent.putExtra("shelterID", shelter.getKey());
+        intent.putExtra("shelterInfo", shelter.getInfo());
         startActivity(intent);
     }
 

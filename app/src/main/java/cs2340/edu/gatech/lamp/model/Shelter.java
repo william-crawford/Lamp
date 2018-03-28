@@ -6,9 +6,11 @@ import android.util.Log;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Exclude;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -33,7 +35,7 @@ public class Shelter {
     private int spacesFilled;
     private int numericCapacity;
 
-    private List<Reservation> reservations;
+    private List<Reservation> reservations = new ArrayList<>();
 
     public enum GenderPolicy {
         NO_FILTER(""),
@@ -75,6 +77,7 @@ public class Shelter {
 
     private String key;
 
+    @Exclude
     public String getName() {
         return name;
     }
@@ -83,6 +86,7 @@ public class Shelter {
         this.name = name;
     }
 
+    @Exclude
     public Location getLocation() {
         return location;
     }
@@ -94,9 +98,10 @@ public class Shelter {
 
     public boolean isFull() {
 
-        return numericCapacity - spacesFilled > 0;
+        return numericCapacity - spacesFilled <= 0;
     }
 
+    @Exclude
     public String getImageURL() {
         return imageURL;
     }
@@ -106,6 +111,7 @@ public class Shelter {
         updateShelter(this);
     }
 
+    @Exclude
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -115,6 +121,7 @@ public class Shelter {
         updateShelter(this);
     }
 
+    @Exclude
     public String getRestrictions() {
         return restrictions;
     }
@@ -124,6 +131,7 @@ public class Shelter {
         updateShelter(this);
     }
 
+    @Exclude
     public String getNotes() {
         return notes;
     }
@@ -133,6 +141,7 @@ public class Shelter {
         updateShelter(this);
     }
 
+    @Exclude
     public String getCapacity() {
         return capacity;
     }
@@ -143,14 +152,17 @@ public class Shelter {
     }
 
 
+    @Exclude
     public int getNumericCapacity() {
         return numericCapacity;
     }
 
+    @Exclude
     public int getSpacesFilled() {
         return spacesFilled;
     }
 
+    @Exclude
     public int getSpacesVacant() {
         return numericCapacity - spacesFilled;
     }
@@ -159,6 +171,7 @@ public class Shelter {
         this.spacesFilled = spacesFilled;
     }
 
+    @Exclude
     public String getKey() {
         return key;
     }
@@ -168,11 +181,13 @@ public class Shelter {
         return !(other == null || !(other instanceof Shelter)) && this.key.equals(((Shelter) other).key);
     }
 
+    @Exclude
     @Override
     public int hashCode() {
         return key.hashCode();
     }
 
+    @Exclude
     @Override
     public String toString() {
         return name;
@@ -237,7 +252,7 @@ public class Shelter {
         return null;
     }
 
-    public boolean decreaseReservation(ShelterUser user) {
+    public boolean decreaseReservation(HomelessUser user) {
         Iterator<Reservation> i = reservations.iterator();
         while (i.hasNext()) {
             Reservation r = i.next();
@@ -252,7 +267,7 @@ public class Shelter {
         return false;
     }
 
-    public boolean increaseReservation(ShelterUser user) {
+    public boolean increaseReservation(HomelessUser user) {
         if (isFull()) {
             return false;
         } else {
@@ -268,6 +283,7 @@ public class Shelter {
         }
     }
 
+    @Exclude
     public String[] getInfo() {
         String[] info = new String[11];
         info[0] = key;
