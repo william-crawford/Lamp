@@ -19,9 +19,18 @@ public class Model {
         return _instance;
     }
 
+    private Model() {}
+
+    private User currentUser;
     private List<Shelter> allShelters;
 
-    private Model() {}
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+    }
 
     public List<Shelter> getAllShelters() {
         return allShelters;

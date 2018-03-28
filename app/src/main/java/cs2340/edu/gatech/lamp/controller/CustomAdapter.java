@@ -77,7 +77,7 @@ public class CustomAdapter extends ArrayAdapter<Shelter> {
 //                shelter.getLocation().getCity() + ", " + shelter.getLocation().getState()
 //                + " " + shelter.getLocation().getZip();
         viewHolder.location.setText(shelter.getLocation().getAddress());
-        viewHolder.space.setText(shelter.isHasSpace() ? "Available" : "Full");
+        viewHolder.space.setText(!shelter.isFull() ? "Available" : "Full");
         viewHolder.call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

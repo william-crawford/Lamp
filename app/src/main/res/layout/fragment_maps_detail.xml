@@ -49,11 +49,10 @@
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="4dp"
             android:layout_marginStart="8dp"
-            android:text="Test123"
+            android:text="Reservations"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline5"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="Reserve?" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/txt_map_location_name"

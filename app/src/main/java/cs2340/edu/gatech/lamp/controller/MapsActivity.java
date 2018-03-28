@@ -128,7 +128,7 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
                     .position(shelter.getLocation().getLatLng())
                     .title(shelter.getName())
                     .icon(BitmapDescriptorFactory.defaultMarker(
-                            shelter.isHasSpace() ?
+                            !shelter.isFull() ?
                                     BitmapDescriptorFactory.HUE_GREEN :
                                     BitmapDescriptorFactory.HUE_ORANGE
                     ));
@@ -146,7 +146,7 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
 
     @Override
     public void onReserveButtonPressed(Shelter shelter) {
-        Toast.makeText(this, "Feature coming soon!", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, ReservationActivity.class));
     }
 
     @Override
@@ -167,7 +167,7 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
         marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
         if (selected != null) {
             selected.setIcon(BitmapDescriptorFactory.defaultMarker(
-                    shelterMap.get(selected.getPosition()).isHasSpace() ?
+                    !shelterMap.get(selected.getPosition()).isFull() ?
                             BitmapDescriptorFactory.HUE_GREEN :
                             BitmapDescriptorFactory.HUE_ORANGE
             ));

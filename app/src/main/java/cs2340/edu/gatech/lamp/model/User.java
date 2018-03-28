@@ -23,5 +23,9 @@ public abstract class User {
         name = user.getDisplayName();
     }
 
+    public String getUserID() {
+        return userID;
+    }
+
     public abstract void writeNewUser();
 }

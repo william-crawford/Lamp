@@ -9,6 +9,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.List;
+
 import static android.content.ContentValues.TAG;
 
 /**
@@ -27,8 +29,9 @@ public class Shelter {
     private String restrictions;
 
     private int spacesFilled;
-
     private int numericCapacity;
+
+    private List<Reservation> reservations;
 
     public enum GenderPolicy {
         NO_FILTER(""),
@@ -214,14 +217,15 @@ public class Shelter {
             numericCapacity = 0;
         }
     }
-    /*
-    public String getDetails() {
-        String[] detail = getInfo();
-        String details = "Unique Key: " + detail[0] + "\nShelter Name: " + detail[1] + "\nCapacity: " + detail[2] + "\nRestrictions: " + detail[3] + "\nLongitude: " + detail[4]
-                + "\nLatitude: " + detail[5] + "\nAddress: " + detail[6] + "\nSpecial Notes: " + detail[7] + "\nPhone Number: " + detail[8];
-        return details;
+
+    public boolean decreaseReservation(ShelterUser user) {
+        return false;
     }
-    */
+
+    public boolean increaseReservation(ShelterUser user) {
+        return false;
+    }
+
     public String[] getInfo() {
         String[] info = new String[10];
         info[0] = key;
