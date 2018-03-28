@@ -269,7 +269,7 @@ public class Shelter {
     }
 
     public String[] getInfo() {
-        String[] info = new String[10];
+        String[] info = new String[11];
         info[0] = key;
         info[1] = name;
         info[2] = capacity;

@@ -27,13 +27,13 @@ public class ShelterManager {
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
         Shelter shelter = new Shelter(inputArgs);
         dbRef.child("shelters").child(shelter.getKey()).setValue(shelter);
-        dbRef.child("hasSpace").child(shelter.getKey()).setValue((shelter.isFull()) ? (true) : (null));
+        dbRef.child("isFull").child(shelter.getKey()).setValue((shelter.isFull()) ? (true) : (null));
     }
 
     public static void updateShelter(Shelter shelter) {
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
         dbRef.child("shelters").child(shelter.getKey()).setValue(shelter);
-        dbRef.child("hasSpace").child(shelter.getKey()).setValue((shelter.isFull()) ? (true) : (null));
+        dbRef.child("isFull").child(shelter.getKey()).setValue((shelter.isFull()) ? (true) : (null));
 
     }
 

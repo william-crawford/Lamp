@@ -22,9 +22,9 @@ public class ReservationActivity extends AppCompatActivity {
     private float rotation;
     private Shelter shelter;
 
-    private TextView cap = findViewById(R.id.txt_res_cap);
-    private TextView available = findViewById(R.id.txt_res_available);
-    private TextView user = findViewById(R.id.txt_res_user);
+    private TextView cap;
+    private TextView available;
+    private TextView user;
 
 
     @Override
@@ -34,6 +34,10 @@ public class ReservationActivity extends AppCompatActivity {
 
         String shelterID = getIntent().getStringExtra("shelterID");
         shelter = ShelterManager.getShelterByKey(shelterID);
+
+        cap = findViewById(R.id.txt_res_cap);
+        available = findViewById(R.id.txt_res_available);
+        user = findViewById(R.id.txt_res_user);
 
         lever = findViewById(R.id.lever);
         rotateLever(180);
