@@ -110,7 +110,7 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
                     .build()
             ));
 
-            detailFragment.setSelected(shelters.get(0), currentLocation);
+            detailFragment.setSelected(Model.getInstance().getShelterByKey(getIntent().getStringExtra("shelterID")), currentLocation);
         } else {
             LatLng culc = new LatLng(33.7749, -84.3964);
             mMap.moveCamera(CameraUpdateFactory.newLatLng(culc));
@@ -147,7 +147,7 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
     @Override
     public void onReserveButtonPressed(Shelter shelter) {
         Intent intent = new Intent(this, ReservationActivity.class);
-        intent.putExtra("shelterInfo", shelter.getInfo());
+        intent.putExtra("shelterID", shelter.getKey());
         startActivity(intent);
     }
 

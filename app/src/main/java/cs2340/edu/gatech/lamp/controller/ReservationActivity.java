@@ -33,8 +33,10 @@ public class ReservationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservation);
 
-        String[] shelterInfo = getIntent().getStringArrayExtra("shelterInfo");
-        shelter = new Shelter(shelterInfo);
+        String shelterID = getIntent().getStringExtra("shelterID");
+        System.out.println("ShelterID is: \n\n");
+        System.out.println(shelterID);
+        shelter = Model.getInstance().getShelterByKey(shelterID);
 
         cap = findViewById(R.id.txt_res_cap);
         available = findViewById(R.id.txt_res_available);
@@ -88,6 +90,7 @@ public class ReservationActivity extends AppCompatActivity {
         if (!shelter.increaseReservation((HomelessUser) Model.getInstance().getCurrentUser())) {
             Toast.makeText(this, "Shelter is full", Toast.LENGTH_SHORT).show();
         }
+        Model.save(this);
         updateText();
     }
 
@@ -95,16 +98,20 @@ public class ReservationActivity extends AppCompatActivity {
         if(!shelter.decreaseReservation((HomelessUser) Model.getInstance().getCurrentUser())) {
             Toast.makeText(this, "Turn other way to make reservation", Toast.LENGTH_SHORT).show();
         }
+        Model.save(this);
         updateText();
     }
 
     private void updateText() {
         cap.setText("Shelter Capacity: " + shelter.getCapacity());
         available.setText(String.format(Locale.US, "Spaces Vacant: %d", shelter.getSpacesVacant()));
+
         user.setText(String.format(Locale.US, "You have reserved %d spaces",
-                shelter.getReservation(Model.getInstance().getCurrentUser().getUserID()) != null ?
-                shelter.getReservation(Model.getInstance().getCurrentUser().getUserID()).getSpacesReserved() : 0
-        ));
+                shelter.getSpacesFilled()));
+
+        //        shelter.getReservation(Model.getInstance().getCurrentUser().getUserID()) != null ?
+        //        shelter.getReservation(Model.getInstance().getCurrentUser().getUserID()).getSpacesReserved() : 0
+        //));
     }
 
 }

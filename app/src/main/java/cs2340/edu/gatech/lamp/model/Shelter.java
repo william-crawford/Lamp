@@ -253,6 +253,7 @@ public class Shelter {
     }
 
     public boolean decreaseReservation(HomelessUser user) {
+        /*
         Iterator<Reservation> i = reservations.iterator();
         while (i.hasNext()) {
             Reservation r = i.next();
@@ -265,6 +266,12 @@ public class Shelter {
             }
         }
         return false;
+        */
+        if (spacesFilled == 0) {
+            return false;
+        }
+        spacesFilled--;
+        return true;
     }
 
     public boolean increaseReservation(HomelessUser user) {

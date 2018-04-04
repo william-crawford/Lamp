@@ -21,6 +21,7 @@ import java.util.List;
 import cs2340.edu.gatech.lamp.R;
 import cs2340.edu.gatech.lamp.model.Model;
 import cs2340.edu.gatech.lamp.model.Shelter;
+import cs2340.edu.gatech.lamp.utils.HelperUI;
 
 /**
  * Created by Potato on 2/20/2018.
@@ -139,7 +140,7 @@ public class ListActivity extends AppCompatActivity {
                 //Do some action
                 Shelter shelter = (Shelter) listView.getItemAtPosition(position);
                 Intent intent = new Intent(context, MapsActivity.class);
-                intent.putExtra("shelterInfo", shelter.getInfo());
+                intent.putExtra("shelterID", shelter.getKey());
                 /*
                 intent.putExtra("info", shelter.getInfo());
                 intent.putExtra("sName", shelter.getName());
@@ -183,6 +184,11 @@ public class ListActivity extends AppCompatActivity {
         }
         CustomAdapter newAdapter = new CustomAdapter(filteredShelters, this);
         listView.setAdapter(newAdapter);
+    }
+
+    @Override
+    public void onBackPressed() {
+        HelperUI.signOut(this);
     }
 
 }

@@ -58,7 +58,7 @@ public class WelcomeActivity extends AppCompatActivity {
             ShelterOwner suser = new ShelterOwner(currUser);
             Model.getInstance().setShelterOwnerDefault(suser);
 
-            Model.getInstance().initShelters(this);
+            Model.getInstance().load(this);
             Model.getInstance().setCurrentUser(new HomelessUser(currUser));
             HelperUI.goToDefault(this);
         } else {
@@ -83,7 +83,7 @@ public class WelcomeActivity extends AppCompatActivity {
                                         ShelterOwner suser = new ShelterOwner(user);
                                         Model.getInstance().setShelterOwnerDefault(suser);
 
-                                        Model.getInstance().initShelters(context);
+                                        Model.getInstance().load(context);
                                         Model.getInstance().setCurrentUser(new HomelessUser(user));
 
                                         HelperUI.goToDefault(context);
