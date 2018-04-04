@@ -60,4 +60,9 @@ public class WelcomeActivity extends AppCompatActivity {
                     RC_SIGN_IN);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        System.exit(0);
+    }
 }
