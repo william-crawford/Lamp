@@ -106,7 +106,7 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
             currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
             mMap.moveCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition.Builder()
                     .target(currentLocation)
-                    .zoom(15)
+                    .zoom(14)
                     .build()
             ));
 
@@ -166,6 +166,11 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
     private void updateSelected(Marker marker) {
         Shelter shelter = shelterMap.get(marker.getPosition());
         detailFragment.setSelected(shelter, currentLocation);
+        mMap.moveCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition.Builder()
+                .target(shelter.getLocation().getLatLng())
+                .zoom(14)
+                .build()
+        ));
         marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
         if (selected != null) {
             selected.setIcon(BitmapDescriptorFactory.defaultMarker(

@@ -108,4 +108,9 @@ public class WelcomeActivity extends AppCompatActivity {
             });
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        System.exit(0);
+    }
 }
