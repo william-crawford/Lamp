@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import cs2340.edu.gatech.lamp.R;
+import cs2340.edu.gatech.lamp.model.Admin;
+import cs2340.edu.gatech.lamp.model.User;
 import cs2340.edu.gatech.lamp.model.Model;
 import cs2340.edu.gatech.lamp.model.Shelter;
 import cs2340.edu.gatech.lamp.utils.HelperUI;
@@ -43,6 +45,8 @@ public class WelcomeActivity extends AppCompatActivity {
         Model.getInstance().initShelters(this);
         FirebaseUser currUser = currAuth.getCurrentUser();
         if (currUser != null) {
+            User appUser = new Admin(currUser);
+            appUser.writeNewUser();
             HelperUI.goToDefault(this);
         } else {
             startActivityForResult(

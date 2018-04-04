@@ -1,60 +1,24 @@
 package cs2340.edu.gatech.lamp.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
- * Created by JermiahRussell on 2/13/2018.
+ * Created by Tucker on 3/4/2018.
  */
 
-public class User implements Parcelable {
-    private static int num_users;
-    private String user_name;
-    private int user_id;
+public abstract class User {
+    protected String userID;
+    protected String email;
+    protected String name;
+    protected DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
 
-    public User() {
-        this("homeless", "qwerty", num_users);
-    }
-    public User(String name, String password, int id) {
-        user_name = name;
-        user_id = id;
-        num_users++;
+    protected User(FirebaseUser user) {
+        userID = user.getUid();
+        email = user.getEmail();
+        name = user.getDisplayName();
     }
 
-    protected User(Parcel in) {
-        this(in.readString(), in.readString(), num_users);
-    }
-
-    public String getUser_name() {
-        return user_name;
-    }
-
-    public int getUser_id() {
-        return user_id;
-    }
-
-
-
-    public static final Creator<User> CREATOR = new Creator<User>() {
-        @Override
-        public User createFromParcel(Parcel in) {
-            return new User(in);
-        }
-
-        @Override
-        public User[] newArray(int size) {
-            return new User[size];
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(user_name);
-        parcel.writeInt(user_id);
-    }
+    public abstract void writeNewUser();
 }
