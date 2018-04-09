@@ -180,6 +180,7 @@ public class ListActivity extends AppCompatActivity {
                     && s.checkAPFilter(ap)
                     && s.checkNameFilter(search)) {
                 filteredShelters.add(s);
+                Model.getInstance().setFilteredShelters(filteredShelters);
             }
         }
         CustomAdapter newAdapter = new CustomAdapter(filteredShelters, this);

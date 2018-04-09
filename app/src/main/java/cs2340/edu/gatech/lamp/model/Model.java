@@ -32,6 +32,7 @@ public class Model {
     private User currentUser;
     private ShelterOwner shelterOwnerDefault;
     private List<Shelter> allShelters;
+    private List<Shelter> filteredShelters;
 
     public User getCurrentUser() {
         return currentUser;
@@ -47,6 +48,13 @@ public class Model {
 
     public List<Shelter> getAllShelters() {
         return allShelters;
+    }
+
+    public void setFilteredShelters(List<Shelter> shelters) {
+        filteredShelters = shelters;
+    }
+    public List<Shelter> getFilteredShelters() {
+        return filteredShelters;
     }
 
     public Shelter getShelterByKey(String key) {

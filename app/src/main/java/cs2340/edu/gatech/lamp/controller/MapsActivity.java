@@ -141,7 +141,7 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
     }
 
     private List<Shelter> fetchShelterData() {
-        return Model.getInstance().getAllShelters();
+        return Model.getInstance().getFilteredShelters();
     }
 
     @Override
