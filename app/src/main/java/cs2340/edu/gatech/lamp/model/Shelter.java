@@ -1,5 +1,22 @@
 package cs2340.edu.gatech.lamp.model;
 
+import android.content.Intent;
+import android.util.Log;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Exclude;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import static android.content.ContentValues.TAG;
+import static cs2340.edu.gatech.lamp.utils.ShelterManager.updateShelter;
+
 /**
  * Created by will on 2/17/18.
  */
@@ -8,13 +25,17 @@ public class Shelter {
 
     private String name;
     private Location location;
-    private boolean hasSpace = true;
     private String phoneNumber;
     private String imageURL;
 
     private String capacity;
     private String notes;
     private String restrictions;
+
+    private int spacesFilled;
+    private int numericCapacity;
+
+    private List<Reservation> reservations = new ArrayList<>();
 
     public enum GenderPolicy {
         NO_FILTER(""),
@@ -24,7 +45,7 @@ public class Shelter {
 
         private String label;
 
-        private GenderPolicy(String value){
+        GenderPolicy(String value){
             this.label = value;
         }
 
@@ -42,7 +63,7 @@ public class Shelter {
 
         private String label;
 
-        private AgePolicy(String value){
+        AgePolicy(String value){
             this.label = value;
         }
 
@@ -56,15 +77,7 @@ public class Shelter {
 
     private String key;
 
-    public Shelter(String name, Location location, boolean hasSpace, String phoneNumber, String imageURL, String uniqueKey) {
-        this.name = name;
-        this.location = location;
-        this.hasSpace = hasSpace;
-        this.imageURL = imageURL;
-        this.phoneNumber = phoneNumber;
-        this.key = uniqueKey;
-    }
-
+    @Exclude
     public String getName() {
         return name;
     }
@@ -73,62 +86,92 @@ public class Shelter {
         this.name = name;
     }
 
+    @Exclude
     public Location getLocation() {
         return location;
     }
 
     public void setLocation(Location location) {
         this.location = location;
+        updateShelter(this);
     }
 
-    public boolean isHasSpace() {
-        return hasSpace;
+    public boolean isFull() {
+
+        return numericCapacity - spacesFilled <= 0;
     }
 
-    public void setHasSpace(boolean hasSpace) {
-        this.hasSpace = hasSpace;
-    }
-
+    @Exclude
     public String getImageURL() {
         return imageURL;
     }
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
+        updateShelter(this);
     }
 
+    @Exclude
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+        updateShelter(this);
     }
 
+    @Exclude
     public String getRestrictions() {
         return restrictions;
     }
 
     public void setRestrictions(String restrictions) {
         this.restrictions = restrictions;
+        updateShelter(this);
     }
 
+    @Exclude
     public String getNotes() {
         return notes;
     }
 
     public void setNotes(String notes) {
         this.notes = notes;
+        updateShelter(this);
     }
 
+    @Exclude
     public String getCapacity() {
         return capacity;
     }
 
     public void setCapacity(String capacity) {
         this.capacity = capacity;
+        updateShelter(this);
     }
 
+
+    @Exclude
+    public int getNumericCapacity() {
+        return numericCapacity;
+    }
+
+    @Exclude
+    public int getSpacesFilled() {
+        return spacesFilled;
+    }
+
+    @Exclude
+    public int getSpacesVacant() {
+        return numericCapacity - spacesFilled;
+    }
+
+    public void setSpacesFilled(int spacesFilled) {
+        this.spacesFilled = spacesFilled;
+    }
+
+    @Exclude
     public String getKey() {
         return key;
     }
@@ -138,14 +181,20 @@ public class Shelter {
         return !(other == null || !(other instanceof Shelter)) && this.key.equals(((Shelter) other).key);
     }
 
+    @Exclude
     @Override
     public int hashCode() {
         return key.hashCode();
     }
 
+    @Exclude
     @Override
     public String toString() {
         return name;
+    }
+
+    public Shelter() {
+        //This exists
     }
 
     public Shelter(String[] info) {
@@ -160,6 +209,7 @@ public class Shelter {
         notes = info[7];
         phoneNumber = info[8];
         imageURL = info[9];
+        spacesFilled = Integer.parseInt(info[10]);
 
         // DON'T READ THIS IF YOU LIKE SLEEPING COMFORTABLY AT NIGHT
         if (restrictions.contains("Women")) {
@@ -176,20 +226,73 @@ public class Shelter {
             agePolicy = AgePolicy.FAMILIES_WITH_NEWBORNS;
         } else if (restrictions.contains("Young")) {
             agePolicy = AgePolicy.YOUNG_ADULTS;
-        }else {
+        } else {
             agePolicy = AgePolicy.ANYONE;
         }
+
+        StringBuilder sb = new StringBuilder();
+        for (char c : capacity.toCharArray()) {
+            if (c >= 48 && c < 58) {
+                sb.append(c);
+            }
+        }
+        try {
+            numericCapacity = Integer.parseInt(new String(sb));
+        } catch (Exception e) {
+            numericCapacity = 0;
+        }
     }
-    /*
-    public String getDetails() {
-        String[] detail = getInfo();
-        String details = "Unique Key: " + detail[0] + "\nShelter Name: " + detail[1] + "\nCapacity: " + detail[2] + "\nRestrictions: " + detail[3] + "\nLongitude: " + detail[4]
-                + "\nLatitude: " + detail[5] + "\nAddress: " + detail[6] + "\nSpecial Notes: " + detail[7] + "\nPhone Number: " + detail[8];
-        return details;
+
+    public Reservation getReservation(String userID) {
+        for (Reservation r : reservations) {
+            if (r.getUserID().equals(Model.getInstance().getCurrentUser().getUserID())) {
+                return r;
+            }
+        }
+        return null;
     }
-    */
+
+    public boolean decreaseReservation(HomelessUser user) {
+        /*
+        Iterator<Reservation> i = reservations.iterator();
+        while (i.hasNext()) {
+            Reservation r = i.next();
+            if (r.getUserID().equals(Model.getInstance().getCurrentUser().getUserID())) {
+                if (!r.decrement()) {
+                    i.remove();
+                }
+                spacesFilled--;
+                return true;
+            }
+        }
+        return false;
+        */
+        if (spacesFilled == 0) {
+            return false;
+        }
+        spacesFilled--;
+        return true;
+    }
+
+    public boolean increaseReservation(HomelessUser user) {
+        if (isFull()) {
+            return false;
+        } else {
+            spacesFilled++;
+            for (Reservation r : reservations) {
+                if (r.getUserID().equals(Model.getInstance().getCurrentUser().getUserID())) {
+                    r.increment();
+                    return true;
+                }
+            }
+            reservations.add(new Reservation(Model.getInstance().getCurrentUser().getUserID()));
+            return true;
+        }
+    }
+
+    @Exclude
     public String[] getInfo() {
-        String[] info = new String[10];
+        String[] info = new String[11];
         info[0] = key;
         info[1] = name;
         info[2] = capacity;
@@ -200,6 +303,7 @@ public class Shelter {
         info[7] = notes;
         info[8] = phoneNumber;
         info[9] = imageURL;
+        info[10] = String.valueOf(spacesFilled);
 
         return info;
     }

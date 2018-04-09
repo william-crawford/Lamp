@@ -1,6 +1,7 @@
 package cs2340.edu.gatech.lamp.model;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.database.Exclude;
 
 /**
  * Created by will on 2/17/18.
@@ -16,7 +17,6 @@ public class Location {
     //private String state;
     //private String zip;
 
-    private LatLng latLng;
     private String address;
 
     /*
@@ -35,7 +35,6 @@ public class Location {
         this.latitude = latitude;
         this.longitude = longitude;
         this.address = address;
-        this.latLng = new LatLng(latitude, longitude);
     }
 
     /*
@@ -44,28 +43,30 @@ public class Location {
     }
     */
 
+    @Exclude
     public LatLng getLatLng() {
-        return latLng;
+        return  new LatLng(latitude, longitude);
     }
 
+    @Exclude
     public double getLatitude() {
         return latitude;
     }
 
     public void setLatitude(double latitude) {
         this.latitude = latitude;
-        latLng = new LatLng(latitude, longitude);
     }
 
+    @Exclude
     public double getLongitude() {
         return longitude;
     }
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
-        latLng = new LatLng(latitude, longitude);
     }
 
+    @Exclude
     public String getAddress() {
         return this.address;
     }

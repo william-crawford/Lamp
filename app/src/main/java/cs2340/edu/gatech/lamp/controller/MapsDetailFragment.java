@@ -95,7 +95,7 @@ public class MapsDetailFragment extends Fragment {
         directionsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mListener.onDirectionsButtonPressed(selected);
+                mListener.onReserveButtonPressed(selected);
             }
         });
         image = v.findViewById(R.id.img_shelter);
@@ -104,7 +104,7 @@ public class MapsDetailFragment extends Fragment {
 
 
     public interface OnFragmentInteractionListener {
-        void onDirectionsButtonPressed(Shelter shelter);
+        void onReserveButtonPressed(Shelter shelter);
         void onDetailsButtonPressed(Shelter shelter);
         void onOtherSheltersButtonPressed();
     }

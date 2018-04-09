@@ -140,7 +140,7 @@ public class ListActivity extends AppCompatActivity {
                 //Do some action
                 Shelter shelter = (Shelter) listView.getItemAtPosition(position);
                 Intent intent = new Intent(context, MapsActivity.class);
-                intent.putExtra("shelterInfo", shelter.getInfo());
+                intent.putExtra("shelterID", shelter.getKey());
                 /*
                 intent.putExtra("info", shelter.getInfo());
                 intent.putExtra("sName", shelter.getName());
@@ -180,6 +180,7 @@ public class ListActivity extends AppCompatActivity {
                     && s.checkAPFilter(ap)
                     && s.checkNameFilter(search)) {
                 filteredShelters.add(s);
+                Model.getInstance().setFilteredShelters(filteredShelters);
             }
         }
         CustomAdapter newAdapter = new CustomAdapter(filteredShelters, this);
@@ -188,8 +189,7 @@ public class ListActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        HelperUI.signOut(context);
-        HelperUI.goToWelcome(context);
+        HelperUI.signOut(this);
     }
 
 }
