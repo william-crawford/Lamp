@@ -11,12 +11,20 @@ import java.util.List;
 
 public class HomelessUser extends User {
 
+    /**
+     * Creates a new HomelessUser
+     *
+     * @param user a FirebaseUser that provides attributes for a HomelessUser
+     */
     public HomelessUser(FirebaseUser user) {
         super(user);
     }
 
     private String reservedShelterID;
 
+    /**
+     * Writes a new HomelessUser to dbRef
+     */
     public void writeNewUser() {
         dbRef.child("users").child(userID).setValue(name);
         dbRef.child("users").child(userID).setValue(email);

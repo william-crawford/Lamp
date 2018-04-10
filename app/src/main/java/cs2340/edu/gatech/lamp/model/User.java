@@ -23,9 +23,16 @@ public abstract class User {
         name = user.getDisplayName();
     }
 
+    /**
+     * Getter for userID
+     * @return returns a user's ID
+     */
     public String getUserID() {
         return userID;
     }
 
+    /**
+     * Abstract method to write a User to dbRef
+     */
     public abstract void writeNewUser();
 }

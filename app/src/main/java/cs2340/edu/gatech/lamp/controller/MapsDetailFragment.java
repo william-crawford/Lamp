@@ -37,6 +37,10 @@ public class MapsDetailFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     private Shelter selected;
 
+    /**
+     * Gives the selected Shelter from the map
+     * @return returns a Shelter
+     */
     public Shelter getSelected() {
         return selected;
     }
@@ -48,6 +52,9 @@ public class MapsDetailFragment extends Fragment {
     private Button directionsBtn;
     private ImageView image;
 
+    /**
+     * Creates a MapsDetailFragment
+     */
     public MapsDetailFragment() {
         // Required empty public constructor
     }
@@ -102,7 +109,9 @@ public class MapsDetailFragment extends Fragment {
         return v;
     }
 
-
+    /**
+     * Interface that represents a FragmentInteractionListener
+     */
     public interface OnFragmentInteractionListener {
         void onReserveButtonPressed(Shelter shelter);
         void onDetailsButtonPressed(Shelter shelter);
@@ -127,6 +136,11 @@ public class MapsDetailFragment extends Fragment {
         mListener = null;
     }
 
+    /**
+     * Setter for selected Shelter
+     * @param shelter Shelter to be set
+     * @param current the current context
+     */
     public void setSelected(Shelter shelter, LatLng current) {
         this.selected = shelter;
         nameText.setText(shelter.getName());

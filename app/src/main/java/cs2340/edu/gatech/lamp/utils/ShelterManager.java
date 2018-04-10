@@ -21,6 +21,11 @@ import static android.content.ContentValues.TAG;
  */
 
 public class ShelterManager {
+    /**
+     * Creates a Shelter
+     * @param user ShelterOwner for a shelter
+     * @param inputArgs information to set a Shelter's attributes
+     */
     public static void createShelter(ShelterOwner user,
                                      String[] inputArgs) {
         user.addShelterID(inputArgs[0]);
@@ -30,6 +35,10 @@ public class ShelterManager {
         dbRef.child("isFull").child(shelter.getKey()).setValue((shelter.isFull()) ? (true) : (null));
     }
 
+    /**
+     * Updates a Shelter
+     * @param shelter a Shelter to update
+     */
     public static void updateShelter(Shelter shelter) {
         DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
         dbRef.child("shelters").child(shelter.getKey()).setValue(shelter);
@@ -38,6 +47,12 @@ public class ShelterManager {
     }
 
     private static Shelter shel;
+
+    /**
+     * Gives a Shelter by its key
+     * @param key the key of a Shelter
+     * @return returns a Shelter
+     */
     public static Shelter getShelterByKey(String key) {
         DatabaseReference dbUniqShelterRef = FirebaseDatabase.getInstance().getReference("/Shelters/" + key + "/");
         dbUniqShelterRef.addListenerForSingleValueEvent(new ValueEventListener() {

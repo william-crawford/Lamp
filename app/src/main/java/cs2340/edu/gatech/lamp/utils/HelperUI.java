@@ -16,6 +16,10 @@ import cs2340.edu.gatech.lamp.controller.*;
  */
 
 public class HelperUI {
+    /**
+     * Signs out a User
+     * @param context the current context
+     */
     public static void signOut(final Context context) {
         AuthUI.getInstance()
                 .signOut(context)
@@ -28,6 +32,10 @@ public class HelperUI {
                 });
     }
 
+    /**
+     * Opens DefaultActivity context
+     * @param context the current context
+     */
     public static void goToDefault(Context context) {
         //context.startActivity(new Intent(context, DefaultActivity.class));
         Intent intent = new Intent(context, ListActivity.class);
@@ -35,24 +43,40 @@ public class HelperUI {
         context.startActivity(new Intent(context, ListActivity.class));
     }
 
+    /**
+     * Opens ListActivity context
+     * @param context the current context
+     */
     public static void goToList(Context context) {
         Intent intent = new Intent(context, ListActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         context.startActivity(new Intent(context, ListActivity.class));
     }
 
+    /**
+     * Opens WelcomeActivity context
+     * @param context the current context
+     */
     public static void goToWelcome(Context context) {
         Intent welcomeIntent = new Intent(context, WelcomeActivity.class);
         welcomeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         context.startActivity(welcomeIntent);
     }
 
+    /**
+     * Opens RegisterActivity context
+     * @param context the current context
+     */
     public static void goToRegister(Context context) {
         Intent welcomeIntent = new Intent(context, WelcomeActivity.class);
         welcomeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         context.startActivity(welcomeIntent);
     }
 
+    /**
+     * Opens MapsActivity context
+     * @param context the current context
+     */
     public static void goToMap(Context context) {
         context.startActivity(new Intent(context, MapsActivity.class));
     }

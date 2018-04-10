@@ -23,6 +23,10 @@ import cs2340.edu.gatech.lamp.utils.ShelterManager;
 public class Model {
     private static final Model _instance = new Model();
 
+    /**
+     * Getter for instance
+     * @return the instance of the Model
+     */
     public static Model getInstance() {
         return _instance;
     }
@@ -34,29 +38,59 @@ public class Model {
     private List<Shelter> allShelters;
     private List<Shelter> filteredShelters;
 
+    /**
+     * Getter for currentUser
+     * @return returns current user
+     */
     public User getCurrentUser() {
         return currentUser;
     }
 
+    /**
+     * Setter for currentUser
+     * @param currentUser the currentUser
+     */
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
     }
 
+    /**
+     * Setter for shelterOwnerDefault
+     * @param owner the ShelterOwner
+     */
     public void setShelterOwnerDefault(ShelterOwner owner) {
         shelterOwnerDefault = owner;
     }
 
+    /**
+     * Getter for allShelters
+     * @return returns a list of shelters
+     */
     public List<Shelter> getAllShelters() {
         return allShelters;
     }
 
+    /**
+     * Setter for filteredShelters
+     * @param shelters a list of shelters
+     */
     public void setFilteredShelters(List<Shelter> shelters) {
         filteredShelters = shelters;
     }
+
+    /**
+     * Getter for filteredShelters
+     * @return returns a list of shelters
+     */
     public List<Shelter> getFilteredShelters() {
         return filteredShelters;
     }
 
+    /**
+     * Gives a Shelter by its key
+     * @param key the key of a Shelter
+     * @return returns a Shelter
+     */
     public Shelter getShelterByKey(String key) {
         for (Shelter s : allShelters) {
             if (s.getKey().equals(key)) {
@@ -66,11 +100,19 @@ public class Model {
         return null;
     }
 
+    /**
+     * Writes a Shelter to internal file
+     * @param context the current context
+     */
     public static void save(Context context) {
         _instance.writeSheltersToFile(context);
 
     }
 
+    /**
+     * Loads a shelter from internal file
+     * @param context
+     */
     public static void load(Context context) {
         _instance.readSheltersFromFile(context);
     }
@@ -121,6 +163,10 @@ public class Model {
         }
     }
 
+    /**
+     * Creates a Shelter from internal database
+     * @param context the current context
+     */
     public void initShelters(Context context) {
         allShelters = new ArrayList<>();
         Scanner scan = new Scanner(context.getResources().openRawResource(R.raw.homeless_shelter_database));
