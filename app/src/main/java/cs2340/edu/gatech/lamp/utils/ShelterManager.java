@@ -39,8 +39,8 @@ public class ShelterManager {
 
     private static Shelter shel;
     public static Shelter getShelterByKey(String key) {
-        DatabaseReference dbUniqShelterRef = FirebaseDatabase.getInstance().getReference("/Shelters/" + key + "/");
-        dbUniqShelterRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        DatabaseReference dbUniqueShelterRef = FirebaseDatabase.getInstance().getReference("/Shelters/" + key + "/");
+        dbUniqueShelterRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dS) {
                 shel = dS.getValue(Shelter.class);

@@ -96,9 +96,13 @@ public class Shelter {
         updateShelter(this);
     }
 
-    public boolean isFull() {
 
-        return numericCapacity - spacesFilled <= 0;
+    public boolean isFull() {
+        if (numericCapacity - spacesFilled > 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     @Exclude
