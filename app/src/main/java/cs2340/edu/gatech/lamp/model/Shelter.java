@@ -131,8 +131,11 @@ public class Shelter {
      * @return returns weather a Shelter is full
      */
     public boolean isFull() {
-
-        return numericCapacity - spacesFilled <= 0;
+        if (numericCapacity - spacesFilled > 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /**
