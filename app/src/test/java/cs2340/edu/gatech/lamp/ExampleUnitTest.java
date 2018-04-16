@@ -103,9 +103,9 @@ public class ExampleUnitTest {
         Shelter testShelter1 = new Shelter(shelterInput1);
         Shelter testShelter2 = new Shelter(shelterInput2);
         Shelter testShelter3 = new Shelter(shelterInput3);
-        assertEquals(true, testShelter1.forceIncreaseReservation(null));
-        assertEquals(false, testShelter2.forceIncreaseReservation(null));
-        assertEquals(false, testShelter3.forceIncreaseReservation(null));
+        assertEquals(true, testShelter1.forceIncreaseReservation());
+        assertEquals(false, testShelter2.forceIncreaseReservation());
+        assertEquals(false, testShelter3.forceIncreaseReservation());
     }
     //potential methods to test
     //getShelterByKey_test()
