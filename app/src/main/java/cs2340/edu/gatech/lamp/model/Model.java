@@ -177,4 +177,7 @@ public class Model {
             ShelterManager.createShelter(shelterOwnerDefault, info);
         }
     }
+    public void initShelters() {
+        allShelters = new ArrayList<>();
+    }
 }
