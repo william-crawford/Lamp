@@ -44,7 +44,8 @@
             android:id="@+id/spinner1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="14dp" />
+            android:paddingLeft="14dp"
+            android:paddingRight="14dp"/>
 
         <TextView
             android:id="@+id/Gender"
@@ -64,7 +65,8 @@
             android:id="@+id/spinner2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="14dp" />
+            android:paddingLeft="14dp"
+            android:paddingRight="14dp" />
 
     </LinearLayout>
 

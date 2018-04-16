@@ -7,6 +7,7 @@
     tools:context="cs2340.edu.gatech.lamp.controller.ReservationActivity">
 
     <ImageView
+        android:contentDescription="lever"
         android:id="@+id/lever"
         android:layout_width="394dp"
         android:layout_height="176dp"
