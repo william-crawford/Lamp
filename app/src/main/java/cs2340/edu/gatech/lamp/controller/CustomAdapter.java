@@ -64,6 +64,7 @@ public class CustomAdapter extends ArrayAdapter<Shelter> {
             viewHolder.name = convertView.findViewById(R.id.name);
             viewHolder.space = convertView.findViewById(R.id.hasSpace);
             viewHolder.call = convertView.findViewById(R.id.call_butt);
+            viewHolder.location = convertView.findViewById(R.id.location);
 
             convertView.setTag(viewHolder);
         } else {
