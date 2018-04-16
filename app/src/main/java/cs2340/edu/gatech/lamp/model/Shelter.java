@@ -137,7 +137,7 @@ public class Shelter {
 
     /**
      * Getter for imageURL
-     * @return returns imageuRL
+     * @return returns imageURL
      */
     @Exclude
     public String getImageURL() {

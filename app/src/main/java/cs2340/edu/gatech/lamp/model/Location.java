@@ -145,7 +145,7 @@ public class Location {
     */
 
     /**
-     * Calcukates the distance from users location to the destination
+     * Calculates the distance from users location to the destination
      * @param other the LatLng of the destination
      * @return returns the distance
      */

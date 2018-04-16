@@ -7,7 +7,7 @@
     tools:context="cs2340.edu.gatech.lamp.controller.DefaultActivity">
 
     <TextView
-        android:id="@+id/tv_congrat"
+        android:id="@+id/tv_congratulations"
         android:layout_width="288dp"
         android:layout_height="52dp"
         android:layout_marginEnd="8dp"
@@ -16,7 +16,8 @@
         android:text="Congratulations. You made it this far. You have semblance of memory. I'm proud of you!"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/btn_logout"
@@ -30,7 +31,7 @@
         app:layout_constraintHorizontal_bias="0.857"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_map_location_name"
-        tools:ignore="UnknownIdInLayout" />
+        tools:ignore="HardcodedText,UnknownIdInLayout" />
 
     <Button
         android:id="@+id/btn_to_map"
@@ -42,7 +43,8 @@
         android:text="To Map"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_congrat" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_congratulations" />
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/btn_to_list"
@@ -52,5 +54,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_to_map"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        tools:ignore="HardcodedText" />
 </android.support.constraint.ConstraintLayout>

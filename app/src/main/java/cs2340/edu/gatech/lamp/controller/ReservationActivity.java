@@ -103,7 +103,8 @@ public class ReservationActivity extends AppCompatActivity {
     }
 
     private void updateText() {
-        cap.setText("Shelter Capacity: " + shelter.getCapacity());
+        String text = "Shelter Capacity: " + shelter.getCapacity();
+        cap.setText(text);
         available.setText(String.format(Locale.US, "Spaces Vacant: %d", shelter.getSpacesVacant()));
 
         user.setText(String.format(Locale.US, "You have reserved %d spaces",

@@ -18,13 +18,6 @@ import cs2340.edu.gatech.lamp.model.Shelter;
 @SuppressWarnings("ConstantConditions")
 public class TestActivity extends AppCompatActivity {
 
-    private TextView name;
-    private TextView addr;
-    private TextView phone;
-    private TextView capacity;
-    private TextView notes;
-    private TextView restrictions;
-    private String sID;
     private ImageView image;
 
     @Override
@@ -33,20 +26,20 @@ public class TestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Bundle bundle = getIntent().getExtras();
-        name = findViewById(R.id.textView2);
-        addr = findViewById(R.id.textView3);
-        phone = findViewById(R.id.textView4);
+        TextView name = findViewById(R.id.textView2);
+        TextView address = findViewById(R.id.textView3);
+        TextView phone = findViewById(R.id.textView4);
         image = findViewById(R.id.picture);
-        capacity = findViewById(R.id.textView5);
-        notes = findViewById(R.id.textView6);
-        restrictions = findViewById(R.id.textView7);
+        TextView capacity = findViewById(R.id.textView5);
+        TextView notes = findViewById(R.id.textView6);
+        TextView restrictions = findViewById(R.id.textView7);
         if(bundle != null) {
             /*
             String title = bundle.getString("sName");
             title += bundle.getBoolean("hasSpace") ? Html.fromHtml("<font color=\"#00CC00\">\t \u2714</font>"):
                     Html.fromHtml("<color = \"#CC0000\"><b>\t\t\u2718</b></font>");
             name.setText(title);
-            addr.setText(Html.fromHtml("<b>Address:</b> " + bundle.getString("sAddress")));
+            address.setText(Html.fromHtml("<b>Address:</b> " + bundle.getString("sAddress")));
             phone.setText(Html.fromHtml("<b>Phone:</b> " + bundle.getString("number")));
             capacity.setText(Html.fromHtml("<b>Capacity:</b> " + bundle.getString("capacity")));
             notes.setText(Html.fromHtml("<b>Notes:</b> " + bundle.getString("notes")));
@@ -61,17 +54,17 @@ public class TestActivity extends AppCompatActivity {
                 title += bundle.getBoolean("hasSpace") ? Html.fromHtml("<font color=\"#00CC00\">\t \u2714</font>") :
                         Html.fromHtml("<color = \"#CC0000\"><b>\t\t\u2718</b></font>");
                 name.setText(title);
-                addr.setText(Html.fromHtml("<b>Address:</b> " + shelter.getLocation().getAddress()));
+                address.setText(Html.fromHtml("<b>Address:</b> " + shelter.getLocation().getAddress()));
                 phone.setText(Html.fromHtml("<b>Phone:</b> " + shelter.getPhoneNumber()));
                 capacity.setText(Html.fromHtml("<b>Capacity:</b> " + shelter.getCapacity()));
                 notes.setText(Html.fromHtml("<b>Notes:</b> " + shelter.getNotes()));
                 restrictions.setText(Html.fromHtml("<b>Restrictions:</b> " + shelter.getRestrictions()));
-                sID = shelter.getKey();
+                //String sID = shelter.getKey(); don't break
                 new UpdateImageFromUrlTask().execute(shelter.getImageURL());
             }
         } else {
             name.setText(Html.fromHtml("<b>Oops! This is awkward.</b>"));
-            addr.setText("");
+            address.setText("");
             phone.setText("");
             new UpdateImageFromUrlTask().execute("https://assets.rbl.ms/13910706/980x.jpg");
             capacity.setText("");
