@@ -22,6 +22,7 @@ import android.content.ContextWrapper;
 import android.test.mock.MockContext;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.auth.FirebaseUser;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -92,6 +93,19 @@ public class ExampleUnitTest {
        assertEquals(testShelter2, Model.getInstance().getShelterByKey("testID2"));
        assertEquals(testShelter3, Model.getInstance().getShelterByKey("testID3"));
        assertEquals(null, Model.getInstance().getShelterByKey("notTestID1"));
+    }
+
+    @Test
+    public void forceIncreaseReservation_test() {
+        String[] shelterInput1 = {"testID1", "testShelter", "999", "", "420", "69", "Able Av", "", "", "0", "875"};
+        String[] shelterInput2 = {"testID2", "testShelter", "6", "", "420", "69", "Able Av", "", "", "0", "6"};
+        String[] shelterInput3 = {"testID3", "testShelter", "7", "", "420", "69", "Able Av", "", "", "0", "19"};
+        Shelter testShelter1 = new Shelter(shelterInput1);
+        Shelter testShelter2 = new Shelter(shelterInput2);
+        Shelter testShelter3 = new Shelter(shelterInput3);
+        assertEquals(true, testShelter1.forceIncreaseReservation(null));
+        assertEquals(false, testShelter2.forceIncreaseReservation(null));
+        assertEquals(false, testShelter3.forceIncreaseReservation(null));
     }
     //potential methods to test
     //getShelterByKey_test()
