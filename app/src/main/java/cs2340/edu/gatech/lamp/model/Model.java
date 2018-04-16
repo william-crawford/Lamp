@@ -3,11 +3,11 @@ package cs2340.edu.gatech.lamp.model;
 import android.content.Context;
 import android.util.Log;
 
-import java.io.BufferedReader;
+//import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
+//import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -111,7 +111,7 @@ public class Model {
 
     /**
      * Loads a shelter from internal file
-     * @param context
+     * @param context the context object which is passed in
      */
     public static void load(Context context) {
         _instance.readSheltersFromFile(context);

@@ -1,28 +1,28 @@
 package cs2340.edu.gatech.lamp;
 
-import android.content.Context;
+//import android.content.Context;
 
 import org.junit.Test;
 
 import java.lang.reflect.Field;
-import java.util.zip.CheckedOutputStream;
+//import java.util.zip.CheckedOutputStream;
 
-import cs2340.edu.gatech.lamp.controller.DefaultActivity;
-import cs2340.edu.gatech.lamp.controller.WelcomeActivity;
+//import cs2340.edu.gatech.lamp.controller.DefaultActivity;
+//import cs2340.edu.gatech.lamp.controller.WelcomeActivity;
 import cs2340.edu.gatech.lamp.model.Model;
 import cs2340.edu.gatech.lamp.model.Reservation;
 
-import cs2340.edu.gatech.lamp.model.HomelessUser;
+//import cs2340.edu.gatech.lamp.model.HomelessUser;
 import cs2340.edu.gatech.lamp.model.Shelter;
-import cs2340.edu.gatech.lamp.model.User;
+//import cs2340.edu.gatech.lamp.model.User;
 
 import static org.junit.Assert.*;
 
-import android.content.ContextWrapper;
-import android.test.mock.MockContext;
+//import android.content.ContextWrapper;
+//import android.test.mock.MockContext;
 
-import com.google.firebase.analytics.FirebaseAnalytics;
-import com.google.firebase.auth.FirebaseUser;
+//import com.google.firebase.analytics.FirebaseAnalytics;
+//import com.google.firebase.auth.FirebaseUser;
 
 /**
  * Example local unit test, which will execute on the development machine (host).

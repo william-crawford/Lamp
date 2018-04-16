@@ -1,20 +1,20 @@
 package cs2340.edu.gatech.lamp.model;
 
-import android.content.Intent;
-import android.util.Log;
+//import android.content.Intent;
+//import android.util.Log;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
+//import com.google.firebase.database.DataSnapshot;
+//import com.google.firebase.database.DatabaseError;
+//import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+//import com.google.firebase.database.FirebaseDatabase;
+//import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+//import java.util.Iterator;
 import java.util.List;
 
-import static android.content.ContentValues.TAG;
+//import static android.content.ContentValues.TAG;
 import static cs2340.edu.gatech.lamp.utils.ShelterManager.updateShelter;
 
 /**
@@ -131,11 +131,7 @@ public class Shelter {
      * @return returns weather a Shelter is full
      */
     public boolean isFull() {
-        if (numericCapacity - spacesFilled > 0) {
-            return false;
-        } else {
-            return true;
-        }
+        return numericCapacity - spacesFilled <= 0;
     }
 
     /**

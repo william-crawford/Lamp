@@ -1,20 +1,20 @@
 package cs2340.edu.gatech.lamp.controller;
 
-import android.app.Notification;
+//import android.app.Notification;
 import android.content.Context;
-import android.content.Intent;
+//import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+//import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+//import android.widget.EditText;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+//import java.util.ArrayList;
+//import java.util.Scanner;
 
 import cs2340.edu.gatech.lamp.R;
-import cs2340.edu.gatech.lamp.model.Shelter;
+//import cs2340.edu.gatech.lamp.model.Shelter;
 import cs2340.edu.gatech.lamp.utils.HelperUI;
 
 public class DefaultActivity extends AppCompatActivity {

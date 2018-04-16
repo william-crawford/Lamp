@@ -20,13 +20,13 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import cs2340.edu.gatech.lamp.R;
-import cs2340.edu.gatech.lamp.model.Location;
+//import cs2340.edu.gatech.lamp.model.Location;
 import cs2340.edu.gatech.lamp.model.Model;
 import cs2340.edu.gatech.lamp.model.Shelter;
 import cs2340.edu.gatech.lamp.utils.HelperUI;

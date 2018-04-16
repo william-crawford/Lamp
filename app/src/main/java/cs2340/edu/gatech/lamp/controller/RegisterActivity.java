@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import cs2340.edu.gatech.lamp.R;
 import cs2340.edu.gatech.lamp.model.HomelessUser;
-import cs2340.edu.gatech.lamp.model.Model;
+//import cs2340.edu.gatech.lamp.model.Model;
 import cs2340.edu.gatech.lamp.model.ShelterOwner;
 import cs2340.edu.gatech.lamp.model.User;
 import cs2340.edu.gatech.lamp.utils.HelperUI;

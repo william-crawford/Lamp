@@ -14,8 +14,8 @@ import cs2340.edu.gatech.lamp.R;
 import cs2340.edu.gatech.lamp.model.HomelessUser;
 import cs2340.edu.gatech.lamp.model.Model;
 import cs2340.edu.gatech.lamp.model.Shelter;
-import cs2340.edu.gatech.lamp.model.ShelterUser;
-import cs2340.edu.gatech.lamp.utils.ShelterManager;
+//import cs2340.edu.gatech.lamp.model.ShelterUser;
+//import cs2340.edu.gatech.lamp.utils.ShelterManager;
 
 public class ReservationActivity extends AppCompatActivity {
 
