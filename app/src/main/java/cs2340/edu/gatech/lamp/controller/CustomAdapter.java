@@ -59,17 +59,16 @@ public class CustomAdapter extends ArrayAdapter<Shelter> {
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.listelement, parent, false);
-            viewHolder.name = (TextView) convertView.findViewById(R.id.name);
-            viewHolder.location = (TextView) convertView.findViewById(R.id.location);
-            viewHolder.space = (TextView) convertView.findViewById(R.id.hasSpace);
-            viewHolder.call = (ImageView) convertView.findViewById(R.id.call_butt);
+            viewHolder.name = convertView.findViewById(R.id.name);
+            viewHolder.space = convertView.findViewById(R.id.hasSpace);
+            viewHolder.call = convertView.findViewById(R.id.call_butt);
 
-            result=convertView;
+            result = convertView;
 
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
-            result=convertView;
+            result = convertView;
         }
 
         lastPosition = position;
