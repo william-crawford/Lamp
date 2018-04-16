@@ -16,10 +16,8 @@ import cs2340.edu.gatech.lamp.model.ShelterOwner;
 
 import static android.content.ContentValues.TAG;
 
-/**
- * Created by Tucker on 3/27/2018.
- */
 
+@SuppressWarnings("ALL")
 public class ShelterManager {
     /**
      * Creates a Shelter

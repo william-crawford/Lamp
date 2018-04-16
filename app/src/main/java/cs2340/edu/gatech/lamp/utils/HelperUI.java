@@ -11,10 +11,9 @@ import com.google.android.gms.tasks.Task;
 
 import cs2340.edu.gatech.lamp.controller.*;
 
-/**
- * Created by Tucker on 2/26/2018.
- */
 
+
+@SuppressWarnings("ALL")
 public class HelperUI {
     /**
      * Signs out a User

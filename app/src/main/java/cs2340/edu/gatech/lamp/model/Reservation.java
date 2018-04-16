@@ -1,9 +1,7 @@
 package cs2340.edu.gatech.lamp.model;
 
-/**
- * Created by will on 3/27/18.
- */
 
+@SuppressWarnings("ALL")
 public class Reservation {
 
     private final String userID;

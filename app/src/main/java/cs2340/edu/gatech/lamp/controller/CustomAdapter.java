@@ -16,10 +16,9 @@ import java.util.List;
 import cs2340.edu.gatech.lamp.R;
 import cs2340.edu.gatech.lamp.model.Shelter;
 
-/**
- * Created by Potato on 3/7/2018.
- */
 
+
+@SuppressWarnings("ALL")
 class CustomAdapter extends ArrayAdapter<Shelter> {
 
     private final List<Shelter> shelters;
