@@ -7,11 +7,8 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Tucker on 3/4/2018.
- */
 
-@SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
+@SuppressWarnings("ALL")
 public class ShelterOwner extends ShelterUser {
 
     private final List<String> shelterIDs = new ArrayList<>();

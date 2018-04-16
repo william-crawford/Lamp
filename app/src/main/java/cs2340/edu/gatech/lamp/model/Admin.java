@@ -3,10 +3,9 @@ package cs2340.edu.gatech.lamp.model;
 import com.google.firebase.auth.FirebaseUser;
 //import com.google.firebase.database.DatabaseReference;
 
-/**
- * Created by Tucker on 3/4/2018.
- */
 
+
+@SuppressWarnings("ALL")
 public class Admin extends ShelterUser {
     /**
      * Creates a new Admin

@@ -17,11 +17,9 @@ import java.util.List;
 //import static android.content.ContentValues.TAG;
 import static cs2340.edu.gatech.lamp.utils.ShelterManager.updateShelter;
 
-/**
- * Created by will on 2/17/18.
- */
 
-@SuppressWarnings("RedundantIfStatement")
+
+@SuppressWarnings("ALL")
 public class Shelter {
 
     private String name;

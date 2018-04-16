@@ -4,13 +4,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-//import java.util.ArrayList;
-//import java.util.List;
-
-/**
- * Created by Tucker on 3/4/2018.
- */
-
+@SuppressWarnings("ALL")
 public abstract class User {
     final String userID;
     final String email;

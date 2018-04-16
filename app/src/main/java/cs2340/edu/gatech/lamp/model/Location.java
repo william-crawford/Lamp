@@ -3,10 +3,8 @@ package cs2340.edu.gatech.lamp.model;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.database.Exclude;
 
-/**
- * Created by will on 2/17/18.
- */
 
+@SuppressWarnings("ALL")
 public class Location {
 
     private double latitude;
