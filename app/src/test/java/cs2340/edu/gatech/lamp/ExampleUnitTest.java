@@ -56,7 +56,7 @@ public class ExampleUnitTest {
     }
 
     @Test
-    public void shelter_isFull() throws Exception {
+    public void shelter_isFull() {
         String[] testInput = {"498", "sucks", "500", "", "5", "5", "place dr", "", "", "1", "400"};
         Shelter testShelter = new Shelter(testInput);
         assertEquals(false, testShelter.isFull());
