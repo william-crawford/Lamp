@@ -54,9 +54,9 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onStart();
         FirebaseUser currUser = currAuth.getCurrentUser();
         if (currUser != null) {
-            //this is the jank
-            ShelterOwner suser = new ShelterOwner(currUser);
-            Model.getInstance().setShelterOwnerDefault(suser);
+            //this is not a properly done implementation
+            ShelterOwner shelterUser = new ShelterOwner(currUser);
+            Model.getInstance().setShelterOwnerDefault(shelterUser);
 
             //Model.getInstance().load(this);
             Model.load(this);
@@ -80,9 +80,9 @@ public class WelcomeActivity extends AppCompatActivity {
                                         Log.d("WelcomeActivity", "signInWithEmail:success");
                                         FirebaseUser user = currAuth.getCurrentUser();
 
-                                        //this is the jank
-                                        ShelterOwner suser = new ShelterOwner(user);
-                                        Model.getInstance().setShelterOwnerDefault(suser);
+                                        //this is not a proper implementation
+                                        ShelterOwner shelterUser = new ShelterOwner(user);
+                                        Model.getInstance().setShelterOwnerDefault(shelterUser);
 
                                         //Model.getInstance().load(context);
                                         Model.load(context);
