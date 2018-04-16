@@ -28,12 +28,11 @@ import cs2340.edu.gatech.lamp.utils.HelperUI;
  * Created by Potato on 2/20/2018.
  */
 
-@SuppressWarnings("ConstantConditions")
+@SuppressWarnings({"ConstantConditions", "unchecked"})
 public class ListActivity extends AppCompatActivity {
 
     private final Context context = this;
     private ListView listView;
-    private ListAdapter listAdapter;
     private EditText search;
     private Spinner age;
     private Spinner gender;
@@ -99,7 +98,7 @@ public class ListActivity extends AppCompatActivity {
         genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         gender.setAdapter(genderAdapter);
 
-        listAdapter = new CustomAdapter(Model.getInstance().getAllShelters(), context);
+        ListAdapter listAdapter = new CustomAdapter(Model.getInstance().getAllShelters(), context);
 
 //        listAdapter = new ArrayAdapter<Shelter>(context, R.layout.listelement,
 //                Model.getInstance().getAllShelters()) {
