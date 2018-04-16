@@ -18,9 +18,9 @@ abstract class ShelterUser extends User {
         super(user);
     }
 
-    /**
-     * Deletes a shelter
-     */
+//    /**
+//     * Deletes a shelter
+//     */
 //    public void deleteShelter(){
         //create method later
 //    }

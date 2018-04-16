@@ -94,6 +94,7 @@
             app:layout_constraintBottom_toTopOf="@+id/btn_navigate"
             app:layout_constraintEnd_toStartOf="@+id/guideline5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_map_location_name" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_map_location_name"
+            android:contentDescription="@null"/>
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>
