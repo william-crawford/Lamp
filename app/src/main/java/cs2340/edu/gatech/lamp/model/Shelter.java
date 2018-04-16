@@ -392,7 +392,6 @@ public class Shelter {
 
     /**
      * Increments a Shelter's spacesFilled regardless
-     * @param user a HomelessUser
      * @return returns weather the number of filled spaces was incremented
      */
     public boolean forceIncreaseReservation() {
