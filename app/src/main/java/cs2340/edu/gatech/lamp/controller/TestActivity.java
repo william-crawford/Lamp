@@ -19,7 +19,7 @@ import cs2340.edu.gatech.lamp.model.Shelter;
 public class TestActivity extends AppCompatActivity {
 
     private TextView name;
-    private TextView addr;
+    private TextView address;
     private TextView phone;
     private TextView capacity;
     private TextView notes;
@@ -34,7 +34,7 @@ public class TestActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Bundle bundle = getIntent().getExtras();
         name = findViewById(R.id.textView2);
-        addr = findViewById(R.id.textView3);
+        address = findViewById(R.id.textView3);
         phone = findViewById(R.id.textView4);
         image = findViewById(R.id.picture);
         capacity = findViewById(R.id.textView5);
@@ -46,7 +46,7 @@ public class TestActivity extends AppCompatActivity {
             title += bundle.getBoolean("hasSpace") ? Html.fromHtml("<font color=\"#00CC00\">\t \u2714</font>"):
                     Html.fromHtml("<color = \"#CC0000\"><b>\t\t\u2718</b></font>");
             name.setText(title);
-            addr.setText(Html.fromHtml("<b>Address:</b> " + bundle.getString("sAddress")));
+            address.setText(Html.fromHtml("<b>Address:</b> " + bundle.getString("sAddress")));
             phone.setText(Html.fromHtml("<b>Phone:</b> " + bundle.getString("number")));
             capacity.setText(Html.fromHtml("<b>Capacity:</b> " + bundle.getString("capacity")));
             notes.setText(Html.fromHtml("<b>Notes:</b> " + bundle.getString("notes")));
@@ -61,7 +61,7 @@ public class TestActivity extends AppCompatActivity {
                 title += bundle.getBoolean("hasSpace") ? Html.fromHtml("<font color=\"#00CC00\">\t \u2714</font>") :
                         Html.fromHtml("<color = \"#CC0000\"><b>\t\t\u2718</b></font>");
                 name.setText(title);
-                addr.setText(Html.fromHtml("<b>Address:</b> " + shelter.getLocation().getAddress()));
+                address.setText(Html.fromHtml("<b>Address:</b> " + shelter.getLocation().getAddress()));
                 phone.setText(Html.fromHtml("<b>Phone:</b> " + shelter.getPhoneNumber()));
                 capacity.setText(Html.fromHtml("<b>Capacity:</b> " + shelter.getCapacity()));
                 notes.setText(Html.fromHtml("<b>Notes:</b> " + shelter.getNotes()));
@@ -71,7 +71,7 @@ public class TestActivity extends AppCompatActivity {
             }
         } else {
             name.setText(Html.fromHtml("<b>Oops! This is awkward.</b>"));
-            addr.setText("");
+            address.setText("");
             phone.setText("");
             new UpdateImageFromUrlTask().execute("https://assets.rbl.ms/13910706/980x.jpg");
             capacity.setText("");
