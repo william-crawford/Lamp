@@ -18,13 +18,6 @@ import cs2340.edu.gatech.lamp.model.Shelter;
 @SuppressWarnings("ConstantConditions")
 public class TestActivity extends AppCompatActivity {
 
-    private TextView name;
-    private TextView address;
-    private TextView phone;
-    private TextView capacity;
-    private TextView notes;
-    private TextView restrictions;
-    private String sID;
     private ImageView image;
 
     @Override
@@ -33,13 +26,13 @@ public class TestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Bundle bundle = getIntent().getExtras();
-        name = findViewById(R.id.textView2);
-        address = findViewById(R.id.textView3);
-        phone = findViewById(R.id.textView4);
+        TextView name = findViewById(R.id.textView2);
+        TextView address = findViewById(R.id.textView3);
+        TextView phone = findViewById(R.id.textView4);
         image = findViewById(R.id.picture);
-        capacity = findViewById(R.id.textView5);
-        notes = findViewById(R.id.textView6);
-        restrictions = findViewById(R.id.textView7);
+        TextView capacity = findViewById(R.id.textView5);
+        TextView notes = findViewById(R.id.textView6);
+        TextView restrictions = findViewById(R.id.textView7);
         if(bundle != null) {
             /*
             String title = bundle.getString("sName");
@@ -66,7 +59,7 @@ public class TestActivity extends AppCompatActivity {
                 capacity.setText(Html.fromHtml("<b>Capacity:</b> " + shelter.getCapacity()));
                 notes.setText(Html.fromHtml("<b>Notes:</b> " + shelter.getNotes()));
                 restrictions.setText(Html.fromHtml("<b>Restrictions:</b> " + shelter.getRestrictions()));
-                sID = shelter.getKey();
+                String sID = shelter.getKey();
                 new UpdateImageFromUrlTask().execute(shelter.getImageURL());
             }
         } else {
