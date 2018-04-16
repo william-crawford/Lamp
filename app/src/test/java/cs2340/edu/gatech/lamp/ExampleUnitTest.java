@@ -31,7 +31,7 @@ import com.google.firebase.auth.FirebaseUser;
  */
 public class ExampleUnitTest {
 
-    @Testt
+    @Test
     public void addition_isCorrect() throws Exception {
         assertEquals(4, 2 + 2);
     }
