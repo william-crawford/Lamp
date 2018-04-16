@@ -388,6 +388,20 @@ public class Shelter {
     }
 
     /**
+     * Increments a Shelter's spacesFilled regardless
+     * @param user a HomelessUser
+     * @return returns weather the number of filled spaces was incremented
+     */
+    public boolean forceIncreaseReservation(HomelessUser user) {
+        if (isFull()) {
+            return false;
+        } else {
+            spacesFilled++;
+            return true;
+        }
+    }
+
+    /**
      * Increments a Shelter's spacesFilled
      * @param user a HomelessUser
      * @return returns weather the number of filled spaces was incremented
