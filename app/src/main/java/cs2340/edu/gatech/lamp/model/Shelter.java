@@ -36,7 +36,7 @@ public class Shelter {
     private int spacesFilled;
     private int numericCapacity;
 
-    private List<Reservation> reservations = new ArrayList<>();
+    private final List<Reservation> reservations = new ArrayList<>();
 
     /**
      * Enum representing the GenderPolicy of a Shelter
@@ -47,7 +47,7 @@ public class Shelter {
         FEMALE_ONLY("Female Only"),
         ANYONE("Anyone");
 
-        private String label;
+        private final String label;
 
         GenderPolicy(String value){
             this.label = value;
@@ -72,7 +72,7 @@ public class Shelter {
         YOUNG_ADULTS("Young Adults"),
         ANYONE("Anyone");
 
-        private String label;
+        private final String label;
 
         AgePolicy(String value){
             this.label = value;
@@ -395,7 +395,7 @@ public class Shelter {
      * @param user a HomelessUser
      * @return returns weather the number of filled spaces was incremented
      */
-    public boolean forceIncreaseReservation(HomelessUser user) {
+    public boolean forceIncreaseReservation() {
         if (isFull()) {
             return false;
         } else {

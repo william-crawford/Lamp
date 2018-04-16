@@ -20,10 +20,10 @@ import cs2340.edu.gatech.lamp.model.Shelter;
  * Created by Potato on 3/7/2018.
  */
 
-public class CustomAdapter extends ArrayAdapter<Shelter> {
+class CustomAdapter extends ArrayAdapter<Shelter> {
 
-    private List<Shelter> shelters;
-    Context mContext;
+    private final List<Shelter> shelters;
+    private final Context mContext;
 
     // View lookup cache
     private static class ViewHolder {

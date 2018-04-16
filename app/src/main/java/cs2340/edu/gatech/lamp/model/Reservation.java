@@ -6,7 +6,7 @@ package cs2340.edu.gatech.lamp.model;
 
 public class Reservation {
 
-    private String userID;
+    private final String userID;
     private int spacesReserved;
 
     /**

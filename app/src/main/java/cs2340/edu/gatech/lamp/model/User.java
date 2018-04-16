@@ -12,10 +12,10 @@ import com.google.firebase.database.FirebaseDatabase;
  */
 
 public abstract class User {
-    String userID;
-    String email;
-    String name;
-    DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
+    final String userID;
+    final String email;
+    final String name;
+    final DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
 
     User(FirebaseUser user) {
         userID = user.getUid();

@@ -37,7 +37,7 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
     private List<Shelter> shelters;
     private MapsDetailFragment detailFragment;
     private LatLng currentLocation;
-    private Map<LatLng, Shelter> shelterMap = new HashMap<>();
+    private final Map<LatLng, Shelter> shelterMap = new HashMap<>();
     private Marker selected;
 
     @Override
