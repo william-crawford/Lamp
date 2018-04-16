@@ -32,6 +32,11 @@ public class CustomAdapter extends ArrayAdapter<Shelter> {
         ImageView call;
     }
 
+    /**
+     * Creates a CustomAdapter
+     * @param data Shelter to add to the adapter
+     * @param context the current context
+     */
     public CustomAdapter(List<Shelter> data, Context context) {
         super(context, R.layout.listelement, data);
         this.shelters = data;

@@ -37,6 +37,9 @@ public class Shelter {
 
     private List<Reservation> reservations = new ArrayList<>();
 
+    /**
+     * Enum representing the GenderPolicy of a Shelter
+     */
     public enum GenderPolicy {
         NO_FILTER(""),
         MALE_ONLY("Male Only"),
@@ -49,11 +52,18 @@ public class Shelter {
             this.label = value;
         }
 
+        /**
+         * ToString method for a GenderPolicy
+         * @return a String representation of a GenderPolicy
+         */
         public String toString(){
             return label;
         }
     }
 
+    /**
+     * Enum representing the AgePolicy of a Shelter
+     */
     public enum AgePolicy {
         NO_FILTER(""),
         FAMILIES_WITH_NEWBORNS("Families with Newborns"),
@@ -67,6 +77,10 @@ public class Shelter {
             this.label = value;
         }
 
+        /**
+         * ToString method for a AgePolicy
+         * @return a String representation of a AgePolicy
+         */
         public String toString(){
             return label;
         }
@@ -77,100 +91,182 @@ public class Shelter {
 
     private String key;
 
+    /**
+     * Getter for name
+     * @return returns name
+     */
     @Exclude
     public String getName() {
         return name;
     }
 
+    /**
+     * Setter for name
+     * @param name a name to be set
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Getter for location
+     * @return returns location
+     */
     @Exclude
     public Location getLocation() {
         return location;
     }
 
+    /**
+     * Setter for location
+     * @param location a location to be set
+     */
     public void setLocation(Location location) {
         this.location = location;
         updateShelter(this);
     }
 
+    /**
+     * Method that determines if a Shelter is full
+     * @return returns weather a Shelter is full
+     */
     public boolean isFull() {
-
-        return numericCapacity - spacesFilled <= 0;
+        if (numericCapacity - spacesFilled > 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
+    /**
+     * Getter for imageURL
+     * @return returns imageuRL
+     */
     @Exclude
     public String getImageURL() {
         return imageURL;
     }
 
+    /**
+     * Setter for imageURL
+     * @param imageURL imageURL to be set
+     */
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
         updateShelter(this);
     }
 
+    /**
+     * Getter for phoneNumber
+     * @return returns phoneNumber
+     */
     @Exclude
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
+    /**
+     * Setter for phoneNumber
+     * @param phoneNumber a phoneNumber to be set
+     */
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
         updateShelter(this);
     }
 
+    /**
+     * Getter for restrictions
+     * @return returns restrictions
+     */
     @Exclude
     public String getRestrictions() {
         return restrictions;
     }
 
+    /**
+     * Setter for restrictions
+     * @param restrictions restrictions to be set
+     */
     public void setRestrictions(String restrictions) {
         this.restrictions = restrictions;
         updateShelter(this);
     }
 
+    /**
+     * Getter for notes
+     * @return returns notes
+     */
     @Exclude
     public String getNotes() {
         return notes;
     }
 
+    /**
+     * Setter for Notes
+     * @param notes notes to be set
+     */
     public void setNotes(String notes) {
         this.notes = notes;
         updateShelter(this);
     }
 
+    /**
+     * Getter for capacity
+     * @return returns capacity
+     */
     @Exclude
     public String getCapacity() {
         return capacity;
     }
 
+    /**
+     * Setter for capacity
+     * @param capacity a capacity to be set
+     */
     public void setCapacity(String capacity) {
         this.capacity = capacity;
         updateShelter(this);
     }
 
-
+    /**
+     * Getter for numericCapacity
+     * @return returns numericCapacity
+     */
     @Exclude
     public int getNumericCapacity() {
         return numericCapacity;
     }
 
+    /**
+     * Getter for spacesFilled
+     * @return returns spacesFilled
+     */
     @Exclude
     public int getSpacesFilled() {
         return spacesFilled;
     }
 
+    /**
+     * Getter for spaces vacant
+     * @return returns
+     */
     @Exclude
     public int getSpacesVacant() {
         return numericCapacity - spacesFilled;
     }
 
+    /**
+     * Setter for spacesFilled
+     * @param spacesFilled spacesFilled to be set
+     */
     public void setSpacesFilled(int spacesFilled) {
         this.spacesFilled = spacesFilled;
     }
 
+    /**
+     * Getter for key
+     * @return returns key
+     */
     @Exclude
     public String getKey() {
         return key;
@@ -193,10 +289,17 @@ public class Shelter {
         return name;
     }
 
+    /**
+     * Creates a Shelter with default attributes
+     */
     public Shelter() {
         //This exists
     }
 
+    /**
+     * Creates a Shelter
+     * @param info information to set attributes of a Shelter
+     */
     public Shelter(String[] info) {
         key = info[0];
         name = info[1];
@@ -243,6 +346,11 @@ public class Shelter {
         }
     }
 
+    /**
+     * Gives a Reservation by userID
+     * @param userID the ID of a User
+     * @return returns a reservation
+     */
     public Reservation getReservation(String userID) {
         for (Reservation r : reservations) {
             if (r.getUserID().equals(Model.getInstance().getCurrentUser().getUserID())) {
@@ -252,6 +360,11 @@ public class Shelter {
         return null;
     }
 
+    /**
+     * Decrements a Shelter's spacesFilled
+     * @param user a HomelessUser
+     * @return returns weather the number of filled spaces was decremented
+     */
     public boolean decreaseReservation(HomelessUser user) {
         /*
         Iterator<Reservation> i = reservations.iterator();
@@ -274,6 +387,11 @@ public class Shelter {
         return true;
     }
 
+    /**
+     * Increments a Shelter's spacesFilled
+     * @param user a HomelessUser
+     * @return returns weather the number of filled spaces was incremented
+     */
     public boolean increaseReservation(HomelessUser user) {
         if (isFull()) {
             return false;
@@ -290,6 +408,10 @@ public class Shelter {
         }
     }
 
+    /**
+     * Getter for info
+     * @return returns info
+     */
     @Exclude
     public String[] getInfo() {
         String[] info = new String[11];
@@ -308,14 +430,29 @@ public class Shelter {
         return info;
     }
 
+    /**
+     * Checks a Shelter's GenderPolicy
+     * @param gp a GenderPolicy
+     * @return returns weather a Shelter's GenderPolicy is implemented
+     */
     public boolean checkGPFilter(GenderPolicy gp) {
         return gp == null || gp == GenderPolicy.NO_FILTER || gp == genderPolicy;
     }
 
+    /**
+     * Checks a Shelter's AgePolicy
+     * @param ap a AgePolicy
+     * @return returns weather a Shelter's AgePolicy is implemented
+     */
     public boolean checkAPFilter(AgePolicy ap) {
         return ap == null || ap == AgePolicy.NO_FILTER || ap == agePolicy;
     }
 
+    /**
+     * Checks a a Shelter's name
+     * @param filter a name filter
+     * @return returns weather a Shelter's name is acceptable by the filter
+     */
     public boolean checkNameFilter(String filter) {
         return filter.length() == 0 || name.toLowerCase().contains(filter.toLowerCase());
     }

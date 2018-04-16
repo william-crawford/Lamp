@@ -8,11 +8,18 @@ import com.google.firebase.database.DatabaseReference;
  */
 
 public class Admin extends ShelterUser {
-
+    /**
+     * Creates a new Admin
+     *
+     * @param user a FirebaseUser that provides attributes for an Admin
+     */
     public Admin(FirebaseUser user) {
         super(user);
     }
 
+    /**
+     * Writes a new Admin to dbRef
+     */
     public void writeNewUser() {
         dbRef.child("users").child(userID).setValue(name);
         dbRef.child("users").child(userID).setValue(email);

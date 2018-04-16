@@ -11,13 +11,16 @@ import java.util.List;
  * Created by Tucker on 3/4/2018.
  */
 
-public abstract class ShelterUser extends User{
+public abstract class ShelterUser extends User {
 
 
     protected ShelterUser(FirebaseUser user) {
         super(user);
     }
 
+    /**
+     * Deletes a shelter
+     */
     public void deleteShelter(){
         //create method later
     }

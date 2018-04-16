@@ -31,6 +31,13 @@ public class Location {
     }
     */
 
+    /**
+     * Creates a Location
+     *
+     * @param latitude  the latitude of a location
+     * @param longitude the longitude of a location
+     * @param address the address of a location
+     */
     public Location(double latitude, double longitude, String address) {
         this.latitude = latitude;
         this.longitude = longitude;
@@ -43,35 +50,63 @@ public class Location {
     }
     */
 
+    /**
+     * Getter for latLng
+     * @return returns latLng
+     */
     @Exclude
     public LatLng getLatLng() {
         return  new LatLng(latitude, longitude);
     }
 
+    /**
+     * Getter for latitude
+     * @return returns latitude
+     */
     @Exclude
     public double getLatitude() {
         return latitude;
     }
 
+    /**
+     * Setter for latitude
+     * @param latitude latitude to be set
+     */
     public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
+    /**
+     * Getter for longitude
+     * @return returns longitude
+     */
     @Exclude
     public double getLongitude() {
         return longitude;
     }
 
+    /**
+     * Setter for longitude
+     * @param longitude longitude to be set
+     */
     public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
+    /**
+     * Getter for address
+     * @return returns address
+     */
     @Exclude
     public String getAddress() {
         return this.address;
     }
 
-    public void setAddress() {
+    /**
+     * Setter for address
+     * @param address address to be set
+     */
+    public void setAddress(String address) {
         this.address = address;
     }
 
@@ -109,6 +144,11 @@ public class Location {
     }
     */
 
+    /**
+     * Calcukates the distance from users location to the destination
+     * @param other the LatLng of the destination
+     * @return returns the distance
+     */
     public double distanceTo(LatLng other) {
         float[] result = new float[1];
         android.location.Location.distanceBetween(

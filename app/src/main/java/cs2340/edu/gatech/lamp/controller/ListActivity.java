@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -44,7 +45,6 @@ public class ListActivity extends AppCompatActivity {
         age = findViewById(R.id.spinner1);
         gender = findViewById(R.id.spinner2);
         listView = findViewById(android.R.id.list);
-
         search.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

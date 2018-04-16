@@ -14,14 +14,26 @@ import java.util.List;
 public class ShelterOwner extends ShelterUser {
 
     private List<String> shelterIDs = new ArrayList<>();
+
+    /**
+     * Creates a ShelterOwner
+     * @param user a FirebaseUser that provides attributes for a ShelterOwner
+     */
     public ShelterOwner(FirebaseUser user) {
         super(user);
     }
 
+    /**
+     * Adds a shelter's key to the ShelterOwners shelterIDs
+     * @param key the key to be added
+     */
     public void addShelterID(String key) {
         shelterIDs.add(key);
     }
 
+    /**
+     * Writes a new ShelterOwner to dbRef
+     */
     public void writeNewUser() {
         dbRef.child("users").child(userID).setValue(name);
         dbRef.child("users").child(userID).setValue(email);
