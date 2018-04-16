@@ -11,6 +11,7 @@ import java.util.List;
  * Created by Tucker on 3/4/2018.
  */
 
+@SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
 public class ShelterOwner extends ShelterUser {
 
     private List<String> shelterIDs = new ArrayList<>();

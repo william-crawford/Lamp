@@ -15,16 +15,17 @@ import java.net.URL;
 import cs2340.edu.gatech.lamp.R;
 import cs2340.edu.gatech.lamp.model.Shelter;
 
+@SuppressWarnings("ConstantConditions")
 public class TestActivity extends AppCompatActivity {
 
-    TextView name;
-    TextView addr;
-    TextView phone;
-    TextView capacity;
-    TextView notes;
-    TextView restrictions;
-    String sID;
-    ImageView image;
+    private TextView name;
+    private TextView addr;
+    private TextView phone;
+    private TextView capacity;
+    private TextView notes;
+    private TextView restrictions;
+    private String sID;
+    private ImageView image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -21,6 +21,7 @@ import static cs2340.edu.gatech.lamp.utils.ShelterManager.updateShelter;
  * Created by will on 2/17/18.
  */
 
+@SuppressWarnings("RedundantIfStatement")
 public class Shelter {
 
     private String name;
@@ -270,7 +271,13 @@ public class Shelter {
 
     @Override
     public boolean equals(Object other) {
-        return !(other == null || !(other instanceof Shelter)) && this.key.equals(((Shelter) other).key);
+        if(other == null || !(other instanceof Shelter)) {
+            return false;
+        } else if (this.key.equals(((Shelter) other).key)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Exclude

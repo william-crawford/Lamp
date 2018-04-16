@@ -28,14 +28,15 @@ import cs2340.edu.gatech.lamp.utils.HelperUI;
  * Created by Potato on 2/20/2018.
  */
 
+@SuppressWarnings("ConstantConditions")
 public class ListActivity extends AppCompatActivity {
 
-    Context context = this;
-    ListView listView;
-    ListAdapter listAdapter;
-    EditText search;
-    Spinner age;
-    Spinner gender;
+    private final Context context = this;
+    private ListView listView;
+    private ListAdapter listAdapter;
+    private EditText search;
+    private Spinner age;
+    private Spinner gender;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

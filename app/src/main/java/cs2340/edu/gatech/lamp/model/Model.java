@@ -20,6 +20,7 @@ import cs2340.edu.gatech.lamp.utils.ShelterManager;
  * Created by JermiahRussell on 2/13/2018.
  */
 
+@SuppressWarnings({"ALL", "ResultOfMethodCallIgnored"})
 public class Model {
     private static final Model _instance = new Model();
 

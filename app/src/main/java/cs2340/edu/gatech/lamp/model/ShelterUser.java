@@ -11,18 +11,18 @@ import com.google.firebase.auth.FirebaseUser;
  * Created by Tucker on 3/4/2018.
  */
 
-public abstract class ShelterUser extends User {
+abstract class ShelterUser extends User {
 
 
-    protected ShelterUser(FirebaseUser user) {
+    ShelterUser(FirebaseUser user) {
         super(user);
     }
 
     /**
      * Deletes a shelter
      */
-    public void deleteShelter(){
+//    public void deleteShelter(){
         //create method later
-    }
+//    }
 
 }

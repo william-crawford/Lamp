@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="cs2340.edu.gatech.lamp">
 
     <!--
@@ -16,7 +17,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/lamp800"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -43,7 +45,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".controller.TestActivity" />
-        <activity android:name=".controller.ReservationActivity"></activity>
+        <activity android:name=".controller.ReservationActivity" />
     </application>
 
 </manifest>

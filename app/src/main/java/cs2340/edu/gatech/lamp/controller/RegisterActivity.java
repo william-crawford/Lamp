@@ -1,5 +1,6 @@
 package cs2340.edu.gatech.lamp.controller;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -24,10 +25,11 @@ import cs2340.edu.gatech.lamp.model.ShelterOwner;
 import cs2340.edu.gatech.lamp.model.User;
 import cs2340.edu.gatech.lamp.utils.HelperUI;
 
+@SuppressLint("Registered")
 public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth currAuth;
 
-    private Context context = this;
+    private final Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

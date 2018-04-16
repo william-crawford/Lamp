@@ -41,7 +41,7 @@ public class WelcomeActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 1;
     private FirebaseAuth currAuth;
 
-    private Context context = this;
+    private final Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +58,8 @@ public class WelcomeActivity extends AppCompatActivity {
             ShelterOwner suser = new ShelterOwner(currUser);
             Model.getInstance().setShelterOwnerDefault(suser);
 
-            Model.getInstance().load(this);
+            //Model.getInstance().load(this);
+            Model.load(this);
             Model.getInstance().setCurrentUser(new HomelessUser(currUser));
             HelperUI.goToDefault(this);
         } else {
@@ -83,7 +84,8 @@ public class WelcomeActivity extends AppCompatActivity {
                                         ShelterOwner suser = new ShelterOwner(user);
                                         Model.getInstance().setShelterOwnerDefault(suser);
 
-                                        Model.getInstance().load(context);
+                                        //Model.getInstance().load(context);
+                                        Model.load(context);
                                         Model.getInstance().setCurrentUser(new HomelessUser(user));
 
                                         HelperUI.goToDefault(context);

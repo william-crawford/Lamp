@@ -2,6 +2,7 @@ package cs2340.edu.gatech.lamp.controller;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +20,10 @@ import cs2340.edu.gatech.lamp.model.Shelter;
  * Created by Potato on 3/7/2018.
  */
 
-public class CustomAdapter extends ArrayAdapter<Shelter> {
+class CustomAdapter extends ArrayAdapter<Shelter> {
 
     private List<Shelter> shelters;
-    Context mContext;
+    private Context mContext;
 
     // View lookup cache
     private static class ViewHolder {
@@ -45,8 +46,9 @@ public class CustomAdapter extends ArrayAdapter<Shelter> {
 
     private int lastPosition = -1;
 
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         // Get the data item for this position
         Shelter shelter = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
@@ -59,17 +61,14 @@ public class CustomAdapter extends ArrayAdapter<Shelter> {
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.listelement, parent, false);
-            viewHolder.name = (TextView) convertView.findViewById(R.id.name);
-            viewHolder.location = (TextView) convertView.findViewById(R.id.location);
-            viewHolder.space = (TextView) convertView.findViewById(R.id.hasSpace);
-            viewHolder.call = (ImageView) convertView.findViewById(R.id.call_butt);
-
-            result=convertView;
+            viewHolder.name = convertView.findViewById(R.id.name);
+            viewHolder.location = convertView.findViewById(R.id.location);
+            viewHolder.space = convertView.findViewById(R.id.hasSpace);
+            viewHolder.call = convertView.findViewById(R.id.call_butt);
 
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
-            result=convertView;
         }
 
         lastPosition = position;
@@ -77,6 +76,7 @@ public class CustomAdapter extends ArrayAdapter<Shelter> {
         viewHolder.name.setTextColor(Color.WHITE);
         viewHolder.location.setTextColor(Color.WHITE);
         viewHolder.space.setTextColor(Color.WHITE);
+        assert shelter != null;
         viewHolder.name.setText(shelter.getName());
 //        String address = shelter.getLocation().getStreet() + ", " +
 //                shelter.getLocation().getCity() + ", " + shelter.getLocation().getState()

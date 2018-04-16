@@ -18,7 +18,7 @@ import cs2340.edu.gatech.lamp.R;
 import cs2340.edu.gatech.lamp.utils.HelperUI;
 
 public class DefaultActivity extends AppCompatActivity {
-    Context context = this;
+    private final Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

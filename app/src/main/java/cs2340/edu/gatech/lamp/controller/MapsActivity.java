@@ -82,6 +82,7 @@ public class MapsActivity extends FragmentActivity implements MapsDetailFragment
 
         android.location.Location location = null;
         try {
+            assert locationManager != null;
             location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
             mMap.setMyLocationEnabled(true);
         } catch (SecurityException e) {
