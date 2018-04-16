@@ -20,9 +20,10 @@ import cs2340.edu.gatech.lamp.model.Shelter;
  * Created by Potato on 3/7/2018.
  */
 
-class CustomAdapter extends ArrayAdapter<Shelter> {
+public class CustomAdapter extends ArrayAdapter<Shelter> {
 
-    private final Context mContext;
+    private List<Shelter> shelters;
+    Context mContext;
 
     // View lookup cache
     private static class ViewHolder {
@@ -39,9 +40,11 @@ class CustomAdapter extends ArrayAdapter<Shelter> {
      */
     public CustomAdapter(List<Shelter> data, Context context) {
         super(context, R.layout.list_element, data);
-        //List<Shelter> shelters = data;
+        this.shelters = data;
         this.mContext=context;
     }
+
+    private int lastPosition = -1;
 
     @NonNull
     @Override
@@ -57,7 +60,7 @@ class CustomAdapter extends ArrayAdapter<Shelter> {
 
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.list_element, parent, false);
+            convertView = inflater.inflate(R.layout.listelement, parent, false);
             viewHolder.name = convertView.findViewById(R.id.name);
             viewHolder.space = convertView.findViewById(R.id.hasSpace);
             viewHolder.call = convertView.findViewById(R.id.call_butt);
@@ -66,8 +69,8 @@ class CustomAdapter extends ArrayAdapter<Shelter> {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        //hopefully this doesn't break anything
-        //int lastPosition = position;
+
+        lastPosition = position;
 
         viewHolder.name.setTextColor(Color.WHITE);
         viewHolder.location.setTextColor(Color.WHITE);
