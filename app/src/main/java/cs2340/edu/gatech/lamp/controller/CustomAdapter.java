@@ -60,7 +60,7 @@ public class CustomAdapter extends ArrayAdapter<Shelter> {
 
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.listelement, parent, false);
+            convertView = inflater.inflate(R.layout.list_element, parent, false);
             viewHolder.name = convertView.findViewById(R.id.name);
             viewHolder.space = convertView.findViewById(R.id.hasSpace);
             viewHolder.call = convertView.findViewById(R.id.call_butt);
