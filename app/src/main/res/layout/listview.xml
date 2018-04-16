@@ -29,7 +29,7 @@
             android:id="@+id/Age"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:background="#FFFFFF"
             android:paddingLeft="14dp"
             android:paddingRight="14dp"
@@ -51,14 +51,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/spinner1"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:layout_marginTop="4dp"
             android:paddingLeft="14dp"
             android:paddingRight="14dp"
             android:text="Gender"
             android:textColor="#000000"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="ObsoleteLayoutParam" />
 
         <Spinner
             android:id="@+id/spinner2"
@@ -86,7 +87,7 @@
             android:drawSelectorOnTop="false"
             android:divider="#80FFFFFF"
             android:dividerHeight="4px"
-            tools:ignore="PxUsage" />
+            tools:ignore="ObsoleteLayoutParam,PxUsage" />
 
     </LinearLayout>
 

@@ -20,9 +20,9 @@ import cs2340.edu.gatech.lamp.model.Shelter;
  * Created by Potato on 3/7/2018.
  */
 
-public class CustomAdapter extends ArrayAdapter<Shelter> {
+class CustomAdapter extends ArrayAdapter<Shelter> {
 
-    Context mContext;
+    private final Context mContext;
 
     // View lookup cache
     private static class ViewHolder {
@@ -39,7 +39,7 @@ public class CustomAdapter extends ArrayAdapter<Shelter> {
      */
     public CustomAdapter(List<Shelter> data, Context context) {
         super(context, R.layout.listelement, data);
-        List<Shelter> shelters = data;
+        //List<Shelter> shelters = data;
         this.mContext=context;
     }
 
@@ -66,8 +66,8 @@ public class CustomAdapter extends ArrayAdapter<Shelter> {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-
-        int lastPosition = position;
+        //hopefully this doesn't break anything
+        //int lastPosition = position;
 
         viewHolder.name.setTextColor(Color.WHITE);
         viewHolder.location.setTextColor(Color.WHITE);

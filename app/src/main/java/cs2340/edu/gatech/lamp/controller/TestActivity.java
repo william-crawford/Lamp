@@ -59,7 +59,7 @@ public class TestActivity extends AppCompatActivity {
                 capacity.setText(Html.fromHtml("<b>Capacity:</b> " + shelter.getCapacity()));
                 notes.setText(Html.fromHtml("<b>Notes:</b> " + shelter.getNotes()));
                 restrictions.setText(Html.fromHtml("<b>Restrictions:</b> " + shelter.getRestrictions()));
-                String sID = shelter.getKey();
+                //String sID = shelter.getKey(); don't break
                 new UpdateImageFromUrlTask().execute(shelter.getImageURL());
             }
         } else {

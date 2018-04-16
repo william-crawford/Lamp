@@ -48,9 +48,6 @@ public class MapsDetailFragment extends Fragment {
 
     private TextView nameText;
     private TextView distanceText;
-    private Button sheltersBtn;
-    private Button detailsBtn;
-    private Button directionsBtn;
     private ImageView image;
 
     /**
@@ -85,21 +82,21 @@ public class MapsDetailFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_maps_detail, container, false);
         nameText = v.findViewById(R.id.txt_map_location_name);
         distanceText = v.findViewById(R.id.txt_map_distance_to);
-        sheltersBtn = v.findViewById(R.id.btn_find_other_shelters);
+        Button sheltersBtn = v.findViewById(R.id.btn_find_other_shelters);
         sheltersBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mListener.onOtherSheltersButtonPressed();
             }
         });
-        detailsBtn = v.findViewById(R.id.btn_shelter_view_details);
+        Button detailsBtn = v.findViewById(R.id.btn_shelter_view_details);
         detailsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mListener.onDetailsButtonPressed(selected);
             }
         });
-        directionsBtn = v.findViewById(R.id.btn_navigate);
+        Button directionsBtn = v.findViewById(R.id.btn_navigate);
         directionsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
