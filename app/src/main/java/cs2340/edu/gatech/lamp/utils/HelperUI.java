@@ -67,9 +67,9 @@ public class HelperUI {
      * @param context the current context
      */
     public static void goToRegister(Context context) {
-        Intent welcomeIntent = new Intent(context, WelcomeActivity.class);
-        welcomeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        context.startActivity(welcomeIntent);
+        Intent registerIntent = new Intent(context, RegisterActivity.class);
+        registerIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        context.startActivity(registerIntent);
     }
 
     /**

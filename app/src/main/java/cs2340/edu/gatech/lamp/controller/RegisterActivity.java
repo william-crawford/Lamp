@@ -40,7 +40,6 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        final FirebaseUser currUser = currAuth.getCurrentUser();
         setContentView(R.layout.activity_register);
         Button register = findViewById(R.id.btn_comp_register);
         final EditText etEmail = findViewById(R.id.bestEmail);
@@ -60,6 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
                                         // Sign in success, update UI with the signed-in user's information
                                         Log.d("RegisterActivity", "createUserWithEmail:success");
                                         User user;
+                                        FirebaseUser currUser = currAuth.getCurrentUser();
                                         if (rbHomeless.isChecked()) {
                                             user = new HomelessUser(currUser);
                                             user.writeNewUser();
