@@ -97,21 +97,25 @@ public class WelcomeActivity extends AppCompatActivity {
             passwordReset.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    currAuth.sendPasswordResetEmail(etUsername.getText().toString())
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        Log.d("Password Reset", "Email sent.");
-                                        Toast.makeText(context, "Email Sent",
-                                                Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        Toast.makeText(context, "Please enter an email in the username field",
-                                                Toast.LENGTH_SHORT).show();
-                                        HelperUI.goToWelcome(context);
+                    if (!(etUsername.getText().toString().equals(""))) {
+                        currAuth.sendPasswordResetEmail(etUsername.getText().toString())
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Log.d("Password Reset", "Email sent.");
+                                            Toast.makeText(context, "Email Sent",
+                                                    Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(context, "Not a valid Username",
+                                                    Toast.LENGTH_SHORT).show();
+                                        }
                                     }
-                                }
-                            });
+                                });
+                } else {
+                        Toast.makeText(context, "Please enter an email in the username field",
+                                Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         }
