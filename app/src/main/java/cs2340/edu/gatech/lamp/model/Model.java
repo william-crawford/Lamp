@@ -148,7 +148,7 @@ public class Model {
                 while (scan.hasNext()) {
                     String[] info = scan.nextLine().split(",");
                     allShelters.add(new Shelter(info));
-                    ShelterManager.createShelter(shelterOwnerDefault, info);
+                    //ShelterManager.createShelter(shelterOwnerDefault, info);
                 }
 
                 inputStream.close();

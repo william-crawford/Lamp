@@ -30,17 +30,15 @@ import com.google.firebase.auth.FirebaseUser;
 
 import cs2340.edu.gatech.lamp.R;
 //import cs2340.edu.gatech.lamp.model.Admin;
-import cs2340.edu.gatech.lamp.model.HomelessUser;
-import cs2340.edu.gatech.lamp.model.ShelterOwner;
 //import cs2340.edu.gatech.lamp.model.User;
-import cs2340.edu.gatech.lamp.model.Model;
 //import cs2340.edu.gatech.lamp.model.Shelter;
 import cs2340.edu.gatech.lamp.utils.HelperUI;
+
+import static cs2340.edu.gatech.lamp.utils.DatabaseReadCalls.getUserType;
 
 public class WelcomeActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 1;
     private FirebaseAuth currAuth;
-
     private final Context context = this;
 
     @Override
@@ -54,14 +52,7 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onStart();
         FirebaseUser currUser = currAuth.getCurrentUser();
         if (currUser != null) {
-            //this is not a properly done implementation
-            ShelterOwner shelterUser = new ShelterOwner(currUser);
-            Model.getInstance().setShelterOwnerDefault(shelterUser);
-
-            //Model.getInstance().load(this);
-            Model.load(this);
-            Model.getInstance().setCurrentUser(new HomelessUser(currUser));
-            HelperUI.goToDefault(this);
+            getUserType(currUser, context);
         } else {
             setContentView(R.layout.activity_welcome);
             Button logIn = findViewById(R.id.btn_logIn);
@@ -80,15 +71,7 @@ public class WelcomeActivity extends AppCompatActivity {
                                         Log.d("WelcomeActivity", "signInWithEmail:success");
                                         FirebaseUser user = currAuth.getCurrentUser();
 
-                                        //this is not a proper implementation
-                                        ShelterOwner shelterUser = new ShelterOwner(user);
-                                        Model.getInstance().setShelterOwnerDefault(shelterUser);
-
-                                        //Model.getInstance().load(context);
-                                        Model.load(context);
-                                        Model.getInstance().setCurrentUser(new HomelessUser(user));
-
-                                        HelperUI.goToDefault(context);
+                                        getUserType(user, context);
                                     } else {
                                         // If sign in fails, display a message to the user.
                                         Log.w("WelcomeActivity", "signInWithEmail:failure", task.getException());
@@ -101,11 +84,34 @@ public class WelcomeActivity extends AppCompatActivity {
                 }
             });
 
+
             Button register = findViewById(R.id.btn_register);
             register.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     HelperUI.goToRegister(context);
+                }
+            });
+
+            Button passwordReset = findViewById(R.id.btn_passwordReset);
+            passwordReset.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    currAuth.sendPasswordResetEmail(etUsername.getText().toString())
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Log.d("Password Reset", "Email sent.");
+                                        Toast.makeText(context, "Email Sent",
+                                                Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(context, "Please enter an email in the username field",
+                                                Toast.LENGTH_SHORT).show();
+                                        HelperUI.goToWelcome(context);
+                                    }
+                                }
+                            });
                 }
             });
         }
